@@ -23,6 +23,7 @@
     [style.display]="isVisible(win) ? 'block' : 'none'"
     [class.maximized]="win.isMaximized"
   >
+
     <div class="title-bar" (mousedown)="startDrag($event, win)">
       <span>{{ win.title }}</span>
       <div class="controls">

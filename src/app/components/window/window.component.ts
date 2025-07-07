@@ -131,7 +131,7 @@ export class WindowComponent implements OnInit {
       document.body.style.backgroundPosition = 'center';
       document.body.style.backgroundAttachment = 'fixed';
     } else {
-      document.body.style.backgroundImage = `url(Background.png)`;
+      document.body.style.backgroundImage = `url(desk-coding.png)`;
     }
 
     const savedPositions = sessionStorage.getItem('desktopAppPositions');
