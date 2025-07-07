@@ -7,10 +7,10 @@ body {
   overflow: hidden;
   font-family: "Segoe UI", sans-serif;
   background-color: #000;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
   transition: background-image 0.4s ease-in-out;
 }
 
@@ -216,5 +216,72 @@ body {
     font-size: 0.8rem;
     padding: 3px 8px;
     height: 36px;
+  }
+}
+@media (min-width: 1440px) {
+  .app-icon {
+    width: 120px;
+  }
+
+  .app-icon .icon {
+    font-size: 3.5rem;
+  }
+
+  .app-icon .label {
+    font-size: 1.1rem;
+  }
+
+  .window {
+    max-width: 90vw;
+    max-height: 85vh;
+  }
+
+  .title-bar {
+    font-size: 1.1rem;
+    padding: 10px 16px;
+  }
+
+  .window-content {
+    padding: 1.5rem;
+    font-size: 1.2rem;
+  }
+
+  .taskbar {
+    height: 44px;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+  }
+
+  .resize-handle {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .app-icon {
+    width: 140px;
+  }
+
+  .app-icon .icon {
+    font-size: 4rem;
+  }
+
+  .app-icon .label {
+    font-size: 1.2rem;
+  }
+
+  .window-content {
+    font-size: 1.4rem;
+  }
+
+  .taskbar {
+    height: 48px;
+    font-size: 1.2rem;
+  }
+
+  .title-bar {
+    font-size: 1.2rem;
+    padding: 12px 18px;
   }
 }
