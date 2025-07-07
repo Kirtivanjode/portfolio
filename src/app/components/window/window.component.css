@@ -6,11 +6,13 @@ body {
   width: 100%;
   overflow: hidden;
   font-family: "Segoe UI", sans-serif;
-  background-color: #000;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+
+  background-color: #000; /* fallback */
+  /* background-image: url("Background.png"); replace dynamically */
+  background-size: cover; /* ✅ Perfect for laptop screens */
   background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   transition: background-image 0.4s ease-in-out;
 }
 
@@ -36,7 +38,7 @@ body {
 
 .app-icon {
   position: absolute;
-  width: 70px;
+  width: 80px;
   text-align: center;
   user-select: none;
   cursor: grab;
@@ -44,7 +46,6 @@ body {
   border-radius: 12px;
   color: white;
   transition: transform 0.1s;
-  touch-action: none; /* Better for drag on touch screens */
 }
 
 .app-icon:hover {
@@ -72,9 +73,6 @@ body {
   overflow: hidden;
   border: 1px solid #ccc;
   z-index: 1000;
-  max-width: 95vw;
-  max-height: 90vh;
-  border-radius: 6px;
 }
 
 .window.maximized {
@@ -82,7 +80,6 @@ body {
   left: 0 !important;
   width: 100% !important;
   height: calc(100% - 40px) !important;
-  border-radius: 0 !important;
 }
 
 /* Title Bar */
@@ -95,7 +92,6 @@ body {
   font-weight: bold;
   cursor: move;
   user-select: none;
-  touch-action: none;
 }
 
 .title-bar .controls {
@@ -123,7 +119,6 @@ body {
   padding: 1rem;
   background: #fafafa;
   height: calc(100% - 40px);
-  font-size: 1rem;
 }
 
 /* Resize Handle */
@@ -160,7 +155,6 @@ body {
   font-family: "Segoe UI", sans-serif;
 }
 
-/* ------------------ Responsive Tweaks ------------------ */
 @media (max-width: 768px) {
   .app-icon {
     width: 60px;
