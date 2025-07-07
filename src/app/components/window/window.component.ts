@@ -149,29 +149,49 @@ export class WindowComponent implements OnInit {
   constructor(private windowService: WindowManagerService) {}
 
   ngOnInit(): void {
-    // ✅ Load background image from session storage
+    // Load background image from session
     const bg = sessionStorage.getItem('selectedBackground');
     if (bg) {
       document.body.style.backgroundImage = `url(${bg})`;
       document.body.style.backgroundSize = 'cover';
-      document.body.style.backgroundPosition = 'center';
       document.body.style.backgroundRepeat = 'no-repeat';
+      document.body.style.backgroundPosition = 'center';
+      document.body.style.backgroundAttachment = 'fixed';
+    } else {
+      // Optional fallback (in case sessionStorage is empty)
+      document.body.style.backgroundImage = `url(Background.png)`;
     }
 
-    // ✅ Restore saved app positions
+    // Restore app positions
     const savedPositions = sessionStorage.getItem('desktopAppPositions');
     if (savedPositions) {
-      const parsed: { id: string; position: { x: number; y: number } }[] =
-        JSON.parse(savedPositions);
-      parsed.forEach(({ id, position }) => {
-        const app = this.apps.find((app) => app.id === id);
-        if (app) {
-          app.position = position;
-        }
+      const parsed = JSON.parse(savedPositions);
+      parsed.forEach(({ id, position }: any) => {
+        const app = this.apps.find((a) => a.id === id);
+        if (app) app.position = position;
       });
     }
 
+    window.addEventListener('resize', this.onWindowResize);
     this.windowService.registerLauncher((id: string) => this.openAppById(id));
+  }
+
+  onWindowResize = () => {
+    this.openWindows = this.openWindows.map((win) =>
+      win.isMaximized
+        ? {
+            ...win,
+            size: {
+              width: window.innerWidth,
+              height: window.innerHeight - 40,
+            },
+          }
+        : win
+    );
+  };
+
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.onWindowResize);
   }
 
   openApp(app: DesktopApp): void {

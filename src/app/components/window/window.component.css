@@ -8,10 +8,9 @@ body {
   font-family: "Segoe UI", sans-serif;
 
   background-color: #000; /* fallback */
-  /* background-image: url("Background.png"); replace dynamically */
-  background-size: cover; /* ✅ Perfect for laptop screens */
-  background-position: center center;
-  background-repeat: no-repeat;
+  background-size: cover; /* fills the entire screen */
+  background-position: center; /* centers image */
+  background-repeat: no-repeat; /* prevents repetition */
   background-attachment: fixed;
   transition: background-image 0.4s ease-in-out;
 }
@@ -68,11 +67,13 @@ body {
 /* Window */
 .window {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   background: white;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
   border: 1px solid #ccc;
   z-index: 1000;
+  overflow: hidden;
 }
 
 .window.maximized {
@@ -80,6 +81,7 @@ body {
   left: 0 !important;
   width: 100% !important;
   height: calc(100% - 40px) !important;
+  overflow: scroll;
 }
 
 /* Title Bar */
@@ -118,7 +120,6 @@ body {
   overflow: auto;
   padding: 1rem;
   background: #fafafa;
-  height: calc(100% - 40px);
 }
 
 /* Resize Handle */
@@ -132,11 +133,6 @@ body {
   background: rgba(0, 0, 0, 0.2);
   z-index: 10;
   border-bottom-right-radius: 4px;
-}
-
-/* Hidden */
-.hidden {
-  display: none !important;
 }
 
 /* Taskbar */
@@ -185,6 +181,22 @@ body {
 }
 
 @media (max-width: 480px) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
+    background-color: #000;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    transition: background-image 0.4s ease-in-out;
+  }
+
   .app-icon {
     width: 50px;
   }
@@ -214,7 +226,7 @@ body {
 }
 @media (min-width: 1440px) {
   .app-icon {
-    width: 120px;
+    width: 80px;
   }
 
   .app-icon .icon {
@@ -226,8 +238,8 @@ body {
   }
 
   .window {
-    max-width: 90vw;
-    max-height: 85vh;
+    max-width: 100vw;
+    max-height: 100vh;
   }
 
   .title-bar {
