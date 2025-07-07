@@ -73,7 +73,7 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   border: 1px solid #ccc;
   z-index: 1000;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 .window.maximized {
@@ -81,7 +81,6 @@ body {
   left: 0 !important;
   width: 100% !important;
   height: calc(100% - 40px) !important;
-  overflow: scroll;
 }
 
 /* Title Bar */

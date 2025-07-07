@@ -21,7 +21,7 @@
 
 <div class="center-section">
   <button
-    *ngFor="let win of openedWindows"
+    *ngFor="let win of getVisibleWindows()"
     class="taskbar-icon"
     [class.active]="!win.isMinimized"
     (click)="select(win)"
@@ -36,6 +36,7 @@
     class="material-icons tray-icon"
     title="Open Calendar"
     (click)="triggerOpenAppById('calendar')"
+    [class.active]="isAppOpen('calendar')"
   >
     calendar_today
   </span>
@@ -44,6 +45,7 @@
     class="material-icons tray-icon"
     title="Settings"
     (click)="triggerOpenAppById('settings')"
+    [class.active]="isAppOpen('settings')"
   >
     settings
   </span>

@@ -63,11 +63,27 @@ export class TaskbarComponent {
   }
 
   getAppIcon(id: string): string {
-    return this.apps.find((a) => a.id === id)?.icon || '❓';
+    const fallback: Record<string, string> = {
+      calendar: '📅',
+      settings: '⚙️',
+    };
+
+    const app = this.apps.find((a) => a.id === id);
+    return app?.icon || fallback[id] || '❓';
+  }
+
+  getVisibleWindows(): any[] {
+    return this.openedWindows.filter(
+      (w) => w.id !== 'calendar' && w.id !== 'settings'
+    );
   }
 
   select(win: any) {
     this.selectWindow.emit(win);
+  }
+
+  isAppOpen(appId: string): boolean {
+    return this.openedWindows.some((w) => w.id === appId && !w.isMinimized);
   }
 
   triggerOpenApp(app: any) {
