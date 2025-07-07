@@ -73,7 +73,6 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   border: 1px solid #ccc;
   z-index: 1000;
-  overflow: scroll;
 }
 
 .window.maximized {
@@ -81,6 +80,7 @@ body {
   left: 0 !important;
   width: 100% !important;
   height: calc(100% - 40px) !important;
+  overflow: scroll;
 }
 
 /* Title Bar */
@@ -140,7 +140,7 @@ body {
   align-items: center;
   justify-content: space-between;
   background: #1e1e1e;
-  padding: 5px 10px;
+  padding: 5px 5px;
   position: fixed;
   bottom: 0;
   width: 100%;

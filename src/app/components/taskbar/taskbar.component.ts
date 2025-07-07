@@ -26,8 +26,11 @@ export class TaskbarComponent {
   ngOnInit() {
     setInterval(() => {
       const now = new Date();
-      this.currentTime = now.toLocaleTimeString();
-    }, 1000);
+      this.currentTime = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    });
 
     this.filteredApps = [...this.apps];
   }

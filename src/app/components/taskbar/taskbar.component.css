@@ -103,6 +103,7 @@
 .tray-clock {
   min-width: 80px;
   text-align: right;
+  padding-right: 10px;
 }
 
 .tray-icon.active {
