@@ -1,0 +1,54 @@
+<div class="search-bar">
+  <input
+    type="text"
+    placeholder="Search apps..."
+    [(ngModel)]="searchQuery"
+    (input)="filterApps()"
+    (focus)="showSuggestions = true"
+    (keydown)="handleKey($event)"
+  />
+  <ul class="suggestions" *ngIf="showSuggestions && filteredApps.length">
+    <li
+      *ngFor="let app of filteredApps; let i = index"
+      [class.active]="i === selectedIndex"
+      (click)="triggerOpenApp(app); clearSearch()"
+    >
+      <span class="icon">{{ app.icon }}</span>
+      <span class="name">{{ app.name }}</span>
+    </li>
+  </ul>
+</div>
+
+<div class="center-section">
+  <button
+    *ngFor="let win of openedWindows"
+    class="taskbar-icon"
+    [class.active]="!win.isMinimized"
+    (click)="select(win)"
+    [title]="win.title"
+  >
+    <span class="icon-emoji">{{ getAppIcon(win.id) }}</span>
+  </button>
+</div>
+
+<div class="right-section">
+  <span
+    class="material-icons tray-icon"
+    title="Open Calendar"
+    (click)="triggerOpenAppById('calendar')"
+  >
+    calendar_today
+  </span>
+
+  <span
+    class="material-icons tray-icon"
+    title="Settings"
+    (click)="triggerOpenAppById('settings')"
+  >
+    settings
+  </span>
+
+  <div class="tray-clock">
+    {{ currentTime }}
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="experience-section">
+  <!-- Header -->
+  <div class="section-header">
+    <h1>Work Experience</h1>
+    <p>My professional journey and achievements</p>
+  </div>
+
+  <!-- Experience Cards -->
+  <div class="experience-list">
+    <div class="card" *ngFor="let exp of experiences; index as i">
+      <!-- Top Row -->
+      <div class="top-row">
+        <img [src]="exp.logo" [alt]="exp.company" />
+        <div class="details">
+          <h3>{{ exp.position }}</h3>
+          <p class="company">{{ exp.company }}</p>
+          <div class="meta">
+            <span>{{ exp.duration }}</span> | <span>{{ exp.location }}</span> |
+            <span>{{ exp.connections }} connections</span>
+          </div>
+        </div>
+        <div class="index">#{{ i + 1 }}</div>
+      </div>
+
+      <!-- Description -->
+      <p class="desc">{{ exp.description }}</p>
+
+      <!-- Achievements -->
+      <div>
+        <h4>Key Achievements</h4>
+        <ul>
+          <li *ngFor="let ach of exp.achievements">• {{ ach }}</li>
+        </ul>
+      </div>
+
+      <!-- Skills -->
+      <div class="skills">
+        <h4>Technologies Used</h4>
+        <span class="skill" *ngFor="let skill of exp.skills">{{ skill }}</span>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <button>👍 Like</button>
+        <button>💬 Comment</button>
+        <button>🔄 Share</button>
+        <div class="reactions">{{ 10 + i * 13 }} reactions</div>
+      </div>
+    </div>
+  </div>
+</div>

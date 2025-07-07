@@ -1,0 +1,54 @@
+<div class="desktop">
+  <!-- <img src="Background.png" alt="Background" class="desktop-bg" /> -->
+  <div
+    class="app-icon"
+    *ngFor="let app of apps"
+    [style.left.px]="app.position?.x"
+    [style.top.px]="app.position?.y"
+    (mousedown)="startAppDrag($event, app)"
+    (dblclick)="openApp(app)"
+  >
+    <span class="icon">{{ app.icon }}</span>
+    <span class="label">{{ app.name }}</span>
+  </div>
+
+  <div
+    class="window"
+    *ngFor="let win of openWindows"
+    [style.top.px]="win.position.y"
+    [style.left.px]="win.position.x"
+    [style.zIndex]="win.zIndex"
+    [style.width.px]="win.size.width"
+    [style.height.px]="win.size.height"
+    [style.display]="isVisible(win) ? 'block' : 'none'"
+    [class.maximized]="win.isMaximized"
+  >
+    <div class="title-bar" (mousedown)="startDrag($event, win)">
+      <span>{{ win.title }}</span>
+      <div class="controls">
+        <button (click)="minimizeWindow(win.id)">_</button>
+        <button (click)="maximizeWindow(win.id)">☐</button>
+        <button (click)="closeWindow(win.id)">×</button>
+      </div>
+    </div>
+
+    <div class="window-content">
+      <ng-container
+        *ngComponentOutlet="componentMap[win.componentId]"
+      ></ng-container>
+    </div>
+
+    <div class="resize-handle" (mousedown)="startResize($event, win)"></div>
+  </div>
+</div>
+
+<div class="taskbar">
+  <app-taskbar
+    [apps]="apps"
+    [openedWindows]="openWindows"
+    (selectWindow)="focusWindow($event.id)"
+    (openApp)="openApp($event)"
+    (openAppById)="openAppById($event)"
+    style="display: flex; justify-content: space-between; width: 99%"
+  ></app-taskbar>
+</div>

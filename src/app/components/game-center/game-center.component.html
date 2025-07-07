@@ -1,0 +1,30 @@
+<div class="game-center">
+  <ng-container *ngIf="!selectedGame">
+    <h2>🎮 Game Center</h2>
+    <div class="game-grid">
+      <div
+        class="game-card"
+        *ngFor="let game of games"
+        (click)="openGame(game.id)"
+      >
+        <div class="icon">{{ game.icon }}</div>
+        <div class="title">{{ game.title }}</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="selectedGame === 'tic-tac-toe'">
+    <button class="back-btn" (click)="backToMenu()">⬅ Back</button>
+    <app-tic-tac-toe></app-tic-tac-toe>
+  </ng-container>
+
+  <ng-container *ngIf="selectedGame === 'memory-match'">
+    <button class="back-btn" (click)="backToMenu()">⬅ Back</button>
+    <app-memory-match></app-memory-match>
+  </ng-container>
+
+  <ng-container *ngIf="selectedGame === 'rps'">
+    <button class="back-btn" (click)="backToMenu()">⬅ Back</button>
+    <app-rock-paper-scissors></app-rock-paper-scissors>
+  </ng-container>
+</div>

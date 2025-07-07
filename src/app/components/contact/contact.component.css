@@ -1,0 +1,82 @@
+.contact-container {
+  padding: 2rem;
+  background-color: #f3f4f6;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.contact-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.contact-list {
+  flex: 1 1 300px;
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.contact-card {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  transition: background 0.3s;
+}
+
+.contact-card:hover,
+.contact-card.selected {
+  background: #e0f2f1;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.contact-details {
+  flex: 2 1 500px;
+  background: white;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.details-header h2 {
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+button {
+  background: #3f51b5;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.success-msg {
+  color: green;
+  margin-top: 1rem;
+}

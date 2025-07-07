@@ -1,0 +1,41 @@
+<div class="about-wrapper">
+  <div class="about-container">
+    <div class="chat-box">
+      <div class="chat-header">
+        <div class="chat-avatar">👤</div>
+        <div>
+          <h2>Kirti Vanjode</h2>
+          <p>Full Stack Developer</p>
+        </div>
+      </div>
+
+      <div class="chat-messages">
+        <div
+          *ngFor="let message of messagesList(); trackBy: trackByIndex"
+          [ngClass]="message.sender === 'user' ? 'msg-user' : 'msg-bot'"
+        >
+          <div class="msg-bubble" [ngClass]="message.sender">
+            <p class="msg-text">{{ message.text }}</p>
+            <p class="msg-time">{{ message.timestamp }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        *ngIf="currentStepValue() === 1 || currentStepValue() === 0"
+        class="chat-input"
+      >
+        <input
+          #chatInput
+          type="text"
+          [(ngModel)]="userInputModel"
+          (keydown.enter)="handleSendMessage()"
+          [placeholder]="
+            currentStepValue() === 1 ? 'Type your name...' : 'Say hello...'
+          "
+        />
+        <button (click)="handleSendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="calendar">
+  <!-- Header -->
+  <div class="calendar-header">
+    <button (click)="navigateMonth('prev')">⟨</button>
+    <h2>
+      {{ monthNames[currentDate.getMonth()] }} {{ currentDate.getFullYear() }}
+    </h2>
+    <button (click)="navigateMonth('next')">⟩</button>
+  </div>
+
+  <!-- Day Labels -->
+  <div class="weekdays">
+    <div *ngFor="let day of dayNames">{{ day }}</div>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div class="calendar-grid">
+    <div
+      *ngFor="let day of days"
+      class="day-cell"
+      [class.today]="day && isToday(day)"
+      (click)="day && selectDate(day)"
+    >
+      <div *ngIf="day">
+        {{ day.getDate() }}
+        <div
+          *ngFor="let event of getEventsForDate(day)"
+          class="event"
+          [style.background]="getEventColor(event.type)"
+        >
+          {{ event.title }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedDate" class="sidebar">
+    <h3>{{ selectedDate | date : "fullDate" }}</h3>
+
+    <div *ngFor="let event of getEventsForDate(selectedDate)">
+      <strong>{{ getEventEmoji(event.type) }} {{ event.title }}</strong> -
+      {{ event.time }}
+      <p *ngIf="event.description">{{ event.description }}</p>
+    </div>
+
+    <button (click)="closeSidebar()">Close</button>
+  </div>
+
+  <!-- Sidebar -->
+  <div *ngIf="selectedDate" class="sidebar">
+    <h3>{{ selectedDate | date : "fullDate" }}</h3>
+    <div *ngFor="let event of getEventsForDate(selectedDate)">
+      <strong>{{ getEventEmoji(event.type) }} {{ event.title }}</strong> -
+      {{ event.time }}
+      <p *ngIf="event.description">{{ event.description }}</p>
+    </div>
+    <button (click)="closeSidebar()">Close</button>
+  </div>
+</div>

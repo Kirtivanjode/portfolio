@@ -1,0 +1,38 @@
+<div class="projects-container">
+  <div class="header">
+    <h1>My Projects</h1>
+    <p>Showcasing my latest work and creations</p>
+  </div>
+
+  <div class="grid">
+    <div class="project-card" *ngFor="let project of projects">
+      <div class="image-wrapper">
+        <img [src]="project.image" [alt]="project.title" />
+        <div class="overlay">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <div class="tech-tags">
+            <span *ngFor="let tech of project.tech">{{ tech }}</span>
+          </div>
+          <div class="links">
+            <a [href]="project.github" target="_blank">GitHub</a>
+            <a [href]="project.demo" target="_blank">Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="actions">
+          <button (click)="toggleLike(project.id)">
+            <span [class.liked]="isLiked(project.id)">❤️</span>
+          </button>
+          <span>💬</span>
+          <span>🔗</span>
+        </div>
+        <div class="likes">
+          {{ isLiked(project.id) ? project.likes + 1 : project.likes }} likes
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

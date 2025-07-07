@@ -1,0 +1,88 @@
+.skills-container {
+  display: flex;
+  height: 100vh;
+  font-family: sans-serif;
+  background: #f9f9f9;
+}
+
+.sidebar {
+  width: 300px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.folder {
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.file {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.file-item {
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.file-item:hover {
+  background-color: #eef2ff;
+}
+
+.file-item.selected {
+  background-color: #c7d2fe;
+  font-weight: bold;
+}
+
+.content {
+  flex: 1;
+  padding: 40px;
+  background-color: #fff;
+}
+
+.skill-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.skill-header .icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.progress {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+
+.bar {
+  width: 100%;
+  background: #e5e7eb;
+  border-radius: 10px;
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.fill {
+  height: 10px;
+  background: #3b82f6;
+  transition: width 0.5s ease;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  padding-top: 100px;
+}

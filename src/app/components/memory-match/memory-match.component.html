@@ -1,0 +1,14 @@
+<div class="memory-container">
+  <div class="memory-grid">
+    <div
+      class="memory-card"
+      *ngFor="let card of cards; let i = index"
+      [class.flipped]="card.flipped || card.matched"
+      (click)="flipCard(i)"
+    >
+      <div class="front">❓</div>
+      <div class="back">{{ card.icon }}</div>
+    </div>
+  </div>
+  <button (click)="resetGame()">Restart</button>
+</div>

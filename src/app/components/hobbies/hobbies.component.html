@@ -1,0 +1,73 @@
+<div class="hobbies-section">
+  <!-- Header -->
+  <div class="header">
+    <h1>My Hobbies & Interests</h1>
+    <p>Level up your life with passionate pursuits</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div>🏆</div>
+      <div>{{ achievements.size }}</div>
+      <small>Achievements</small>
+    </div>
+    <div class="stat">
+      <div>⭐</div>
+      <div>{{ avgLevel }}</div>
+      <small>Avg. Level</small>
+    </div>
+    <div class="stat">
+      <div>🎮</div>
+      <div>{{ totalXP | number }}</div>
+      <small>Total XP</small>
+    </div>
+  </div>
+
+  <!-- Hobbies Grid -->
+  <div class="grid">
+    <div
+      class="card"
+      *ngFor="let hobby of hobbies"
+      [ngStyle]="{ backgroundColor: hobby.bgColor }"
+      (click)="toggleHobby(hobby.id)"
+    >
+      <div class="icon" [ngStyle]="{ backgroundColor: hobby.color }">
+        {{ hobby.icon }}
+      </div>
+      <h3>{{ hobby.name }}</h3>
+      <div>
+        Level {{ hobby.level }} - {{ hobby.xp | number }}/{{
+          hobby.maxXp | number
+        }}
+        XP
+      </div>
+      <div class="bar-bg">
+        <div
+          class="bar-fill"
+          [ngStyle]="{
+            backgroundColor: hobby.color,
+            width: (hobby.xp / hobby.maxXp) * 100 + '%'
+          }"
+        ></div>
+      </div>
+      <div *ngIf="selectedHobby === hobby.id" class="expanded">
+        <p>{{ hobby.description }}</p>
+        <h4>Achievements</h4>
+        <ul>
+          <li *ngFor="let a of hobby.achievements">{{ a }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Achievements -->
+  <div *ngFor="let id of achievements">
+    <ng-container *ngIf="getHobbyById(id) as hobby">
+      <div class="badge" [ngStyle]="{ background: hobby.color }">
+        <span>{{ hobby.icon }}</span>
+        <div>{{ hobby.name }} Master</div>
+      </div>
+    </ng-container>
+  </div>
+</div>

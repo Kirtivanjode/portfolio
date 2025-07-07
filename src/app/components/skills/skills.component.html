@@ -1,0 +1,47 @@
+<div class="skills-container">
+  <div class="sidebar">
+    <h3>Skill Categories</h3>
+    <div *ngFor="let folder of skillsData">
+      <div class="folder" (click)="toggleFolder(folder.id)">
+        <span>{{ expandedFolders.has(folder.id) ? "📂" : "📁" }}</span>
+        {{ folder.name }}
+      </div>
+      <div class="file" *ngIf="expandedFolders.has(folder.id)">
+        <div
+          class="file-item"
+          *ngFor="let skill of folder.children"
+          [class.selected]="selectedFile === skill.id"
+          (click)="selectFile(skill.id)"
+        >
+          <span>{{ skill.icon }}</span>
+          {{ skill.name }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div *ngIf="selectedSkill; else emptyState">
+      <div class="skill-header">
+        <div class="icon">{{ selectedSkill.icon }}</div>
+        <h2>{{ selectedSkill.name }}</h2>
+        <p>Experience: {{ selectedSkill.experience }}</p>
+      </div>
+
+      <div class="progress">
+        <div class="bar">
+          <div class="fill" [style.width.%]="selectedSkill.level"></div>
+        </div>
+        <p>
+          {{ getStars(selectedSkill.level || 0) }} — {{ selectedSkill.level }}%
+        </p>
+      </div>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="empty">
+        <p>Select a skill to view details</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

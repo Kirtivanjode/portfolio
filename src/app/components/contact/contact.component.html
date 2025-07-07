@@ -1,0 +1,84 @@
+<div class="contact-container">
+  <!-- Header -->
+  <div class="section-header">
+    <h1>Get In Touch</h1>
+    <p>Let's connect and discuss opportunities</p>
+  </div>
+
+  <div class="contact-layout">
+    <!-- Contact List -->
+    <div class="contact-list">
+      <div
+        *ngFor="let contact of contacts"
+        (click)="selectContact(contact.id)"
+        [class.selected]="contact.id === selectedContact"
+        class="contact-card"
+      >
+        <div class="icon" [style.backgroundColor]="contact.color"></div>
+        <div class="info">
+          <h3>{{ contact.name }}</h3>
+          <p>{{ contact.value }}</p>
+          <small>{{ contact.lastActive }}</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="contact-details" *ngIf="getContact() as selected">
+      <div class="details-header">
+        <h2>{{ selected.name }}</h2>
+        <p>{{ selected.value }}</p>
+      </div>
+
+      <!-- Message Form -->
+      <form
+        *ngIf="['email', 'phone'].includes(selected.id)"
+        (ngSubmit)="handleSubmit()"
+        #form="ngForm"
+      >
+        <input
+          [(ngModel)]="formData.name"
+          name="name"
+          required
+          placeholder="Your name"
+        />
+        <input
+          [(ngModel)]="formData.email"
+          name="email"
+          required
+          placeholder="Email"
+        />
+        <input
+          [(ngModel)]="formData.subject"
+          name="subject"
+          required
+          placeholder="Subject"
+        />
+        <textarea
+          [(ngModel)]="formData.message"
+          name="message"
+          required
+          placeholder="Message..."
+        ></textarea>
+        <button type="submit">Send</button>
+        <p *ngIf="messageSent" class="success-msg">
+          Message sent successfully!
+        </p>
+      </form>
+
+      <!-- External Link -->
+      <div *ngIf="['github', 'linkedin', 'website'].includes(selected.id)">
+        <a [href]="'https://' + selected.value" target="_blank"
+          >Visit {{ selected.name }}</a
+        >
+      </div>
+
+      <!-- Location Info -->
+      <div *ngIf="selected.id === 'location'">
+        <p>I’m currently based in {{ selected.value }}.</p>
+        <p>Timezone: IST GMT +5:30</p>
+        <p>Available: Mon–Fri</p>
+      </div>
+    </div>
+  </div>
+</div>

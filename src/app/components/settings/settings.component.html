@@ -1,0 +1,63 @@
+<div class="settings-container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li
+        *ngFor="let section of settingSections"
+        [class.active]="activeSection === section.id"
+        (click)="setActiveSection(section.id)"
+      >
+        {{ section.name }}
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Main content -->
+  <section class="content">
+    <!-- Display & Appearance -->
+    <div *ngIf="activeSection === 'display'">
+      <h3>Display & Appearance</h3>
+      <label>
+        <input type="checkbox" [(ngModel)]="darkMode" />
+        Dark Mode
+      </label>
+      <br />
+      <label>
+        <input type="checkbox" [(ngModel)]="isAnimated" />
+        Enable Animations
+      </label>
+    </div>
+
+    <!-- Personalization -->
+    <div *ngIf="activeSection === 'personalization'">
+      <h3>Choose Background</h3>
+      <div class="background-options">
+        <div
+          *ngFor="let bg of personalizationBackgrounds"
+          class="bg-option"
+          [class.selected]="selectedBackground === bg.url"
+          (click)="setBackground(bg.url)"
+        >
+          <img [src]="bg.url" [alt]="bg.name" />
+          <p>{{ bg.name }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sound -->
+    <div *ngIf="activeSection === 'sound'">
+      <h3>Sound Settings</h3>
+      <label>Volume: {{ volume }}%</label>
+      <input type="range" [(ngModel)]="volume" min="0" max="100" />
+    </div>
+
+    <!-- Notifications -->
+    <div *ngIf="activeSection === 'notifications'">
+      <h3>Notifications</h3>
+      <label>
+        <input type="checkbox" [(ngModel)]="notifications" />
+        Enable Notifications
+      </label>
+    </div>
+  </section>
+</div>

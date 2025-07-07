@@ -1,0 +1,26 @@
+<div class="msg-container" *ngIf="showMsg">
+  <p id="msg">
+    {{
+      winner === "Draw"
+        ? "Game was a Draw."
+        : "Congratulations, Winner is " + winner
+    }}
+  </p>
+  <button id="new-btn" (click)="resetGame()">New Game</button>
+</div>
+
+<main>
+  <button id="reset-btn" (click)="resetGame()">Reset Game</button>
+  <div class="container">
+    <div class="game">
+      <button
+        class="box"
+        *ngFor="let val of boxes; let i = index"
+        [disabled]="val || winner"
+        (click)="handleClick(i)"
+      >
+        {{ val }}
+      </button>
+    </div>
+  </div>
+</main>

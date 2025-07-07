@@ -1,0 +1,102 @@
+.experience-section {
+  background: linear-gradient(to bottom right, #e3f2fd, #ede7f6);
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.top-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.top-row img {
+  width: 64px;
+  height: 64px;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.details h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.details .company {
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.details .meta {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.index {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.desc {
+  margin: 1rem 0;
+  color: #444;
+}
+
+.skills {
+  margin-top: 1rem;
+}
+
+.skill {
+  display: inline-block;
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ddd;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.action-bar button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  margin-right: 1rem;
+}

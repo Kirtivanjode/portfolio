@@ -1,0 +1,28 @@
+<h1>Rock Paper Scissors</h1>
+
+<div class="choices">
+  <div class="choice" id="rock" (click)="playGame('rock')">
+    <img src="rock.png" alt="Rock" />
+  </div>
+  <div class="choice" id="paper" (click)="playGame('paper')">
+    <img src="paper.png" alt="Paper" />
+  </div>
+  <div class="choice" id="scissors" (click)="playGame('scissors')">
+    <img src="scissors.png" alt="Scissors" />
+  </div>
+</div>
+
+<div class="score-board">
+  <div class="score">
+    <p id="user-score">{{ userScore }}</p>
+    <p>You</p>
+  </div>
+  <div class="score">
+    <p id="comp-score">{{ compScore }}</p>
+    <p>Comp</p>
+  </div>
+</div>
+
+<div class="msg-container">
+  <p id="msg" [style.backgroundColor]="messageColor">{{ message }}</p>
+</div>

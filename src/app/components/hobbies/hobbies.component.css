@@ -1,0 +1,100 @@
+.hobbies-section {
+  padding: 2rem;
+  background: linear-gradient(to right, #1a237e, #4a148c);
+  color: white;
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.icon {
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 3rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.bar-bg {
+  background: rgba(255, 255, 255, 0.2);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.bar-fill {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.expanded {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #eee;
+}
+
+.achievements {
+  background: rgba(255, 255, 255, 0.05);
+  margin-top: 3rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.achievements h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.badge {
+  padding: 1rem;
+  background: #ffcc80;
+  color: black;
+  border-radius: 1rem;
+  text-align: center;
+  min-width: 150px;
+}
