@@ -21,13 +21,19 @@
 
 <div class="center-section">
   <button
-    *ngFor="let win of getVisibleWindows()"
+    *ngFor="let win of openedWindows"
     class="taskbar-icon"
     [class.active]="!win.isMinimized"
-    (click)="select(win)"
+    [class.system]="win.id === 'calendar' || win.id === 'settings'"
+    (click)="
+      win.id === 'calendar' || win.id === 'settings' ? null : select(win)
+    "
     [title]="win.title"
   >
-    <span class="icon-emoji">{{ getAppIcon(win.id) }}</span>
+    <span class="icon-emoji">
+      {{ getAppIcon(win.id) }}
+      <span *ngIf="win.id === 'calendar' || win.id === 'settings'">🔒</span>
+    </span>
   </button>
 </div>
 

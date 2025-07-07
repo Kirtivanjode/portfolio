@@ -112,6 +112,17 @@
   padding: 4px;
 }
 
+.taskbar-icon.system {
+  background: #333; /* darker gray */
+  opacity: 0.6;
+  cursor: default;
+}
+
+.taskbar-icon.system:hover {
+  background: #444;
+  opacity: 0.8;
+}
+
 /* Simple animation */
 @keyframes fadeIn {
   from {

@@ -57,76 +57,50 @@ export class WindowComponent implements OnInit {
       name: 'About Me',
       icon: '👤',
       componentSelector: 'app-about-me',
-      position: { x: 40, y: 40 },
     },
     {
       id: 'projects',
       name: 'Projects',
       icon: '💼',
       componentSelector: 'app-projects',
-      position: { x: 40, y: 140 },
     },
     {
       id: 'experience',
       name: 'Experience',
       icon: '📄',
       componentSelector: 'app-experience',
-      position: { x: 40, y: 240 },
     },
     {
       id: 'resume',
       name: 'Resume',
       icon: '📥',
       componentSelector: 'app-resume',
-      position: { x: 40, y: 340 },
     },
     {
       id: 'hobbies',
       name: 'Hobbies',
       icon: '🎨',
       componentSelector: 'app-hobbies',
-      position: { x: 140, y: 140 },
     },
     {
       id: 'skills',
       name: 'Skills',
       icon: '📁',
       componentSelector: 'app-skills',
-      position: { x: 140, y: 240 },
     },
     {
       id: 'contact',
       name: 'Contact',
       icon: '✉️',
       componentSelector: 'app-contact',
-      position: { x: 140, y: 340 },
     },
-    {
-      id: 'calendar',
-      name: '',
-      icon: '',
-      componentSelector: 'app-calendar',
-      position: {
-        x: 0,
-        y: 0,
-      },
-    },
-    {
-      id: 'settings',
-      name: '',
-      icon: '',
-      componentSelector: 'app-settings',
-      position: {
-        x: 0,
-        y: 0,
-      },
-    },
+    { id: 'calendar', name: '', icon: '', componentSelector: 'app-calendar' },
+    { id: 'settings', name: '', icon: '', componentSelector: 'app-settings' },
     {
       id: 'gamecenter',
       name: 'Game Center',
       icon: '🎮',
       componentSelector: 'app-game-center',
-      position: { x: 140, y: 40 },
     },
   ];
 
@@ -149,7 +123,6 @@ export class WindowComponent implements OnInit {
   constructor(private windowService: WindowManagerService) {}
 
   ngOnInit(): void {
-    // Load background image from session
     const bg = sessionStorage.getItem('selectedBackground');
     if (bg) {
       document.body.style.backgroundImage = `url(${bg})`;
@@ -158,11 +131,9 @@ export class WindowComponent implements OnInit {
       document.body.style.backgroundPosition = 'center';
       document.body.style.backgroundAttachment = 'fixed';
     } else {
-      // Optional fallback (in case sessionStorage is empty)
       document.body.style.backgroundImage = `url(Background.png)`;
     }
 
-    // Restore app positions
     const savedPositions = sessionStorage.getItem('desktopAppPositions');
     if (savedPositions) {
       const parsed = JSON.parse(savedPositions);
@@ -170,13 +141,40 @@ export class WindowComponent implements OnInit {
         const app = this.apps.find((a) => a.id === id);
         if (app) app.position = position;
       });
+    } else {
+      this.assignGridPositions();
     }
 
     window.addEventListener('resize', this.onWindowResize);
     this.windowService.registerLauncher((id: string) => this.openAppById(id));
   }
 
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.onWindowResize);
+  }
+
+  assignGridPositions() {
+    const iconSize = 100;
+    const margin = 40;
+    const screenWidth = window.innerWidth;
+    const iconsPerRow = Math.floor((screenWidth - margin) / iconSize);
+
+    this.apps.forEach((app, index) => {
+      const row = Math.floor(index / iconsPerRow);
+      const col = index % iconsPerRow;
+      app.position = {
+        x: margin + col * iconSize,
+        y: margin + row * iconSize,
+      };
+    });
+  }
+
   onWindowResize = () => {
+    const savedPositions = sessionStorage.getItem('desktopAppPositions');
+    if (!savedPositions) {
+      this.assignGridPositions();
+    }
+
     this.openWindows = this.openWindows.map((win) =>
       win.isMaximized
         ? {
@@ -189,10 +187,6 @@ export class WindowComponent implements OnInit {
         : win
     );
   };
-
-  ngOnDestroy(): void {
-    window.removeEventListener('resize', this.onWindowResize);
-  }
 
   openApp(app: DesktopApp): void {
     const exists = this.openWindows.find((w) => w.id === app.id);
@@ -343,6 +337,6 @@ export class WindowComponent implements OnInit {
 
   clearPositions() {
     sessionStorage.removeItem('desktopAppPositions');
-    location.reload();
+    this.assignGridPositions();
   }
 }

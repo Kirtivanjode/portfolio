@@ -180,22 +180,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  html,
-  body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    font-family: "Segoe UI", sans-serif;
-    background-color: #000;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    transition: background-image 0.4s ease-in-out;
-  }
-
   .app-icon {
     width: 50px;
   }
@@ -226,6 +210,8 @@ body {
 @media (min-width: 1440px) {
   .app-icon {
     width: 80px;
+    padding: 20px;
+    margin-bottom: 20px;
   }
 
   .app-icon .icon {
