@@ -91,7 +91,6 @@ export class WindowComponent implements OnInit {
       icon: '✉️',
       componentSelector: 'app-contact',
     },
-
     {
       id: 'gamecenter',
       name: 'Game Center',
@@ -122,12 +121,8 @@ export class WindowComponent implements OnInit {
 
   ngOnInit(): void {
     const bg = sessionStorage.getItem('selectedBackground');
-    if (bg) {
-      this.currentBackground = bg;
-      document.body.style.backgroundImage = `url(${bg})`;
-    } else {
-      document.body.style.backgroundImage = `url(desk-coding.png)`;
-    }
+    this.currentBackground = bg || 'desk-coding.png';
+    document.body.style.backgroundImage = `url(${this.currentBackground})`;
 
     const saved = sessionStorage.getItem('desktopAppPositions');
     if (saved) {
@@ -157,33 +152,27 @@ export class WindowComponent implements OnInit {
     this.apps.forEach((app, index) => {
       const col = index % 2 === 0 ? leftColumnX : rightColumnX;
       const row = Math.floor(index / 2);
-      app.position = {
-        x: col,
-        y: startY + row * rowHeight,
-      };
+      app.position = { x: col, y: startY + row * rowHeight };
     });
   }
 
   onWindowResize = () => {
-    const savedPositions = sessionStorage.getItem('desktopAppPositions');
-    if (!savedPositions) this.assignGridPositions();
+    if (!sessionStorage.getItem('desktopAppPositions'))
+      this.assignGridPositions();
 
     this.openWindows = this.openWindows.map((win) =>
       win.isMaximized
         ? {
             ...win,
-            size: {
-              width: window.innerWidth,
-              height: window.innerHeight - 40,
-            },
+            size: { width: window.innerWidth, height: window.innerHeight - 40 },
           }
         : win
     );
   };
 
   openApp(app: DesktopApp): void {
-    const exists = this.openWindows.find((w) => w.id === app.id);
-    if (exists) return this.focusWindow(app.id);
+    if (this.openWindows.some((w) => w.id === app.id))
+      return this.focusWindow(app.id);
 
     this.openWindows.push({
       id: app.id,
@@ -192,10 +181,7 @@ export class WindowComponent implements OnInit {
       isMinimized: false,
       isMaximized: true,
       position: { x: 0, y: 0 },
-      size: {
-        width: window.innerWidth,
-        height: window.innerHeight - 40,
-      },
+      size: { width: window.innerWidth, height: window.innerHeight - 40 },
       zIndex: ++this.highestZIndex,
     });
   }
@@ -258,10 +244,13 @@ export class WindowComponent implements OnInit {
 
   onAppDrag = (event: MouseEvent) => {
     if (!this.draggingApp) return;
-    this.draggingApp.position = {
-      x: event.clientX - this.iconOffset.x,
-      y: event.clientY - this.iconOffset.y,
-    };
+    const newX = event.clientX - this.iconOffset.x;
+    const newY = event.clientY - this.iconOffset.y;
+
+    const clampedX = Math.max(0, Math.min(newX, window.innerWidth - 80));
+    const clampedY = Math.max(0, Math.min(newY, window.innerHeight - 80));
+
+    this.draggingApp.position = { x: clampedX, y: clampedY };
   };
 
   stopAppDrag = () => {
@@ -298,8 +287,21 @@ export class WindowComponent implements OnInit {
 
   onDrag = (event: MouseEvent) => {
     if (!this.draggingWindow) return;
-    this.draggingWindow.position.x = event.clientX - this.dragOffset.x;
-    this.draggingWindow.position.y = event.clientY - this.dragOffset.y;
+
+    const newX = event.clientX - this.dragOffset.x;
+    const newY = event.clientY - this.dragOffset.y;
+
+    const clampedX = Math.max(
+      0,
+      Math.min(newX, window.innerWidth - this.draggingWindow.size.width)
+    );
+    const clampedY = Math.max(
+      0,
+      Math.min(newY, window.innerHeight - this.draggingWindow.size.height)
+    );
+
+    this.draggingWindow.position.x = clampedX;
+    this.draggingWindow.position.y = clampedY;
   };
 
   stopDrag = () => {
