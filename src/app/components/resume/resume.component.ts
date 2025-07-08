@@ -11,7 +11,7 @@ export class ResumeComponent {
     const element = document.createElement('a');
     const file = new Blob([''], { type: 'application/pdf' });
     element.href = URL.createObjectURL(file);
-    element.download = 'Alex_Johnson_Resume.pdf';
+    element.download = 'Kirti_Vanjode_Resume.pdf';
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);

@@ -120,10 +120,10 @@ export class WindowComponent implements OnInit {
   constructor(private windowService: WindowManagerService) {}
 
   ngOnInit(): void {
-   this.windowService.background$.subscribe((bg) => {
-    this.currentBackground = bg;
-    document.body.style.backgroundImage = `url(${bg})`;
-  });
+    this.windowService.background$.subscribe((bg) => {
+      this.currentBackground = bg;
+      document.body.style.backgroundImage = `url(${bg})`;
+    });
 
     const saved = sessionStorage.getItem('desktopAppPositions');
     if (saved) {
@@ -203,7 +203,7 @@ export class WindowComponent implements OnInit {
         ? {
             ...w,
             isMaximized: !w.isMaximized,
-            position: !w.isMaximized ? { x: 0, y: 0 } : { x: 100, y: 100 },
+            position: !w.isMaximized ? { x: 0, y: 0 } : { x: 0, y: 0 },
             size: !w.isMaximized
               ? { width: window.innerWidth, height: window.innerHeight - 40 }
               : { width: 800, height: 500 },

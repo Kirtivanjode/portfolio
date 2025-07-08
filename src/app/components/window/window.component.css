@@ -92,6 +92,9 @@ body {
 }
 
 .title-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -243,6 +246,7 @@ body {
   .app-icon .label {
     font-size: 0.5rem;
   }
+
   .window-content {
     padding: 0.3rem;
     font-size: 0.75rem;
