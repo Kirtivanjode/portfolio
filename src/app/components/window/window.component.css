@@ -164,6 +164,14 @@ body {
 /* ------------------------- MEDIA QUERIES ------------------------- */
 
 @media (max-width: 768px) {
+  .desktop-bg {
+    display: none !important;
+  }
+
+  body {
+    background-image: none !important;
+    background: linear-gradient(135deg, #1e1e1e, #3a3a3a) !important;
+  }
   .app-icon {
     width: 60px;
   }
