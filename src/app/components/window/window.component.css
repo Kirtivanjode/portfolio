@@ -1,22 +1,20 @@
-/* Base HTML and Body Styling */
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
   font-family: "Segoe UI", sans-serif;
-  background-color: #000;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
+  background-color: #000; /* fallback */
+  background-size: cover; /* fills the entire screen */
+  background-position: center; /* centers image */
+  background-repeat: no-repeat; /* prevents repetition */
   background-attachment: fixed;
   transition: background-image 0.4s ease-in-out;
-  -webkit-tap-highlight-color: transparent;
 }
 
-/* Desktop Container */
 .desktop {
   position: relative;
   height: 100vh;
@@ -25,20 +23,18 @@ body {
   font-family: "Segoe UI", sans-serif;
 }
 
-/* Background Image Layer */
 .desktop-bg {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   object-fit: cover;
   z-index: -1;
   pointer-events: none;
   user-select: none;
 }
 
-/* App Icon */
 .app-icon {
   position: absolute;
   width: 80px;
@@ -49,12 +45,6 @@ body {
   border-radius: 12px;
   color: white;
   transition: transform 0.1s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .app-icon:hover {
@@ -63,6 +53,7 @@ body {
 
 .app-icon .icon {
   font-size: 2rem;
+  display: block;
   margin-bottom: 0.3rem;
 }
 
@@ -73,7 +64,7 @@ body {
   text-overflow: ellipsis;
 }
 
-/* Window Styling */
+/* Window */
 .window {
   position: absolute;
   display: flex;
@@ -102,7 +93,6 @@ body {
   font-weight: bold;
   cursor: move;
   user-select: none;
-  font-size: 1rem;
 }
 
 .title-bar .controls {
@@ -129,7 +119,6 @@ body {
   overflow: auto;
   padding: 1rem;
   background: #fafafa;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* Resize Handle */
@@ -161,17 +150,7 @@ body {
   font-family: "Segoe UI", sans-serif;
 }
 
-/* ------------------------- MEDIA QUERIES ------------------------- */
-
 @media (max-width: 768px) {
-  .desktop-bg {
-    display: none !important;
-  }
-
-  body {
-    background-image: none !important;
-    background: linear-gradient(135deg, #1e1e1e, #3a3a3a) !important;
-  }
   .app-icon {
     width: 60px;
   }
@@ -228,7 +207,6 @@ body {
     height: 36px;
   }
 }
-
 @media (min-width: 1440px) {
   .app-icon {
     width: 80px;
