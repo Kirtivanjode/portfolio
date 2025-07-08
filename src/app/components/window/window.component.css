@@ -146,6 +146,7 @@ body {
   z-index: 2000;
   color: white;
   font-family: "Segoe UI", sans-serif;
+  left: 0;
 }
 
 @media (max-width: 768px) {
