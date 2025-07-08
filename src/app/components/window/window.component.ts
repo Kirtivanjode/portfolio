@@ -46,10 +46,7 @@ interface WindowInstance {
 export class WindowComponent implements OnInit {
   openWindows: WindowInstance[] = [];
   highestZIndex = 1000;
-  private draggingApp: DesktopApp | null = null;
-  private iconOffset = { x: 0, y: 0 };
-  private draggingWindow: WindowInstance | null = null;
-  private dragOffset = { x: 0, y: 0 };
+  currentBackground = 'desk-coding.png';
 
   apps: DesktopApp[] = [
     {
@@ -125,18 +122,15 @@ export class WindowComponent implements OnInit {
   ngOnInit(): void {
     const bg = sessionStorage.getItem('selectedBackground');
     if (bg) {
+      this.currentBackground = bg;
       document.body.style.backgroundImage = `url(${bg})`;
-      document.body.style.backgroundSize = 'cover';
-      document.body.style.backgroundRepeat = 'no-repeat';
-      document.body.style.backgroundPosition = 'center';
-      document.body.style.backgroundAttachment = 'fixed';
     } else {
       document.body.style.backgroundImage = `url(desk-coding.png)`;
     }
 
-    const savedPositions = sessionStorage.getItem('desktopAppPositions');
-    if (savedPositions) {
-      const parsed = JSON.parse(savedPositions);
+    const saved = sessionStorage.getItem('desktopAppPositions');
+    if (saved) {
+      const parsed = JSON.parse(saved);
       parsed.forEach(({ id, position }: any) => {
         const app = this.apps.find((a) => a.id === id);
         if (app) app.position = position;
@@ -154,26 +148,46 @@ export class WindowComponent implements OnInit {
   }
 
   assignGridPositions() {
-    const iconSize = 100;
-    const margin = 40;
     const screenWidth = window.innerWidth;
-    const iconsPerRow = Math.floor((screenWidth - margin) / iconSize);
+    const iconsPerRow =
+      screenWidth < 480
+        ? 3
+        : screenWidth < 768
+        ? 4
+        : screenWidth < 1440
+        ? 5
+        : 6;
+
+    let iconSize = 80;
+    let gap = 30;
+
+    if (screenWidth < 480) {
+      iconSize = 50;
+      gap = 15;
+    } else if (screenWidth < 768) {
+      iconSize = 60;
+      gap = 20;
+    } else if (screenWidth > 1440) {
+      iconSize = 100;
+      gap = 40;
+    }
+
+    const marginLeft = 20;
+    const marginTop = 50;
 
     this.apps.forEach((app, index) => {
       const row = Math.floor(index / iconsPerRow);
       const col = index % iconsPerRow;
       app.position = {
-        x: margin + col * iconSize,
-        y: margin + row * iconSize,
+        x: marginLeft + col * (iconSize + gap),
+        y: marginTop + row * (iconSize + gap),
       };
     });
   }
 
   onWindowResize = () => {
     const savedPositions = sessionStorage.getItem('desktopAppPositions');
-    if (!savedPositions) {
-      this.assignGridPositions();
-    }
+    if (!savedPositions) this.assignGridPositions();
 
     this.openWindows = this.openWindows.map((win) =>
       win.isMaximized
@@ -249,6 +263,9 @@ export class WindowComponent implements OnInit {
     return !win.isMinimized;
   }
 
+  draggingApp: DesktopApp | null = null;
+  iconOffset = { x: 0, y: 0 };
+
   startAppDrag(event: MouseEvent, app: DesktopApp) {
     event.preventDefault();
     this.draggingApp = app;
@@ -286,6 +303,9 @@ export class WindowComponent implements OnInit {
     document.removeEventListener('mouseup', this.stopAppDrag);
   };
 
+  draggingWindow: WindowInstance | null = null;
+  dragOffset = { x: 0, y: 0 };
+
   startDrag(event: MouseEvent, win: WindowInstance) {
     event.preventDefault();
     this.draggingWindow = win;
@@ -309,8 +329,8 @@ export class WindowComponent implements OnInit {
     document.removeEventListener('mouseup', this.stopDrag);
   };
 
-  private resizingWindow: WindowInstance | null = null;
-  private resizeOffset = { x: 0, y: 0 };
+  resizingWindow: WindowInstance | null = null;
+  resizeOffset = { x: 0, y: 0 };
 
   startResize(event: MouseEvent, win: WindowInstance) {
     event.stopPropagation();

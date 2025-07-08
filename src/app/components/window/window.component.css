@@ -1,3 +1,4 @@
+/* General Layout */
 html,
 body {
   margin: 0;
@@ -8,9 +9,9 @@ body {
   font-family: "Segoe UI", sans-serif;
 
   background-color: #000; /* fallback */
-  background-size: cover; /* fills the entire screen */
-  background-position: center; /* centers image */
-  background-repeat: no-repeat; /* prevents repetition */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   transition: background-image 0.4s ease-in-out;
 }
@@ -27,8 +28,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  height: calc(100vh - 40px); /* 👈 avoid overlapping taskbar */
   object-fit: cover;
   z-index: -1;
   pointer-events: none;
@@ -44,7 +45,7 @@ body {
   padding: 5px;
   border-radius: 12px;
   color: white;
-  transition: transform 0.1s;
+  transition: transform 0.2s;
 }
 
 .app-icon:hover {
@@ -150,6 +151,7 @@ body {
   font-family: "Segoe UI", sans-serif;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   .app-icon {
     width: 60px;
@@ -207,6 +209,7 @@ body {
     height: 36px;
   }
 }
+
 @media (min-width: 1440px) {
   .app-icon {
     width: 80px;

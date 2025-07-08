@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { WindowManagerService } from '../../services/window-manager.service';
 
 type ToggleableBoolean = 'isAnimated' | 'darkMode' | 'notifications';
 
@@ -16,6 +17,13 @@ export class SettingsComponent implements OnInit {
   darkMode: boolean = false;
   notifications: boolean = true;
   volume: number = 75;
+
+  constructor(private windowService: WindowManagerService) {}
+
+  setBackground(url: string) {
+    this.selectedBackground = url;
+    this.windowService.setBackground(url);
+  }
 
   settingSections = [
     { id: 'display', name: 'Display & Appearance' },
@@ -50,11 +58,6 @@ export class SettingsComponent implements OnInit {
       name: 'AI + Neural Style',
       url: 'ai-neural.png',
     },
-    {
-      id: 'cyberpunk',
-      name: 'Cyberpunk Glow',
-      url: 'cyberpunk.png',
-    },
   ];
 
   selectedBackground: string = '';
@@ -71,11 +74,5 @@ export class SettingsComponent implements OnInit {
 
   toggle(setting: ToggleableBoolean) {
     this[setting] = !this[setting];
-  }
-
-  setBackground(url: string) {
-    this.selectedBackground = url;
-    sessionStorage.setItem('selectedBackground', url);
-    document.body.style.backgroundImage = `url(${url})`;
   }
 }
