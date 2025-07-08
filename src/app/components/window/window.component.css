@@ -1,24 +1,17 @@
 html,
 body {
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
-  font-family: "Segoe UI", sans-serif;
-  background-color: #000;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  transition: background-image 0.4s ease-in-out;
 }
 
 .desktop {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
-  overflow: auto;
+  overflow: hidden;
   font-family: "Segoe UI", sans-serif;
 }
 
@@ -26,12 +19,13 @@ body {
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%; /* Subtract taskbar height */
   width: 100%;
-  height: calc(100% - 40px); /* Leaves 40px space at bottom */
   object-fit: cover;
   z-index: -1;
   pointer-events: none;
   user-select: none;
+  transition: transform 0.2s ease;
 }
 
 .app-icon {
@@ -44,8 +38,6 @@ body {
   border-radius: 12px;
   color: white;
   transition: transform 0.1s;
-  max-width: calc(100vw - 80px);
-  max-height: calc(100vh - 120px);
 }
 
 .app-icon:hover {
@@ -73,16 +65,30 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   border: 1px solid #ccc;
   z-index: 1000;
-  max-width: calc(100vw - 40px);
-  max-height: calc(100vh - 60px);
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: scroll;
 }
 
 .window.maximized {
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
-  height: calc(100% - 40px) !important;
-  overflow: scroll;
+  height: 100% !important;
+}
+
+.window-content {
+  flex: 1 1 auto;
+  min-height: 0; /* 🔑 CRUCIAL for flex to allow scrolling */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  background: #fafafa;
+}
+
+/* Enable scroll on normal (non-maximized, non-minimized) windows */
+.window:not(.maximized) .window-content {
+  overflow: auto;
 }
 
 .title-bar {
@@ -114,13 +120,6 @@ body {
   background: #ddd;
 }
 
-.window-content {
-  flex: 1;
-  overflow: auto;
-  padding: 1rem;
-  background: #fafafa;
-}
-
 .resize-handle {
   position: absolute;
   width: 16px;
@@ -148,6 +147,8 @@ body {
   font-family: "Segoe UI", sans-serif;
   left: 0;
 }
+
+/* ======== Mobile & Responsive Breakpoints ======== */
 
 @media (max-width: 768px) {
   .app-icon {
@@ -197,6 +198,40 @@ body {
   }
 }
 
+@media (max-width: 300px) {
+  .app-icon {
+    width: 40px;
+  }
+  .app-icon .icon {
+    font-size: 1.1rem;
+  }
+  .app-icon .label {
+    font-size: 0.5rem;
+  }
+  .window-content {
+    padding: 0.3rem;
+    font-size: 0.75rem;
+  }
+  .title-bar {
+    padding: 4px;
+    font-size: 0.8rem;
+  }
+  .resize-handle {
+    width: 10px;
+    height: 10px;
+  }
+  .taskbar {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    height: 34px;
+  }
+  .desktop-bg {
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+/* Extra large screens */
 @media (min-width: 1440px) {
   .app-icon {
     width: 80px;

@@ -145,9 +145,9 @@ export class WindowComponent implements OnInit {
 
   assignGridPositions() {
     const leftColumnX = 20;
-    const rightColumnX = 160;
+    const rightColumnX = 110;
     const startY = 50;
-    const rowHeight = 140;
+    const rowHeight = 90;
 
     this.apps.forEach((app, index) => {
       const col = index % 2 === 0 ? leftColumnX : rightColumnX;
