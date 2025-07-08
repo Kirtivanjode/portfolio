@@ -212,6 +212,17 @@ export class WindowComponent implements OnInit {
     );
   }
 
+  toggleWindowMinimize(id: string) {
+    const win = this.openWindows.find((w) => w.id === id);
+    if (!win) return;
+
+    if (win.isMinimized) {
+      this.focusWindow(id);
+    } else {
+      this.minimizeWindow(id);
+    }
+  }
+
   focusWindow(id: string) {
     this.openWindows = this.openWindows.map((w) =>
       w.id === id

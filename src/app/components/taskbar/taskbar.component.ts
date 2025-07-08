@@ -16,6 +16,7 @@ export class TaskbarComponent {
   @Output() openApp = new EventEmitter<any>();
   @Output() openAppById = new EventEmitter<string>();
   @Output() selectWindow = new EventEmitter<any>();
+  @Output() toggleMinimize = new EventEmitter<string>(); // ✅ NEW
 
   searchQuery: string = '';
   showSuggestions = false;
@@ -73,12 +74,6 @@ export class TaskbarComponent {
 
     const app = this.apps.find((a) => a.id === id);
     return app?.icon || fallback[id] || '❓';
-  }
-
-  getVisibleWindows(): any[] {
-    return this.openedWindows.filter(
-      (w) => w.id !== 'calendar' && w.id !== 'settings'
-    );
   }
 
   select(win: any) {

@@ -28,6 +28,7 @@
     (click)="
       win.id === 'calendar' || win.id === 'settings' ? null : select(win)
     "
+    (dblclick)="toggleMinimize.emit(win.id)"
     [title]="win.title"
   >
     <span class="icon-emoji">
