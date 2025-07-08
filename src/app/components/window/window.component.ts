@@ -120,37 +120,22 @@ export class WindowComponent implements OnInit {
   constructor(private windowService: WindowManagerService) {}
 
   ngOnInit(): void {
-    // Load and apply selected background
-    const savedBg = sessionStorage.getItem('selectedBackground');
-    this.currentBackground = savedBg || 'desk-coding.png';
+    const bg = sessionStorage.getItem('selectedBackground');
+    this.currentBackground = bg || 'desk-coding.png';
     document.body.style.backgroundImage = `url(${this.currentBackground})`;
 
-    // Mouse-based parallax effect on background
-    const bg = document.querySelector('.desktop-bg') as HTMLElement;
-    document.addEventListener('mousemove', (e) => {
-      const moveX = (e.clientX / window.innerWidth - 0.5) * 10; // max ±5px
-      const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
-      if (bg) {
-        bg.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.05)`;
-      }
-    });
-
-    // Load app icon positions if saved
-    const savedPositions = sessionStorage.getItem('desktopAppPositions');
-    if (savedPositions) {
-      const parsed = JSON.parse(savedPositions);
+    const saved = sessionStorage.getItem('desktopAppPositions');
+    if (saved) {
+      const parsed = JSON.parse(saved);
       parsed.forEach(({ id, position }: any) => {
         const app = this.apps.find((a) => a.id === id);
         if (app) app.position = position;
       });
     } else {
-      this.assignGridPositions(); // fallback to default layout
+      this.assignGridPositions();
     }
 
-    // Resize listener for maximized windows
     window.addEventListener('resize', this.onWindowResize);
-
-    // Hook launcher from WindowManagerService
     this.windowService.registerLauncher((id: string) => this.openAppById(id));
   }
 
