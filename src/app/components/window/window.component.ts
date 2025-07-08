@@ -120,9 +120,10 @@ export class WindowComponent implements OnInit {
   constructor(private windowService: WindowManagerService) {}
 
   ngOnInit(): void {
-    const bg = sessionStorage.getItem('selectedBackground');
-    this.currentBackground = bg || 'desk-coding.png';
-    document.body.style.backgroundImage = `url(${this.currentBackground})`;
+   this.windowService.background$.subscribe((bg) => {
+    this.currentBackground = bg;
+    document.body.style.backgroundImage = `url(${bg})`;
+  });
 
     const saved = sessionStorage.getItem('desktopAppPositions');
     if (saved) {
