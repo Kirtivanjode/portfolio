@@ -148,7 +148,34 @@ body {
   left: 0;
 }
 
-/* ======== Mobile & Responsive Breakpoints ======== */
+@media (max-width: 1024px) {
+  .app-icon {
+    width: 64px;
+  }
+  .app-icon .label {
+    font-size: 0.7rem;
+  }
+  .window {
+    border-radius: 12px;
+  }
+  .window-content {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+  .title-bar {
+    font-size: 1rem;
+    padding: 6px 10px;
+  }
+  .resize-handle {
+    width: 14px;
+    height: 14px;
+  }
+  .taskbar {
+    height: 42px;
+    font-size: 1rem;
+    padding: 4px 10px;
+  }
+}
 
 @media (max-width: 768px) {
   .app-icon {
