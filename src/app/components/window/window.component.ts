@@ -148,39 +148,17 @@ export class WindowComponent implements OnInit {
   }
 
   assignGridPositions() {
-    const screenWidth = window.innerWidth;
-    const iconsPerRow =
-      screenWidth < 480
-        ? 3
-        : screenWidth < 768
-        ? 4
-        : screenWidth < 1440
-        ? 5
-        : 6;
-
-    let iconSize = 80;
-    let gap = 30;
-
-    if (screenWidth < 480) {
-      iconSize = 50;
-      gap = 15;
-    } else if (screenWidth < 768) {
-      iconSize = 60;
-      gap = 20;
-    } else if (screenWidth > 1440) {
-      iconSize = 100;
-      gap = 40;
-    }
-
-    const marginLeft = 20;
-    const marginTop = 50;
+    const leftColumnX = 20;
+    const rightColumnX = 160;
+    const startY = 50;
+    const rowHeight = 140;
 
     this.apps.forEach((app, index) => {
-      const row = Math.floor(index / iconsPerRow);
-      const col = index % iconsPerRow;
+      const col = index % 2 === 0 ? leftColumnX : rightColumnX;
+      const row = Math.floor(index / 2);
       app.position = {
-        x: marginLeft + col * (iconSize + gap),
-        y: marginTop + row * (iconSize + gap),
+        x: col,
+        y: startY + row * rowHeight,
       };
     });
   }
