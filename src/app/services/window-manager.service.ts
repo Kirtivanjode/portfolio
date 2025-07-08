@@ -1,4 +1,3 @@
-// src/app/services/window-manager.service.ts
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -14,18 +13,16 @@ export class WindowManagerService {
   );
   background$ = this.bgSubject.asObservable();
 
-  // Called by SettingsComponent
-  setBackground(url: string): void {
-    sessionStorage.setItem('selectedBackground', url);
-    this.bgSubject.next(url);
+  setBackground(bg: string): void {
+    this.bgSubject.next(bg);
+    sessionStorage.setItem('selectedBackground', bg);
   }
 
-  // Used by WindowComponent on init
-  getInitialBackground(): string {
-    return sessionStorage.getItem('selectedBackground') || 'desk-coding.png';
+  getBackground(): string {
+    return this.bgSubject.value;
   }
 
-  // Existing launcher
+  // ✅ App launcher logic
   registerLauncher(fn: (id: string) => void): void {
     this.launcher = fn;
   }
