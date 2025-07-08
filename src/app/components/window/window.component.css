@@ -178,6 +178,14 @@ body {
 }
 
 @media (max-width: 768px) {
+  .desktop {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
+    padding: 1rem;
+    height: calc(100vh - 40px); /* leave room for taskbar */
+    overflow-y: auto;
+  }
   .app-icon {
     width: 60px;
   }
