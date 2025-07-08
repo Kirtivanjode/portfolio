@@ -91,24 +91,15 @@ export class WindowComponent implements OnInit {
       icon: '✉️',
       componentSelector: 'app-contact',
     },
-    {
-      id: 'calendar',
-      name: 'Calendar',
-      icon: '📅',
-      componentSelector: 'app-calendar',
-    },
-    {
-      id: 'settings',
-      name: 'Settings',
-      icon: '⚙️',
-      componentSelector: 'app-settings',
-    },
+
     {
       id: 'gamecenter',
       name: 'Game Center',
       icon: '🎮',
       componentSelector: 'app-game-center',
     },
+    { id: 'calendar', name: '', icon: '', componentSelector: 'app-calendar' },
+    { id: 'settings', name: '', icon: '', componentSelector: 'app-settings' },
   ];
 
   componentMap: Record<string, any> = {

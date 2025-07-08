@@ -66,7 +66,10 @@ export class TaskbarComponent {
   }
 
   getAppIcon(id: string): string {
-    const fallback: Record<string, string> = {};
+    const fallback: Record<string, string> = {
+      calendar: '📅',
+      settings: '⚙️',
+    };
 
     const app = this.apps.find((a) => a.id === id);
     return app?.icon || fallback[id] || '❓';
