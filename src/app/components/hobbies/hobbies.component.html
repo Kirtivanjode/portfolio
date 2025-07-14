@@ -61,13 +61,14 @@
     </div>
   </div>
 
-  <!-- Recent Achievements -->
-  <div *ngFor="let id of achievements">
-    <ng-container *ngIf="getHobbyById(id) as hobby">
-      <div class="badge" [ngStyle]="{ background: hobby.color }">
-        <span>{{ hobby.icon }}</span>
-        <div>{{ hobby.name }} Master</div>
-      </div>
-    </ng-container>
+  <div class="hobbylast">
+    <div *ngFor="let id of achievements">
+      <ng-container *ngIf="getHobbyById(id) as hobby">
+        <div class="badge" [ngStyle]="{ background: hobby.color }">
+          <span>{{ hobby.icon }}</span>
+          <div>{{ hobby.name }} Master</div>
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>

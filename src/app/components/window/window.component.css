@@ -270,7 +270,6 @@ body {
   }
 }
 
-/* Extra large screens */
 @media (min-width: 1440px) {
   .app-icon {
     width: 80px;

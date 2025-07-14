@@ -1,5 +1,4 @@
 <div class="settings-container">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <ul>
       <li
@@ -12,9 +11,7 @@
     </ul>
   </aside>
 
-  <!-- Main content -->
   <section class="content">
-    <!-- Display & Appearance -->
     <div *ngIf="activeSection === 'display'">
       <h3>Display & Appearance</h3>
       <label>
@@ -38,11 +35,13 @@
           [class.selected]="selectedBackground === bg.url"
           (click)="setBackground(bg.url)"
         >
-          <img [src]="bg.url" [alt]="bg.name" />
-          <p>{{ bg.name }}</p>
+       
+            <p>{{ bg.name }}</p>
+            <img [src]="bg.url" [alt]="bg.name" class="bg-img" />
+          </div>
         </div>
       </div>
-    </div>
+
 
     <!-- Sound -->
     <div *ngIf="activeSection === 'sound'">

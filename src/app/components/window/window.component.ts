@@ -14,7 +14,7 @@ import { GameCenterComponent } from '../game-center/game-center.component';
 import { MemoryMatchComponent } from '../memory-match/memory-match.component';
 import { TicTacToeComponent } from '../tic-tac-toe/tic-tac-toe.component';
 import { CalendarComponent } from '../calendar/calendar.component';
-import { RockPaperScissorsComponent } from '../rock-paper-scissors/rock-paper-scissors.component';
+
 import { WindowManagerService } from '../../services/window-manager.service';
 
 interface DesktopApp {
@@ -114,7 +114,6 @@ export class WindowComponent implements OnInit {
     gamecenter: GameCenterComponent,
     'tic-tac-toe': TicTacToeComponent,
     'memory-match': MemoryMatchComponent,
-    rps: RockPaperScissorsComponent,
   };
 
   constructor(private windowService: WindowManagerService) {}

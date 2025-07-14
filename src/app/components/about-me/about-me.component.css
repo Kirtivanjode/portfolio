@@ -1,7 +1,7 @@
 .about-wrapper {
   min-height: 100vh;
   background: linear-gradient(to bottom right, #d9f99d, #bfdbfe);
-  padding-top: 5rem;
+  padding-top: 1rem;
   display: flex;
   justify-content: center;
 }
@@ -10,6 +10,7 @@
   width: 100%;
   max-width: 600px;
   padding: 1rem;
+  margin-bottom: 20px;
 }
 
 .chat-box {
@@ -20,7 +21,7 @@
 }
 
 .chat-header {
-  background-color: #22c55e;
+  background-color: #143821;
   color: white;
   padding: 1rem;
   display: flex;
@@ -105,13 +106,13 @@
 }
 
 .chat-input input:focus {
-  border-color: #22c55e;
+  border-color: #143821;
 }
 
 .chat-input button {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: #22c55e;
+  background-color: #143821;
   color: white;
   border: none;
   border-radius: 9999px;

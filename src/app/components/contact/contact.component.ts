@@ -69,7 +69,7 @@ export class ContactComponent {
     {
       id: 'website',
       name: 'Website',
-      value: 'alexjohnson.dev',
+      value: 'kirtifolio.vercel.app',
       icon: 'globe',
       color: 'purple',
       lastActive: 'Always available',
