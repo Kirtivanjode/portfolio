@@ -25,29 +25,14 @@ export class ProjectsComponent {
   projects: Project[] = [
     {
       id: 1,
-      title: 'E-Commerce Platform',
-      description:
-        'Full-stack online store with React, Node.js, and Stripe integration',
-      image:
-        'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600',
-      likes: 124,
-      comments: 23,
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      github: 'https://github.com',
-      demo: 'https://demo.com',
-    },
-    {
-      id: 2,
-      title: 'Task Management App',
-      description:
-        'Beautiful productivity app with drag-and-drop functionality',
-      image:
-        'https://images.pexels.com/photos/3184306/pexels-photo-3184306.jpeg?auto=compress&cs=tinysrgb&w=600',
-      likes: 89,
-      comments: 12,
-      tech: ['React', 'TypeScript', 'Tailwind', 'Firebase'],
-      github: 'https://github.com',
-      demo: 'https://demo.com',
+      title: '',
+      description: '',
+      image: '',
+      likes: 1,
+      comments: 1,
+      tech: [],
+      github: '',
+      demo: '',
     },
   ];
 
