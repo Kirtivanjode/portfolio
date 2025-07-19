@@ -6,7 +6,6 @@ interface SkillItem {
   name: string;
   type: 'folder' | 'file';
   level?: number;
-  experience?: string;
   children?: SkillItem[];
   icon?: string;
 }
@@ -29,11 +28,10 @@ export class SkillsComponent {
       type: 'folder',
       children: [
         {
-          id: 'react',
-          name: 'React.js',
+          id: 'angular',
+          name: 'Angular',
           type: 'file',
           level: 95,
-          experience: '4 years',
           icon: '⚛️',
         },
         {
@@ -41,7 +39,6 @@ export class SkillsComponent {
           name: 'Vue.js',
           type: 'file',
           level: 85,
-          experience: '3 years',
           icon: '💚',
         },
         {
@@ -49,7 +46,6 @@ export class SkillsComponent {
           name: 'TypeScript',
           type: 'file',
           level: 90,
-          experience: '3 years',
           icon: '🔷',
         },
         {
@@ -57,7 +53,6 @@ export class SkillsComponent {
           name: 'Tailwind CSS',
           type: 'file',
           level: 92,
-          experience: '2 years',
           icon: '🎨',
         },
       ],
@@ -72,7 +67,6 @@ export class SkillsComponent {
           name: 'Node.js',
           type: 'file',
           level: 88,
-          experience: '4 years',
           icon: '🟢',
         },
         {
@@ -80,7 +74,6 @@ export class SkillsComponent {
           name: 'Express.js',
           type: 'file',
           level: 85,
-          experience: '3 years',
           icon: '🚀',
         },
       ],
