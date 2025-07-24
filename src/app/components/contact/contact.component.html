@@ -1,84 +1,156 @@
-<div class="contact-container">
-  <!-- Header -->
-  <div class="section-header">
-    <h1>Get In Touch</h1>
-    <p>Let's connect and discuss opportunities</p>
+<div class="contacts-container">
+  <div class="contacts-header">
+    <div class="header-info">
+      <h2>📞 Contact Information</h2>
+      <p>Let's connect and discuss opportunities</p>
+    </div>
+    <div class="status-indicator">
+      <span class="status-dot online"></span>
+      <span>Available for opportunities</span>
+    </div>
   </div>
 
-  <div class="contact-layout">
-    <!-- Contact List -->
-    <div class="contact-list">
-      <div
-        *ngFor="let contact of contacts"
-        (click)="selectContact(contact.id)"
-        [class.selected]="contact.id === selectedContact"
-        class="contact-card"
-      >
-        <div class="icon" [style.backgroundColor]="contact.color"></div>
-        <div class="info">
-          <h3>{{ contact.name }}</h3>
-          <p>{{ contact.value }}</p>
-          <small>{{ contact.lastActive }}</small>
+  <div class="contacts-content">
+    <div class="main-contact-card">
+      <div class="contact-avatar">
+        <img src="assets/profile.jpg" alt="Profile" />
+        <div class="status-badge online"></div>
+      </div>
+
+      <div class="contact-info">
+        <h3>Kirti Vanjode</h3>
+        <p class="contact-title">Full Stack Developer</p>
+        <p class="contact-location">📍 Vadodara, Gujarat</p>
+
+        <div class="contact-methods">
+          <div class="contact-method" *ngFor="let contact of filteredContacts">
+            <div class="method-icon">{{ contact.icon }}</div>
+            <div class="method-info">
+              <span class="method-label">{{ contact.name }}</span>
+
+              <a
+                *ngIf="contact.id === 'email'"
+                href="mailto:{{ contact.value }}"
+                class="method-value"
+              >
+                <!-- {{ contact.value }} -->
+              </a>
+
+              <a
+                *ngIf="contact.id === 'phone'"
+                [href]="'tel:' + sanitizePhoneNumber(contact.value)"
+                class="method-value"
+              >
+                <!-- {{ formatPhoneNumber(contact.value) }} -->
+              </a>
+
+              <a
+                *ngIf="contact.id === 'website'"
+                [href]="'https://' + contact.value"
+                target="_blank"
+                rel="noopener"
+                class="method-value"
+              >
+                {{ contact.value }}
+              </a>
+
+              <a
+                *ngIf="contact.id === 'github' || contact.id === 'linkedin'"
+                [href]="contact.value"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ contact.value }}
+              </a>
+
+              <span
+                *ngIf="
+                  contact.id !== 'github' &&
+                  contact.id !== 'linkedin' &&
+                  contact.id !== 'website'
+                "
+              >
+                {{ contact.value }}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Contact Details -->
-    <div class="contact-details" *ngIf="getContact() as selected">
-      <div class="details-header">
-        <h2>{{ selected.name }}</h2>
-        <p>{{ selected.value }}</p>
-      </div>
-
-      <!-- Message Form -->
-      <form
-        *ngIf="['email', 'phone'].includes(selected.id)"
-        (ngSubmit)="handleSubmit()"
-        #form="ngForm"
-      >
-        <input
-          [(ngModel)]="formData.name"
-          name="name"
-          required
-          placeholder="Your name"
-        />
-        <input
-          [(ngModel)]="formData.email"
-          name="email"
-          required
-          placeholder="Email"
-        />
-        <input
-          [(ngModel)]="formData.subject"
-          name="subject"
-          required
-          placeholder="Subject"
-        />
-        <textarea
-          [(ngModel)]="formData.message"
-          name="message"
-          required
-          placeholder="Message..."
-        ></textarea>
-        <button type="submit">Send</button>
+    <!-- Location Map -->
+    <div class="map-section" *ngIf="location">
+      <h4>📍 Location on Map</h4>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3715.222134823626!2d73.16138927467708!3d22.30715834378161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8fbc730f045%3A0x9edaf7e2e477213f!2sVadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1721800000000!5m2!1sen!2sin"
+        width="100%"
+        height="300"
+        style="
+          border: 0;
+          border-radius: 12px;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        "
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+    <!-- Contact Form -->
+    <div class="quick-contact">
+      <h4>💬 Send a Quick Message</h4>
+      <form class="contact-form" (ngSubmit)="handleSubmit()">
+        <div class="form-group">
+          <input
+            type="text"
+            name="name"
+            [(ngModel)]="formData.name"
+            placeholder="Your Name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="formData.email"
+            placeholder="Your Email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            name="subject"
+            [(ngModel)]="formData.subject"
+            placeholder="Subject"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <textarea
+            name="message"
+            [(ngModel)]="formData.message"
+            placeholder="Your Message"
+            rows="4"
+            required
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="send-btn"
+          [disabled]="
+            !formData.name ||
+            !formData.email ||
+            !formData.subject ||
+            !formData.message
+          "
+        >
+          <span>📤</span> Send Message
+        </button>
         <p *ngIf="messageSent" class="success-msg">
-          Message sent successfully!
+          ✅ Message sent successfully!
         </p>
       </form>
-
-      <!-- External Link -->
-      <div *ngIf="['github', 'linkedin', 'website'].includes(selected.id)">
-        <a [href]="'https://' + selected.value" target="_blank"
-          >Visit {{ selected.name }}</a
-        >
-      </div>
-
-      <!-- Location Info -->
-      <div *ngIf="selected.id === 'location'">
-        <p>I’m currently based in {{ selected.value }}.</p>
-        <p>Timezone: IST GMT +5:30</p>
-        <p>Available: Mon–Fri</p>
-      </div>
     </div>
   </div>
 </div>

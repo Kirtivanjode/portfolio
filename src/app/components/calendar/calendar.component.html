@@ -34,26 +34,44 @@
     </div>
   </div>
 
-  <div *ngIf="selectedDate" class="sidebar">
-    <h3>{{ selectedDate | date : "fullDate" }}</h3>
-
-    <div *ngFor="let event of getEventsForDate(selectedDate)">
-      <strong>{{ getEventEmoji(event.type) }} {{ event.title }}</strong> -
-      {{ event.time }}
-      <p *ngIf="event.description">{{ event.description }}</p>
-    </div>
-
-    <button (click)="closeSidebar()">Close</button>
-  </div>
-
   <!-- Sidebar -->
   <div *ngIf="selectedDate" class="sidebar">
     <h3>{{ selectedDate | date : "fullDate" }}</h3>
+
     <div *ngFor="let event of getEventsForDate(selectedDate)">
       <strong>{{ getEventEmoji(event.type) }} {{ event.title }}</strong> -
       {{ event.time }}
       <p *ngIf="event.description">{{ event.description }}</p>
+      <!-- <button (click)="editEvent(event.id)">Edit</button>
+      <button (click)="deleteEvent(event.id)">Delete</button> -->
     </div>
-    <button (click)="closeSidebar()">Close</button>
+
+    <hr />
+    <h4>{{ editingEventId ? "Edit Event" : "Add Event" }}</h4>
+    <form (ngSubmit)="addEvent()">
+      <input
+        type="text"
+        [(ngModel)]="newEvent.title"
+        name="title"
+        placeholder="Title"
+        required
+      />
+      <input type="time" [(ngModel)]="newEvent.time" name="time" required />
+      <select [(ngModel)]="newEvent.type" name="type" required>
+        <option value="meeting">Meeting</option>
+        <option value="work">Work</option>
+        <option value="personal">Personal</option>
+        <option value="reminder">Reminder</option>
+      </select>
+      <textarea
+        [(ngModel)]="newEvent.description"
+        name="description"
+        placeholder="Description"
+      ></textarea>
+      <button type="submit" (click)="saveToStorage()">Add</button>
+    </form>
+    <!-- 
+    <button>💾 Save All</button> -->
+    <button (click)="closeSidebar()" title="Close" class="Close">❌</button>
   </div>
 </div>

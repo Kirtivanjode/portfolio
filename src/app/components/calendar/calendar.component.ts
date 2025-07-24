@@ -9,8 +9,6 @@ interface CalendarEvent {
   time: string;
   type: 'meeting' | 'personal' | 'work' | 'reminder';
   description?: string;
-  location?: string;
-  attendees?: string[];
 }
 
 @Component({
@@ -23,41 +21,16 @@ interface CalendarEvent {
 export class CalendarComponent implements OnInit {
   currentDate = new Date();
   selectedDate: Date | null = null;
+  editingEventId: string | null = null;
 
-  events: CalendarEvent[] = [
-    {
-      id: '1',
-      title: 'Team Meeting',
-      date: new Date(2025, 6, 15),
-      time: '10:00 AM',
-      type: 'meeting',
-      description: 'Weekly team sync and project updates',
-    },
-    {
-      id: '2',
-      title: 'Client Presentation',
-      date: new Date(2025, 6, 18),
-      time: '2:00 PM',
-      type: 'work',
-      description: 'Present new website design to client',
-    },
-    {
-      id: '3',
-      title: 'Gym Workout',
-      date: new Date(2025, 6, 20),
-      time: '6:00 PM',
-      type: 'personal',
-      description: 'Leg day workout session',
-    },
-    {
-      id: '4',
-      title: 'Code Review',
-      date: new Date(2025, 6, 22),
-      time: '11:00 AM',
-      type: 'work',
-      description: 'Review pull requests',
-    },
-  ];
+  events: CalendarEvent[] = [];
+
+  newEvent = {
+    title: '',
+    time: '',
+    type: 'meeting',
+    description: '',
+  };
 
   dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   monthNames = [
@@ -78,6 +51,13 @@ export class CalendarComponent implements OnInit {
   days: (Date | null)[] = [];
 
   ngOnInit(): void {
+    const saved = localStorage.getItem('calendar-events');
+    if (saved) {
+      this.events = JSON.parse(saved).map((e: any) => ({
+        ...e,
+        date: new Date(e.date),
+      }));
+    }
     this.generateDays();
   }
 
@@ -101,11 +81,9 @@ export class CalendarComponent implements OnInit {
   }
 
   navigateMonth(direction: 'prev' | 'next'): void {
-    if (direction === 'prev') {
-      this.currentDate.setMonth(this.currentDate.getMonth() - 1);
-    } else {
-      this.currentDate.setMonth(this.currentDate.getMonth() + 1);
-    }
+    this.currentDate.setMonth(
+      this.currentDate.getMonth() + (direction === 'next' ? 1 : -1)
+    );
     this.generateDays();
   }
 
@@ -118,13 +96,13 @@ export class CalendarComponent implements OnInit {
   getEventColor(type: string): string {
     switch (type) {
       case 'meeting':
-        return '#007bff'; // blue
+        return '#007bff';
       case 'work':
-        return '#28a745'; // green
+        return '#28a745';
       case 'personal':
-        return '#c084fc'; // purple
+        return '#c084fc';
       case 'reminder':
-        return '#ff9800'; // orange
+        return '#ff9800';
       default:
         return '#ccc';
     }
@@ -150,12 +128,62 @@ export class CalendarComponent implements OnInit {
     return date.toDateString() === today.toDateString();
   }
 
-  selectDate(date: Date) {
-    console.log('Selected date:', date);
+  selectDate(date: Date): void {
     this.selectedDate = date;
   }
 
   closeSidebar(): void {
     this.selectedDate = null;
+    this.editingEventId = null;
+    this.newEvent = {
+      title: '',
+      time: '',
+      type: 'meeting',
+      description: '',
+    };
+  }
+
+  addEvent(): void {
+    if (!this.selectedDate) return;
+
+    const newId = Math.random().toString(36).substr(2, 9);
+
+    this.events.push({
+      id: newId,
+      title: this.newEvent.title,
+      date: new Date(this.selectedDate),
+      time: this.newEvent.time,
+      type: this.newEvent.type as any,
+      description: this.newEvent.description,
+    });
+
+    this.saveToStorage(); // 💾 Save new event
+
+    // Reset form and close sidebar
+    this.newEvent = { title: '', time: '', type: 'meeting', description: '' };
+    this.closeSidebar();
+  }
+
+  // editEvent(eventId: string): void {
+  //   const event = this.events.find((e) => e.id === eventId);
+  //   if (event) {
+  //     this.editingEventId = eventId;
+  //     this.newEvent = {
+  //       title: event.title,
+  //       time: event.time,
+  //       type: event.type,
+  //       description: event.description || '',
+  //     };
+  //     this.selectedDate = new Date(event.date);
+  //   }
+  // }
+
+  // deleteEvent(eventId: string): void {
+  //   this.events = this.events.filter((e) => e.id !== eventId);
+  //   this.saveToStorage(); // ✅ Save on delete
+  // }
+
+  saveToStorage(): void {
+    localStorage.setItem('calendar-events', JSON.stringify(this.events));
   }
 }

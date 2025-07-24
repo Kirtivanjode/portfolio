@@ -1,15 +1,13 @@
 <div class="hobbies-section">
-  <!-- Header -->
   <div class="header">
     <h1>My Hobbies & Interests</h1>
     <p>Level up your life with passionate pursuits</p>
   </div>
 
-  <!-- Stats -->
   <div class="stats">
     <div class="stat">
       <div>🏆</div>
-      <div>{{ achievements.size }}</div>
+      <div>{{ achievements.length }}</div>
       <small>Achievements</small>
     </div>
     <div class="stat">
@@ -24,7 +22,6 @@
     </div>
   </div>
 
-  <!-- Hobbies Grid -->
   <div class="grid">
     <div
       class="card"
@@ -71,4 +68,10 @@
       </ng-container>
     </div>
   </div>
+
+  <!-- <div style="text-align: center; margin-top: 2rem">
+    <button (click)="saveToLocalStorage()">💾 Save</button>
+    <button (click)="resetProgress()">🔁 Reset</button>
+  </div>
+</div> -->
 </div>

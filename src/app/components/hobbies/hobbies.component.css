@@ -23,28 +23,33 @@
   border-radius: 1rem;
   text-align: center;
   width: 100px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   color: black;
 }
 
 .card {
-  padding: 1rem;
+  padding: 1.2rem;
   border-radius: 1rem;
   cursor: pointer;
-  transition: transform 0.2s;
+  background: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s, box-shadow 0.3s;
+  position: relative;
 }
 
 .card:hover {
-  transform: scale(1.03);
+  transform: scale(1.04);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .icon {
-  font-size: 2rem;
+  font-size: 2.2rem;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
@@ -55,7 +60,7 @@
 }
 
 .bar-bg {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   height: 8px;
   border-radius: 4px;
   overflow: hidden;
@@ -70,7 +75,12 @@
 .expanded {
   margin-top: 1rem;
   font-size: 0.9rem;
-  color: #eee;
+  color: #333;
+}
+
+.expanded ul {
+  padding-left: 1rem;
+  margin: 0.5rem 0;
 }
 
 .achievements {
@@ -103,10 +113,14 @@
   align-items: center;
   width: 300px;
   height: 80px;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 .hobbylast {
   display: flex;
-  margin-top: 10px;
+  margin-top: 2rem;
   justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
