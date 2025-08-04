@@ -64,8 +64,21 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     const savedBg = sessionStorage.getItem('selectedBackground');
+    const savedDarkMode = sessionStorage.getItem('darkMode');
+    const savedVolume = sessionStorage.getItem('volume');
+
     this.selectedBackground = savedBg || this.personalizationBackgrounds[0].url;
+    this.darkMode = savedDarkMode === 'true';
+    this.volume = savedVolume ? parseInt(savedVolume) : 75;
+
+    this.applyBackground();
+    this.applyDarkMode();
+  }
+
+  applyBackground() {
     document.body.style.backgroundImage = `url(${this.selectedBackground})`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat';
   }
 
   setActiveSection(id: string) {
@@ -74,5 +87,17 @@ export class SettingsComponent implements OnInit {
 
   toggle(setting: ToggleableBoolean) {
     this[setting] = !this[setting];
+    if (setting === 'darkMode') {
+      sessionStorage.setItem('darkMode', String(this.darkMode));
+      this.applyDarkMode();
+    }
+  }
+
+  applyDarkMode() {
+    document.body.classList.toggle('dark-mode', this.darkMode);
+  }
+
+  onVolumeChange() {
+    sessionStorage.setItem('volume', String(this.volume));
   }
 }

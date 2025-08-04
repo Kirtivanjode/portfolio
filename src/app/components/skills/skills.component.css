@@ -86,3 +86,9 @@
   color: #888;
   padding-top: 100px;
 }
+
+.skill-header .description {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}

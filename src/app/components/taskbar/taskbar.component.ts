@@ -16,7 +16,7 @@ export class TaskbarComponent {
   @Output() openApp = new EventEmitter<any>();
   @Output() openAppById = new EventEmitter<string>();
   @Output() selectWindow = new EventEmitter<any>();
-  @Output() toggleMinimize = new EventEmitter<string>(); // ✅ NEW
+  @Output() toggleMinimize = new EventEmitter<string>();
 
   searchQuery: string = '';
   showSuggestions = false;
@@ -24,16 +24,30 @@ export class TaskbarComponent {
   selectedIndex = 0;
   currentTime: string = '';
 
+  intervalId: any;
+
   ngOnInit() {
-    setInterval(() => {
+    // Live clock
+    this.intervalId = setInterval(() => {
       const now = new Date();
       this.currentTime = now.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
       });
-    });
+    }, 1000);
 
     this.filteredApps = [...this.apps];
+
+    // Listen for outside click
+    document.addEventListener('click', this.handleClickOutside.bind(this));
+  }
+
+  ngOnDestroy() {
+    // Clear clock interval
+    clearInterval(this.intervalId);
+
+    // Remove listener
+    document.removeEventListener('click', this.handleClickOutside.bind(this));
   }
 
   filterApps() {
@@ -56,6 +70,8 @@ export class TaskbarComponent {
         this.triggerOpenApp(app);
         this.clearSearch();
       }
+    } else if (event.key === 'Escape') {
+      this.clearSearch();
     }
   }
 
@@ -64,6 +80,13 @@ export class TaskbarComponent {
     this.filteredApps = [...this.apps];
     this.showSuggestions = false;
     this.selectedIndex = 0;
+  }
+
+  handleClickOutside(event: any) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.search-bar')) {
+      this.showSuggestions = false;
+    }
   }
 
   getAppIcon(id: string): string {

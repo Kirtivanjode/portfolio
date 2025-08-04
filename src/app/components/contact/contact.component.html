@@ -1,4 +1,5 @@
 <div class="contacts-container">
+  <!-- Header -->
   <div class="contacts-header">
     <div class="header-info">
       <h2>📞 Contact Information</h2>
@@ -10,69 +11,62 @@
     </div>
   </div>
 
+  <!-- Main Contact Card -->
   <div class="contacts-content">
     <div class="main-contact-card">
-      <div class="contact-avatar">
-        <img src="assets/profile.jpg" alt="Profile" />
-        <div class="status-badge online"></div>
+      <!-- Profile Section -->
+      <div class="contact-flex-container">
+        <div class="contact-avatar">
+          <img src="assets/profile.jpg" alt="Profile" />
+          <div class="status-badge online"></div>
+        </div>
+        <div class="contact-info">
+          <h3>Kirti Vanjode</h3>
+          <p class="contact-title">Full Stack Developer</p>
+          <p class="contact-location">📍 Vadodara, Gujarat</p>
+        </div>
       </div>
 
-      <div class="contact-info">
-        <h3>Kirti Vanjode</h3>
-        <p class="contact-title">Full Stack Developer</p>
-        <p class="contact-location">📍 Vadodara, Gujarat</p>
+      <!-- Contact Methods -->
+      <div class="contact-methods">
+        <div class="contact-method" *ngFor="let contact of filteredContacts">
+          <div class="method-icon">{{ contact.icon }}</div>
+          <div class="method-info">
+            <span class="method-label">{{ contact.name }}</span>
 
-        <div class="contact-methods">
-          <div class="contact-method" *ngFor="let contact of filteredContacts">
-            <div class="method-icon">{{ contact.icon }}</div>
-            <div class="method-info">
-              <span class="method-label">{{ contact.name }}</span>
-
-              <a
-                *ngIf="contact.id === 'email'"
-                href="mailto:{{ contact.value }}"
-                class="method-value"
-              >
-                <!-- {{ contact.value }} -->
-              </a>
-
-              <a
-                *ngIf="contact.id === 'phone'"
-                [href]="'tel:' + sanitizePhoneNumber(contact.value)"
-                class="method-value"
-              >
-                <!-- {{ formatPhoneNumber(contact.value) }} -->
-              </a>
-
-              <a
-                *ngIf="contact.id === 'website'"
-                [href]="'https://' + contact.value"
-                target="_blank"
-                rel="noopener"
-                class="method-value"
-              >
-                {{ contact.value }}
-              </a>
-
-              <a
-                *ngIf="contact.id === 'github' || contact.id === 'linkedin'"
-                [href]="contact.value"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {{ contact.value }}
-              </a>
-
-              <span
-                *ngIf="
-                  contact.id !== 'github' &&
-                  contact.id !== 'linkedin' &&
-                  contact.id !== 'website'
-                "
-              >
-                {{ contact.value }}
-              </span>
-            </div>
+            <a
+              *ngIf="contact.id === 'email'"
+              href="mailto:{{ contact.value }}"
+              class="method-value"
+            ></a>
+            <a
+              *ngIf="contact.id === 'phone'"
+              [href]="'tel:' + sanitizePhoneNumber(contact.value)"
+              class="method-value"
+            ></a>
+            <a
+              *ngIf="contact.id === 'website'"
+              [href]="'https://' + contact.value"
+              target="_blank"
+              rel="noopener"
+              class="method-value"
+              >{{ contact.value }}</a
+            >
+            <a
+              *ngIf="contact.id === 'github' || contact.id === 'linkedin'"
+              [href]="contact.value"
+              target="_blank"
+              rel="noopener noreferrer"
+              >{{ contact.value }}</a
+            >
+            <span
+              *ngIf="
+                contact.id !== 'github' &&
+                contact.id !== 'linkedin' &&
+                contact.id !== 'website'
+              "
+              >{{ contact.value }}</span
+            >
           </div>
         </div>
       </div>
@@ -95,6 +89,7 @@
         referrerpolicy="no-referrer-when-downgrade"
       ></iframe>
     </div>
+
     <!-- Contact Form -->
     <div class="quick-contact">
       <h4>💬 Send a Quick Message</h4>

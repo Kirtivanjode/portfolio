@@ -31,15 +31,14 @@
         <div class="bar">
           <div class="fill" [style.width.%]="selectedSkill.level"></div>
         </div>
-        <p>
-          {{ getStars(selectedSkill.level || 0) }} — {{ selectedSkill.level }}%
-        </p>
+        <p>{{ getStars(selectedSkill.level) }} — {{ selectedSkill.level }}%</p>
+        <p class="description">{{ selectedSkill.description }}</p>
       </div>
     </div>
 
     <ng-template #emptyState>
       <div class="empty">
-        <p>Select a skill to view details</p>
+        <p>📁 Select a skill to view details</p>
       </div>
     </ng-template>
   </div>

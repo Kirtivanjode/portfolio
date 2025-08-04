@@ -28,7 +28,7 @@ export class ProjectsComponent {
       title: '👥 EmployeeHub',
       description:
         'A responsive frontend dashboard for managing employees. Includes UI for viewing, adding, editing, and deleting employee data. Built entirely in Angular with mock data and service-based architecture.',
-      image: 'assets/images/employeehub.png',
+      image: 'project-1.png',
       likes: 24,
       comments: 5,
       tech: ['Angular', 'TypeScript', 'Bootstrap'],
