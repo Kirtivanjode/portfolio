@@ -35,13 +35,12 @@
           [class.selected]="selectedBackground === bg.url"
           (click)="setBackground(bg.url)"
         >
-       
-            <p>{{ bg.name }}</p>
-            <img [src]="bg.url" [alt]="bg.name" class="bg-img" />
-          </div>
+          <!--        
+            <p>{{ bg.name }}</p> -->
+          <img [src]="bg.url" [alt]="bg.name" class="bg-img" />
         </div>
       </div>
-
+    </div>
 
     <!-- Sound -->
     <div *ngIf="activeSection === 'sound'">

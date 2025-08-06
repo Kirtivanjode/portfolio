@@ -58,6 +58,16 @@ export class SettingsComponent implements OnInit {
       name: 'AI + Neural Style',
       url: 'ai-neural.png',
     },
+    {
+      id: 'Warm Pastel Gradient',
+      name: 'Warm Pastel Gradient',
+      url: 'Warm-Pastel-Gradient.jpg',
+    },
+    {
+      id: 'Blue',
+      name: 'blue',
+      url: 'Blue.png',
+    },
   ];
 
   selectedBackground: string = '';
