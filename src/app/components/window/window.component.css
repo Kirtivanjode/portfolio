@@ -1,3 +1,10 @@
+/* Global Reset and Scaling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100vh;
@@ -51,7 +58,7 @@ body {
 }
 
 .app-icon .label {
-  font-size: 0.75rem;
+  font-size: clamp(0.5rem, 1.5vw, 0.75rem);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -65,8 +72,8 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   border: 1px solid #ccc;
   z-index: 1000;
-  max-width: 100vw;
-  max-height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
   overflow: scroll;
 }
 
@@ -79,14 +86,16 @@ body {
 
 .window-content {
   flex: 1 1 auto;
-  min-height: 0; /* 🔑 CRUCIAL for flex to allow scrolling */
+  min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 1rem;
   background: #fafafa;
+  font-size: clamp(0.75rem, 1vw, 1.2rem);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Enable scroll on normal (non-maximized, non-minimized) windows */
 .window:not(.maximized) .window-content {
   overflow: auto;
 }
@@ -103,6 +112,7 @@ body {
   font-weight: bold;
   cursor: move;
   user-select: none;
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
 }
 
 .title-bar .controls {
@@ -128,7 +138,6 @@ body {
   width: 16px;
   height: 16px;
   right: 0;
-  bottom: 0;
   cursor: nwse-resize;
   background: rgba(0, 0, 0, 0.2);
   z-index: 10;
@@ -140,7 +149,7 @@ body {
   align-items: center;
   justify-content: space-between;
   background: #1e1e1e;
-  padding: 5px 5px;
+  padding: 5px 10px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -149,44 +158,47 @@ body {
   color: white;
   font-family: "Segoe UI", sans-serif;
   left: 0;
+  font-size: clamp(0.75rem, 1vw, 1.2rem);
 }
 
+/* Orientation-based fix for tablets */
+@media (orientation: landscape) and (max-height: 500px) {
+  .desktop {
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    padding: 0.5rem;
+    gap: 8px;
+  }
+  .taskbar {
+    height: 36px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Tablet & Medium screens */
 @media (max-width: 1024px) {
   .app-icon {
     width: 64px;
   }
-  .app-icon .label {
-    font-size: 0.7rem;
-  }
   .window {
     border-radius: 12px;
   }
-  .window-content {
-    padding: 0.75rem;
-    font-size: 0.95rem;
-  }
   .title-bar {
-    font-size: 1rem;
     padding: 6px 10px;
   }
   .resize-handle {
     width: 14px;
     height: 14px;
   }
-  .taskbar {
-    height: 42px;
-    font-size: 1rem;
-    padding: 4px 10px;
-  }
 }
 
+/* Mobile screens */
 @media (max-width: 768px) {
   .desktop {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 12px;
     padding: 1rem;
-    height: calc(100vh - 40px); /* leave room for taskbar */
+    height: calc(100vh - 40px);
     overflow-y: auto;
   }
   .app-icon {
@@ -195,23 +207,13 @@ body {
   .app-icon .icon {
     font-size: 1.6rem;
   }
-  .app-icon .label {
-    font-size: 0.65rem;
-  }
-  .window-content {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-  }
-  .title-bar {
-    padding: 5px;
-    font-size: 0.9rem;
-  }
   .resize-handle {
     width: 12px;
     height: 12px;
   }
 }
 
+/* Small phones */
 @media (max-width: 480px) {
   .app-icon {
     width: 50px;
@@ -219,23 +221,21 @@ body {
   .app-icon .icon {
     font-size: 1.3rem;
   }
-  .app-icon .label {
-    font-size: 0.6rem;
-  }
   .title-bar .controls button {
     font-size: 0.85rem;
   }
-  .window-content {
-    padding: 0.5rem;
-    font-size: 0.85rem;
+  .resize-handle {
+    width: 10px;
+    height: 10px;
   }
   .taskbar {
+    height: 36px;
     font-size: 0.8rem;
     padding: 3px 8px;
-    height: 36px;
   }
 }
 
+/* Very small screens */
 @media (max-width: 300px) {
   .app-icon {
     width: 40px;
@@ -246,18 +246,12 @@ body {
   .app-icon .label {
     font-size: 0.5rem;
   }
-
   .window-content {
     padding: 0.3rem;
-    font-size: 0.75rem;
-  }
-  .title-bar {
-    padding: 4px;
-    font-size: 0.8rem;
   }
   .resize-handle {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
   }
   .taskbar {
     font-size: 0.7rem;
@@ -265,11 +259,11 @@ body {
     height: 34px;
   }
   .desktop-bg {
-    height: 100%;
     object-fit: contain;
   }
 }
 
+/* Large desktops */
 @media (min-width: 1440px) {
   .app-icon {
     width: 80px;
@@ -282,22 +276,11 @@ body {
   .app-icon .label {
     font-size: 1.1rem;
   }
-  .window {
-    max-width: 100vw;
-    max-height: 100vh;
-  }
   .title-bar {
-    font-size: 1.1rem;
     padding: 10px 16px;
   }
   .window-content {
     padding: 1.5rem;
-    font-size: 1.2rem;
-  }
-  .taskbar {
-    height: 44px;
-    font-size: 1.1rem;
-    padding: 8px 16px;
   }
   .resize-handle {
     width: 20px;
@@ -305,6 +288,7 @@ body {
   }
 }
 
+/* Ultra-wide (4K+) displays */
 @media (min-width: 2560px) {
   .app-icon {
     width: 140px;

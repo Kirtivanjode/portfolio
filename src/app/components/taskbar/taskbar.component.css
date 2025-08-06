@@ -1,3 +1,157 @@
+/* GLOBAL RESET */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* DESKTOP WRAPPER */
+.desktop {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* BACKGROUND */
+.desktop-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+/* APP ICON */
+.app-icon {
+  position: absolute;
+  width: 80px;
+  text-align: center;
+  user-select: none;
+  cursor: grab;
+  padding: 5px;
+  border-radius: 12px;
+  color: white;
+  transition: transform 0.1s;
+}
+
+.app-icon:hover {
+  transform: scale(1.05);
+}
+
+.app-icon .icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.app-icon .label {
+  font-size: clamp(0.5rem, 1.5vw, 0.75rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* WINDOW */
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ccc;
+  z-index: 1000;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: scroll;
+}
+
+.window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* WINDOW CONTENT */
+.window-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  background: #fafafa;
+  font-size: clamp(0.75rem, 1vw, 1.2rem);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.window:not(.maximized) .window-content {
+  overflow: auto;
+}
+
+/* TITLE BAR */
+.title-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0f0f0;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: move;
+  user-select: none;
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
+}
+
+.title-bar .controls {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.title-bar .controls button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.title-bar .controls button:hover {
+  background: #ddd;
+}
+
+/* RESIZE HANDLE */
+.resize-handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 0;
+  cursor: nwse-resize;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  border-bottom-right-radius: 4px;
+}
+
+/* TASKBAR */
 .taskbar {
   display: flex;
   align-items: center;
@@ -11,9 +165,10 @@
   z-index: 9999;
   color: white;
   font-family: "Segoe UI", sans-serif;
+  font-size: clamp(0.75rem, 1vw, 1.2rem);
 }
 
-/* Search bar */
+/* SEARCH BAR */
 .search-bar {
   position: relative;
   flex: 1;
@@ -31,23 +186,25 @@
 }
 
 .suggestions {
-  position: fixed; /* Important change */
-  left: 10px; /* adjust to your search bar */
-  bottom: 50px; /* appear above taskbar */
-  width: 250px;
+  position: fixed;
+  left: 0;
+  bottom: 40px;
+  width: 100%;
   background: #1e1e1e;
-  border: 1px solid #444;
-  border-radius: 4px;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
   list-style: none;
-  padding: 5px 0;
+  padding: 8px 10px;
   margin: 0;
   z-index: 2000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  max-height: 200px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.3);
+  max-height: 250px;
   overflow-y: auto;
   animation: fadeIn 0.2s ease-in-out;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
-
 .suggestions li {
   padding: 8px 12px;
   cursor: pointer;
@@ -60,7 +217,7 @@
   color: white;
 }
 
-/* Center icons */
+/* CENTER TASKBAR ICONS */
 .center-section {
   display: flex;
   gap: 8px;
@@ -84,7 +241,7 @@
   font-size: 1.2rem;
 }
 
-/* Right section */
+/* RIGHT SECTION / TRAY */
 .right-section {
   display: flex;
   align-items: center;
@@ -113,7 +270,7 @@
   padding: 4px;
 }
 
-/* System icons */
+/* SYSTEM ICONS */
 .taskbar-icon.system {
   background: #333;
   opacity: 0.6;
@@ -125,7 +282,7 @@
   opacity: 0.8;
 }
 
-/* Animations */
+/* ANIMATIONS */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -137,151 +294,31 @@
   }
 }
 
-.taskbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #1e1e1e;
-  padding: 5px 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  z-index: 9999;
-  color: white;
-  font-family: "Segoe UI", sans-serif;
-}
-
-/* Search bar */
-.search-bar {
-  position: relative;
-  flex: 1;
-  max-width: 250px;
-}
-
-.search-bar input {
-  padding: 6px 10px;
-  width: 100%;
-  border: none;
-  border-radius: 4px;
-  outline: none;
-  background: #333;
-  color: white;
-}
-
-.suggestions {
-  position: fixed; /* Important change */
-  left: 10px; /* adjust to your search bar */
-  bottom: 50px; /* appear above taskbar */
-  width: 250px;
-  background: #1e1e1e;
-  border: 1px solid #444;
-  border-radius: 4px;
-  list-style: none;
-  padding: 5px 0;
-  margin: 0;
-  z-index: 2000;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  max-height: 200px;
-  overflow-y: auto;
-  animation: fadeIn 0.2s ease-in-out;
-}
-
-.suggestions li {
-  padding: 8px 12px;
-  cursor: pointer;
-  color: #ccc;
-}
-
-.suggestions li:hover,
-.suggestions li.active {
-  background-color: #555;
-  color: white;
-}
-
-/* Center icons */
-.center-section {
-  display: flex;
-  gap: 8px;
-}
-
-.taskbar-icon {
-  background: #444;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  color: white;
-}
-
-.taskbar-icon.active {
-  background-color: #666;
-  border: 1px solid #aaa;
-}
-
-.icon-emoji {
-  font-size: 1.2rem;
-}
-
-/* Right section */
-.right-section {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.tray-icon {
-  cursor: pointer;
-  font-size: 1.2rem;
-}
-
-.tray-icon:hover {
-  color: #ddd;
-}
-
-.tray-clock {
-  min-width: 80px;
-  text-align: right;
-  padding-right: 10px;
-}
-
-.tray-icon.active {
-  color: #c7d8db;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
-  padding: 4px;
-}
-
-/* System icons */
-.taskbar-icon.system {
-  background: #333;
-  opacity: 0.6;
-  cursor: default;
-}
-
-.taskbar-icon.system:hover {
-  background: #444;
-  opacity: 0.8;
-}
-
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(5px);
+/* RESPONSIVE MEDIA QUERIES */
+@media (max-width: 1024px) {
+  .app-icon {
+    width: 64px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .resize-handle {
+    width: 14px;
+    height: 14px;
   }
 }
 
-/* Responsive Enhancements */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
+  .desktop {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
+    padding: 1rem;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+  }
+
   .taskbar {
     flex-direction: column;
     align-items: stretch;
-    height: auto;
+    height: 40px;
     padding: 8px;
     gap: 6px;
   }
@@ -291,8 +328,7 @@
     width: 100%;
   }
 
-  .center-section,
-  .right-section {
+  .center-section {
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 10px;
@@ -314,5 +350,89 @@
     left: 5%;
     bottom: 60px;
     width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-icon {
+    width: 50px;
+  }
+
+  .app-icon .icon {
+    font-size: 1.3rem;
+  }
+
+  .resize-handle {
+    width: 10px;
+    height: 10px;
+  }
+
+  .taskbar {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    height: auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .app-icon {
+    width: 80px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .app-icon .icon {
+    font-size: 2.5rem;
+  }
+
+  .app-icon .label {
+    font-size: 1.1rem;
+  }
+
+  .title-bar {
+    padding: 10px 16px;
+  }
+
+  .window-content {
+    padding: 1.5rem;
+  }
+
+  .resize-handle {
+    width: 20px;
+    height: 20px;
+  }
+
+  .taskbar {
+    height: 44px;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .app-icon {
+    width: 140px;
+  }
+
+  .app-icon .icon {
+    font-size: 4rem;
+  }
+
+  .app-icon .label {
+    font-size: 1.2rem;
+  }
+
+  .window-content {
+    font-size: 1.4rem;
+  }
+
+  .taskbar {
+    height: 48px;
+    font-size: 1.2rem;
+  }
+
+  .title-bar {
+    font-size: 1.2rem;
+    padding: 12px 18px;
   }
 }
