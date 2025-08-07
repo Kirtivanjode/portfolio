@@ -94,6 +94,7 @@ body {
   font-size: clamp(0.75rem, 1vw, 1.2rem);
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  height: 93%;
 }
 
 .window:not(.maximized) .window-content {
