@@ -229,13 +229,13 @@ body {
   padding: 5px 10px;
   cursor: pointer;
   color: white;
+  display: flex;
+  align-items: center;
 }
 
 .taskbar-icon.active {
   background-color: #666;
   border: 1px solid #aaa;
-  display: flex;
-  align-items: center;
 }
 
 .icon-emoji {
