@@ -234,6 +234,8 @@ body {
 .taskbar-icon.active {
   background-color: #666;
   border: 1px solid #aaa;
+  display: flex;
+  align-items: center;
 }
 
 .icon-emoji {
@@ -320,12 +322,6 @@ body {
     height: auto;
     padding: 8px;
     gap: 6px;
-  }
-
-  .center-section {
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 10px;
   }
 
   .taskbar-icon,
