@@ -5,20 +5,17 @@
   height: 100%;
 }
 
-/* HEADER */
 .header {
   text-align: center;
   margin-bottom: 30px;
 }
 
-/* PROJECT GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
 }
 
-/* PROJECT CARD */
 .project-card {
   position: relative;
   overflow: hidden;
@@ -26,7 +23,6 @@
   border-radius: 8px;
 }
 
-/* IMAGE WRAPPER */
 .image-wrapper {
   position: relative;
   width: 100%;
@@ -45,7 +41,6 @@
   transform: scale(1.05);
 }
 
-/* OVERLAY */
 .overlay {
   position: absolute;
   inset: 0;
