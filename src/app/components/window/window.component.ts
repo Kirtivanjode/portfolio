@@ -144,15 +144,22 @@ export class WindowComponent implements OnInit {
   }
 
   assignGridPositions() {
-    const leftColumnX = 20;
-    const rightColumnX = 110;
+    const screenWidth = window.innerWidth;
+    const iconWidth = 80;
+    const padding = 40;
+    const gap = 20;
+
+    const leftColumnX = padding;
+    const rightColumnX = screenWidth - iconWidth - padding;
+
     const startY = 50;
     const rowHeight = 90;
 
     this.apps.forEach((app, index) => {
-      const col = index % 2 === 0 ? leftColumnX : rightColumnX;
-      const row = Math.floor(index / 2);
-      app.position = { x: col, y: startY + row * rowHeight };
+      const isLeft = index % 2 === 0;
+      const x = isLeft ? leftColumnX : rightColumnX;
+      const y = startY + Math.floor(index / 2) * rowHeight;
+      app.position = { x, y };
     });
   }
 
@@ -174,6 +181,10 @@ export class WindowComponent implements OnInit {
     if (this.openWindows.some((w) => w.id === app.id))
       return this.focusWindow(app.id);
 
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const isWideScreen = screenWidth > 1440;
+
     this.openWindows.push({
       id: app.id,
       title: app.name,
@@ -181,7 +192,10 @@ export class WindowComponent implements OnInit {
       isMinimized: false,
       isMaximized: true,
       position: { x: 0, y: 0 },
-      size: { width: window.innerWidth, height: window.innerHeight - 40 },
+      size: {
+        width: isWideScreen ? screenWidth * 0.75 : screenWidth,
+        height: isWideScreen ? screenHeight * 0.8 - 40 : screenHeight - 40,
+      },
       zIndex: ++this.highestZIndex,
     });
   }
