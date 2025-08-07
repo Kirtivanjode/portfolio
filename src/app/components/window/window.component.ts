@@ -146,14 +146,14 @@ export class WindowComponent implements OnInit {
   assignGridPositions() {
     const screenWidth = window.innerWidth;
     const iconWidth = 80;
-    const padding = 40;
-    const gap = 20;
+    const columnGap = 300; // controls space between left and right
+    const sidePadding = (screenWidth - columnGap - 2 * iconWidth) / 2;
 
-    const leftColumnX = padding;
-    const rightColumnX = screenWidth - iconWidth - padding;
+    const leftColumnX = sidePadding;
+    const rightColumnX = screenWidth - sidePadding - iconWidth;
 
-    const startY = 50;
-    const rowHeight = 90;
+    const startY = 80;
+    const rowHeight = 100;
 
     this.apps.forEach((app, index) => {
       const isLeft = index % 2 === 0;
