@@ -217,7 +217,7 @@ body {
 /* Small phones */
 @media (max-width: 480px) {
   .desktop {
-    background-image: url("/public/Warm-Pastel-Gradient.jpg");
+    background-image: url("/Warm-Pastel-Gradient.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -227,6 +227,7 @@ body {
 
   .app-icon {
     width: 50px;
+    color: black;
   }
   .app-icon .icon {
     font-size: 1.3rem;
