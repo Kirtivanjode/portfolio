@@ -1,28 +1,296 @@
+/* Global Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
+  height: 100vh;
+  width: 100vw;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
 }
 
-body.dark-mode {
-  background-color: #121212;
-  color: #f0f0f0;
+/* Desktop Container */
+.desktop {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
-body.dark-mode .settings-container {
-  background-color: #121212;
+/* Background Image */
+.desktop-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  transition: transform 0.2s ease;
 }
 
-body.dark-mode .sidebar {
-  background-color: #1e1e1e;
-  color: #ccc;
+/* App Icons */
+.app-icon {
+  position: absolute;
+  width: 80px;
+  text-align: center;
+  user-select: none;
+  cursor: grab;
+  padding: 5px;
+  border-radius: 12px;
+  color: #fff;
+  transition: transform 0.1s;
+}
+.app-icon:hover {
+  transform: scale(1.05);
+}
+.app-icon .icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.app-icon .label {
+  font-size: clamp(0.5rem, 1.5vw, 0.75rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-body.dark-mode .content {
-  background-color: #181818;
-  color: #f0f0f0;
+/* Window */
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 10px 25px #0003;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  max-width: 100%;
+  max-height: 100%;
+  overflow: scroll;
+}
+.window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
 }
 
-body.dark-mode .bg-option {
-  background-color: #2c2c2c;
+/* Title Bar */
+.title-bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f0f0f0;
+  padding: 5px 10px;
+  font-weight: 700;
+  cursor: move;
+  user-select: none;
+  font-size: clamp(0.8rem, 1vw, 1.2rem);
+}
+.title-bar .controls {
+  display: flex;
+  gap: 0.3rem;
+}
+.title-bar .controls button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.title-bar .controls button:hover {
+  background: #ddd;
+}
+
+/* Window Content */
+.window-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 1rem;
+  background: #fafafa;
+  font-size: clamp(0.75rem, 1vw, 1.2rem);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Resize Handle */
+.resize-handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 0;
+  background: #0003;
+  z-index: 10;
+  border-bottom-right-radius: 4px;
+  cursor: nwse-resize;
+}
+
+/* Taskbar */
+.taskbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1e1e1e;
+  color: #fff;
+  padding: 5px 10px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 2000;
+  font-size: clamp(0.75rem, 1vw, 1.2rem);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .app-icon {
+    width: 64px;
+  }
+  .resize-handle {
+    width: 14px;
+    height: 14px;
+  }
+  .window {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
+    padding: 1rem;
+    height: calc(100vh - 40px);
+    overflow-y: auto;
+  }
+  .app-icon {
+    width: 60px;
+  }
+  .app-icon .icon {
+    font-size: 1.6rem;
+  }
+  .resize-handle {
+    width: 12px;
+    height: 12px;
+  }
+  .taskbar {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    gap: 6px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-icon {
+    width: 50px;
+  }
+  .app-icon .icon {
+    font-size: 1.3rem;
+  }
+  .resize-handle {
+    width: 10px;
+    height: 10px;
+  }
+  .taskbar {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 300px) {
+  .app-icon {
+    width: 40px;
+  }
+  .app-icon .icon {
+    font-size: 1.1rem;
+  }
+  .app-icon .label {
+    font-size: 0.5rem;
+  }
+  .window-content {
+    padding: 0.3rem;
+  }
+  .resize-handle {
+    width: 8px;
+    height: 8px;
+  }
+  .taskbar {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    height: 34px;
+  }
+  .desktop-bg {
+    object-fit: contain;
+  }
+}
+
+@media (min-width: 1440px) {
+  .app-icon {
+    width: 80px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  .app-icon .icon {
+    font-size: 2.5rem;
+  }
+  .app-icon .label {
+    font-size: 1.1rem;
+  }
+  .title-bar {
+    padding: 10px 16px;
+  }
+  .window-content {
+    padding: 1.5rem;
+  }
+  .resize-handle {
+    width: 20px;
+    height: 20px;
+  }
+  .taskbar {
+    height: 44px;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .app-icon {
+    width: 140px;
+  }
+  .app-icon .icon {
+    font-size: 4rem;
+  }
+  .app-icon .label {
+    font-size: 1.2rem;
+  }
+  .window-content {
+    font-size: 1.4rem;
+  }
+  .title-bar {
+    font-size: 1.2rem;
+    padding: 12px 18px;
+  }
+  .taskbar {
+    height: 48px;
+    font-size: 1.2rem;
+  }
 }
