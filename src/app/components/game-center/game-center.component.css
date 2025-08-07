@@ -1,31 +1,88 @@
 .game-center {
   padding: 1rem;
-  width: 98%;
-  height: 80vh;
+  width: 94%;
+  height: auto; /* change to auto for better mobile compatibility */
+  min-height: 80vh;
   background: #222;
   color: white;
   font-family: "Courier New", monospace;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
+
+/* Responsive Grid */
 .game-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1rem;
 }
+
+/* Card Styling */
 .game-card {
   background: #333;
   border-radius: 10px;
   padding: 1rem;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.2s;
+  transition: transform 0.2s, background 0.2s;
 }
 .game-card:hover {
   transform: scale(1.05);
   background: #444;
 }
+
 .icon {
   font-size: 2rem;
 }
+
 .title {
   margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Media Queries */
+
+/* Mobile (0 - 600px) */
+@media (max-width: 600px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .icon {
+    font-size: 1.5rem;
+  }
+
+  .title {
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .game-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .icon {
+    font-size: 1.8rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+}
+
+/* Desktop (1025px and above) */
+@media (min-width: 1025px) {
+  .game-grid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
 }

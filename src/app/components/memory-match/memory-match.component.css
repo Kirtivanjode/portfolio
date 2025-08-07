@@ -5,21 +5,30 @@
   height: 100%;
   overflow: auto;
 }
+
+/* MEMORY GRID */
 .memory-grid {
   display: grid;
-  grid-template-columns: repeat(4, 60px);
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: 10px;
   justify-content: center;
   margin-bottom: 1rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
 }
+
+/* CARD BASE */
 .memory-card {
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   perspective: 600px;
   cursor: pointer;
   position: relative;
 }
+
+/* CARD FACES */
 .memory-card .front,
 .memory-card .back {
   width: 100%;
@@ -32,19 +41,53 @@
   backface-visibility: hidden;
   transition: transform 0.6s;
 }
+
+/* FRONT FACE */
 .memory-card .front {
   background: #ccc;
   z-index: 2;
 }
+
+/* BACK FACE */
 .memory-card .back {
   background: #fff;
   transform: rotateY(180deg);
   z-index: 1;
 }
+
+/* FLIP STATES */
 .memory-card.flipped .front {
   transform: rotateY(180deg);
 }
+
 .memory-card.flipped .back {
   transform: rotateY(0deg);
   z-index: 2;
+}
+
+/* MEDIA QUERIES FOR RESPONSIVENESS */
+@media (max-width: 768px) {
+  .memory-grid {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 8px;
+    max-width: 350px;
+  }
+
+  .memory-card .front,
+  .memory-card .back {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .memory-grid {
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 6px;
+    max-width: 300px;
+  }
+
+  .memory-card .front,
+  .memory-card .back {
+    font-size: 1.4rem;
+  }
 }

@@ -14,6 +14,7 @@
   display: flex;
   gap: 2rem;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 2rem;
 }
 
@@ -28,7 +29,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   color: black;
 }
@@ -111,7 +112,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
+  width: 280px;
   height: 80px;
   font-weight: bold;
   font-size: 1rem;
@@ -119,8 +120,52 @@
 
 .hobbylast {
   display: flex;
+  flex-wrap: wrap;
   margin-top: 2rem;
   justify-content: space-around;
-  flex-wrap: wrap;
   gap: 1rem;
+}
+
+/* ✅ Responsive Adjustments */
+@media (max-width: 768px) {
+  .stats {
+    gap: 1rem;
+  }
+
+  .stat {
+    width: 80px;
+    font-size: 0.9rem;
+  }
+
+  .badge {
+    width: 90%;
+    font-size: 0.95rem;
+    height: auto;
+    padding: 0.75rem;
+  }
+
+  .icon {
+    font-size: 1.8rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hobbies-section {
+    padding: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .expanded {
+    font-size: 0.85rem;
+  }
+
+  .badge {
+    font-size: 0.9rem;
+  }
 }

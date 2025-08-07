@@ -130,3 +130,94 @@
   cursor: pointer;
   position: absolute;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .calendar {
+    padding: 1rem 0.75rem;
+    font-size: 13px;
+    border-radius: 16px;
+  }
+
+  .calendar-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    align-items: flex-start;
+  }
+
+  .calendar-header button {
+    font-size: 0.95rem;
+    padding: 4px 8px;
+  }
+
+  .sidebar {
+    width: 100%;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar h3 {
+    font-size: 1rem;
+  }
+
+  .sidebar input,
+  .sidebar select,
+  .sidebar textarea {
+    font-size: 0.85rem;
+  }
+
+  .Close {
+    font-size: 1.25rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar {
+    margin: 1rem;
+    padding: 0.75rem;
+    font-size: 12px;
+  }
+
+  .calendar-header {
+    font-size: 1rem;
+  }
+
+  .calendar-grid,
+  .weekdays {
+    grid-template-columns: repeat(7, minmax(36px, 1fr));
+  }
+
+  .day-cell {
+    min-height: 50px;
+    padding: 2px;
+    font-size: 10px;
+  }
+
+  .event {
+    font-size: 9px;
+    padding: 1px 3px;
+  }
+
+  .sidebar {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .sidebar input,
+  .sidebar select,
+  .sidebar textarea {
+    font-size: 0.8rem;
+  }
+
+  .sidebar button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+}
