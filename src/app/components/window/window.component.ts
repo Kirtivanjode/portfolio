@@ -144,29 +144,21 @@ export class WindowComponent implements OnInit {
   }
 
   assignGridPositions() {
-    const screenWidth = window.innerWidth;
-    const iconWidth = 80;
-    const topPadding = 80;
-
-    const verticalGap = screenWidth < 768 ? 20 : 30;
-    const columnPadding = screenWidth < 768 ? 40 : 100;
-
-    const leftColumnX = columnPadding;
-    const rightColumnX = screenWidth - columnPadding - iconWidth;
+    const leftColumnX = 20;
+    const rightColumnX = 110;
+    const startY = 50;
+    const rowHeight = 90;
 
     this.apps.forEach((app, index) => {
-      const isLeft = index < 4;
-      const columnX = isLeft ? leftColumnX : rightColumnX;
-      const rowIndex = isLeft ? index : index - 4;
-      const y = topPadding + rowIndex * (iconWidth + verticalGap);
-
-      app.position = { x: columnX, y };
+      const col = index % 2 === 0 ? leftColumnX : rightColumnX;
+      const row = Math.floor(index / 2);
+      app.position = { x: col, y: startY + row * rowHeight };
     });
   }
 
   onWindowResize = () => {
-    sessionStorage.removeItem('desktopAppPositions');
-    this.assignGridPositions();
+    if (!sessionStorage.getItem('desktopAppPositions'))
+      this.assignGridPositions();
 
     this.openWindows = this.openWindows.map((win) =>
       win.isMaximized
@@ -182,10 +174,6 @@ export class WindowComponent implements OnInit {
     if (this.openWindows.some((w) => w.id === app.id))
       return this.focusWindow(app.id);
 
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-    const isWideScreen = screenWidth > 1440;
-
     this.openWindows.push({
       id: app.id,
       title: app.name,
@@ -193,10 +181,7 @@ export class WindowComponent implements OnInit {
       isMinimized: false,
       isMaximized: true,
       position: { x: 0, y: 0 },
-      size: {
-        width: isWideScreen ? screenWidth * 0.75 : screenWidth,
-        height: isWideScreen ? screenHeight * 0.8 - 40 : screenHeight - 40,
-      },
+      size: { width: window.innerWidth, height: window.innerHeight - 40 },
       zIndex: ++this.highestZIndex,
     });
   }
