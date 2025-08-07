@@ -146,11 +146,10 @@ export class WindowComponent implements OnInit {
   assignGridPositions() {
     const screenWidth = window.innerWidth;
     const iconWidth = 80;
-    const isLarge = screenWidth > 1024;
-
-    const verticalGap = isLarge ? 30 : 20;
     const topPadding = 80;
-    const columnPadding = 100; // distance from edges
+
+    const verticalGap = screenWidth < 768 ? 20 : 30;
+    const columnPadding = screenWidth < 768 ? 40 : 100;
 
     const leftColumnX = columnPadding;
     const rightColumnX = screenWidth - columnPadding - iconWidth;
@@ -166,8 +165,8 @@ export class WindowComponent implements OnInit {
   }
 
   onWindowResize = () => {
-    if (!sessionStorage.getItem('desktopAppPositions'))
-      this.assignGridPositions();
+    sessionStorage.removeItem('desktopAppPositions');
+    this.assignGridPositions();
 
     this.openWindows = this.openWindows.map((win) =>
       win.isMaximized
