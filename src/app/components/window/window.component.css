@@ -281,6 +281,7 @@ body {
   }
   .app-icon .label {
     font-size: 1.1rem;
+    font-weight: 500;
   }
   .title-bar {
     padding: 10px 16px;
