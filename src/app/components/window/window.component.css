@@ -216,6 +216,15 @@ body {
 
 /* Small phones */
 @media (max-width: 480px) {
+  .desktop {
+    background-image: url("/public/Warm-Pastel-Gradient.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+
   .app-icon {
     width: 50px;
   }

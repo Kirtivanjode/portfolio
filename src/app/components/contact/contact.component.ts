@@ -91,16 +91,12 @@ export class ContactComponent {
     return this.contacts.filter((c) => c.id !== 'location');
   }
 
-  sanitizePhoneNumber(phone: string): string {
-    return phone.replace(/\s+/g, '');
-  }
-
-  formatPhoneNumber(phone: string): string {
-    return phone.replace(/\s/g, '').replace(/(\+91)(\d{5})(\d{5})/, '$1 $2 $3');
-  }
-
   get location(): ContactOption | undefined {
     return this.contacts.find((c) => c.id === 'location');
+  }
+
+  sanitizePhoneNumber(phone: string): string {
+    return phone.replace(/\s+/g, '');
   }
 
   handleSubmit(): void {
@@ -114,7 +110,7 @@ export class ContactComponent {
 
     const templateParams = {
       from_name: this.formData.name,
-      email: this.formData.email, // ✅ required for {{email}} in template
+      email: this.formData.email,
       subject: this.formData.subject,
       message: this.formData.message,
     };

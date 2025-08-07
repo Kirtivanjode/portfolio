@@ -1,5 +1,4 @@
 <div class="contacts-container">
-  <!-- Header -->
   <div class="contacts-header">
     <div class="header-info">
       <h2>📞 Contact Information</h2>
@@ -11,19 +10,29 @@
     </div>
   </div>
 
-  <!-- Main Contact Card -->
   <div class="contacts-content">
     <div class="main-contact-card">
-      <!-- Profile Section -->
       <div class="contact-flex-container">
-        <div class="contact-avatar">
-          <img src="assets/profile.jpg" alt="Profile" />
-          <div class="status-badge online"></div>
+        <div class="info-avatar-group">
+          <div class="contact-avatar">
+            <img src="assets/profile.jpg" alt="Profile" />
+            <div class="status-badge online"></div>
+          </div>
+          <div class="contact-info">
+            <h3>Kirti Vanjode</h3>
+            <p class="contact-title">Full Stack Developer</p>
+            <p class="contact-location">📍 Vadodara, Gujarat</p>
+          </div>
         </div>
-        <div class="contact-info">
-          <h3>Kirti Vanjode</h3>
-          <p class="contact-title">Full Stack Developer</p>
-          <p class="contact-location">📍 Vadodara, Gujarat</p>
+
+        <!-- Right Side: Map -->
+        <div class="map-inline-card" *ngIf="location">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3715.222134823626!2d73.16138927467708!3d22.30715834378161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8fbc730f045%3A0x9edaf7e2e477213f!2sVadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1721800000000!5m2!1sen!2sin"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
 
@@ -33,22 +42,22 @@
           <div class="method-icon">{{ contact.icon }}</div>
           <div class="method-info">
             <span class="method-label">{{ contact.name }}</span>
-
             <a
               *ngIf="contact.id === 'email'"
               href="mailto:{{ contact.value }}"
               class="method-value"
-            ></a>
+              >{{ contact.value }}</a
+            >
             <a
               *ngIf="contact.id === 'phone'"
               [href]="'tel:' + sanitizePhoneNumber(contact.value)"
               class="method-value"
-            ></a>
+              >{{ contact.value }}</a
+            >
             <a
               *ngIf="contact.id === 'website'"
               [href]="'https://' + contact.value"
               target="_blank"
-              rel="noopener"
               class="method-value"
               >{{ contact.value }}</a
             >
@@ -56,15 +65,18 @@
               *ngIf="contact.id === 'github' || contact.id === 'linkedin'"
               [href]="contact.value"
               target="_blank"
-              rel="noopener noreferrer"
+              class="method-value"
               >{{ contact.value }}</a
             >
             <span
               *ngIf="
+                contact.id !== 'email' &&
+                contact.id !== 'phone' &&
+                contact.id !== 'website' &&
                 contact.id !== 'github' &&
-                contact.id !== 'linkedin' &&
-                contact.id !== 'website'
+                contact.id !== 'linkedin'
               "
+              class="method-value"
               >{{ contact.value }}</span
             >
           </div>
@@ -72,67 +84,40 @@
       </div>
     </div>
 
-    <!-- Location Map -->
-    <div class="map-section" *ngIf="location">
-      <h4>📍 Location on Map</h4>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3715.222134823626!2d73.16138927467708!3d22.30715834378161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8fbc730f045%3A0x9edaf7e2e477213f!2sVadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1721800000000!5m2!1sen!2sin"
-        width="100%"
-        height="300"
-        style="
-          border: 0;
-          border-radius: 12px;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        "
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </div>
-
     <!-- Contact Form -->
     <div class="quick-contact">
       <h4>💬 Send a Quick Message</h4>
       <form class="contact-form" (ngSubmit)="handleSubmit()">
-        <div class="form-group">
-          <input
-            type="text"
-            name="name"
-            [(ngModel)]="formData.name"
-            placeholder="Your Name"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="email"
-            name="email"
-            [(ngModel)]="formData.email"
-            placeholder="Your Email"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            name="subject"
-            [(ngModel)]="formData.subject"
-            placeholder="Subject"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <textarea
-            name="message"
-            [(ngModel)]="formData.message"
-            placeholder="Your Message"
-            rows="4"
-            required
-          ></textarea>
-        </div>
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="formData.name"
+          placeholder="Your Name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="formData.email"
+          placeholder="Your Email"
+          required
+        />
+        <input
+          type="text"
+          name="subject"
+          [(ngModel)]="formData.subject"
+          placeholder="Subject"
+          required
+        />
+        <textarea
+          name="message"
+          [(ngModel)]="formData.message"
+          placeholder="Your Message"
+          rows="4"
+          required
+        ></textarea>
         <button
           type="submit"
-          class="send-btn"
           [disabled]="
             !formData.name ||
             !formData.email ||
@@ -140,7 +125,7 @@
             !formData.message
           "
         >
-          <span>📤</span> Send Message
+          📤 Send Message
         </button>
         <p *ngIf="messageSent" class="success-msg">
           ✅ Message sent successfully!
