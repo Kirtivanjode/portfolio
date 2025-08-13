@@ -132,10 +132,24 @@ ul li {
   flex-wrap: wrap;
 }
 
-/* CERTIFICATIONS */
-.cert-list {
-  list-style-type: disc;
-  padding-left: 20px;
+.cert-list a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #0073e6; /* Blue button */
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cert-list a:hover {
+  background-color: #005bb5; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+.cert-list a:active {
+  transform: translateY(0);
 }
 
 /* RESPONSIVE DESIGN */
