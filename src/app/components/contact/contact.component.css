@@ -104,27 +104,34 @@
 }
 
 /* Contact Methods */
-.contact-methods {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .contact-method {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  align-items: center; /* vertically center icon and text */
+  gap: 0.75rem; /* space between icon and text */
 }
 
 .method-icon {
+  width: 32px; /* fixed width to align all icons */
+  text-align: center;
   font-size: 1.5rem;
 }
 
+.method-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap; /* wrap if text is too long */
+}
+
+.method-label {
+  font-weight: 500;
+  margin-right: 0.25rem;
+}
+
 .method-value {
-  color: hsla(221, 61%, 42%, 0.849);
+  color: hsla(221, 61%, 42%, 0.85);
   text-decoration: none;
-  margin-left: 5px;
 }
 
 .method-value:hover {
