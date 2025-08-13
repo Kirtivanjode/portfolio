@@ -90,8 +90,8 @@
 
 /* Map */
 .map-inline-card {
-  width: 320px;
-  height: 180px;
+  width: 400px;
+  height: 200px;
   border-radius: 10px;
   overflow: hidden;
 }
