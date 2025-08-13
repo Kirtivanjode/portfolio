@@ -1,19 +1,29 @@
 import { Component } from '@angular/core';
+import html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-resume',
   imports: [],
   templateUrl: './resume.component.html',
-  styleUrl: './resume.component.css',
+  styleUrls: ['./resume.component.css'],
 })
 export class ResumeComponent {
   downloadResume() {
-    const element = document.createElement('a');
-    const file = new Blob([''], { type: 'application/pdf' });
-    element.href = URL.createObjectURL(file);
-    element.download = 'KirtiVanjode_Resume.pdf';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    const element = document.querySelector('.resume-doc') as HTMLElement; // ← assert HTMLElement
+
+    if (!element) {
+      console.error('Resume element not found!');
+      return;
+    }
+
+    const options = {
+      margin: 0.5,
+      filename: 'Kirti_Vanjode_Resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+    };
+
+    html2pdf().set(options).from(element).save();
   }
 }
