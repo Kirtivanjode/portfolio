@@ -1,0 +1,137 @@
+/* ===========================
+   GLOBAL THEME VARIABLES
+=========================== */
+:root {
+  --bg-gradient: linear-gradient(
+    135deg,
+    rgba(40, 44, 52, 0.8),
+    rgba(60, 65, 80, 0.8)
+  );
+  --taskbar-color: rgba(20, 20, 20, 0.4);
+  --window-bg: rgba(255, 255, 255, 0.15);
+  --window-border: rgba(255, 255, 255, 0.2);
+  --text-color: #ffffff;
+  --font-family: "Segoe UI", sans-serif;
+  --icon-size: 60px;
+  --transition-speed: 0.3s;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================
+   RESET & BASE
+=========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: var(--bg-gradient);
+  background-size: cover;
+  color: var(--text-color);
+  font-family: var(--font-family);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===========================
+   TASKBAR
+=========================== */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background: var(--taskbar-color);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 8px var(--shadow-color);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+}
+
+/* ===========================
+   APP ICONS
+=========================== */
+.app-icon {
+  width: var(--icon-size);
+  height: var(--icon-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: transform var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.app-icon img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.app-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* ===========================
+   WINDOW (GLASSMORPHISM)
+=========================== */
+.window {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background: var(--window-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--window-border);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px var(--shadow-color);
+  padding: 20px;
+  min-width: 300px;
+  min-height: 200px;
+  color: var(--text-color);
+}
+
+/* ===========================
+   RESPONSIVENESS
+=========================== */
+@media (max-width: 1024px) {
+  :root {
+    --icon-size: 50px;
+  }
+  .window {
+    min-width: 250px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --icon-size: 45px;
+  }
+  .taskbar {
+    height: 50px;
+    gap: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --icon-size: 40px;
+  }
+  .window {
+    min-width: 220px;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  .taskbar {
+    height: 45px;
+    padding: 0 5px;
+  }
+}

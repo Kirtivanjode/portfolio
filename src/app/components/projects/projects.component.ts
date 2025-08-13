@@ -35,6 +35,18 @@ export class ProjectsComponent {
       github: 'https://github.com/Kirtivanjode/Employeehub',
       demo: 'https://employeehubki.vercel.app',
     },
+    {
+      id: 2,
+      title: '📊 Live Dashboard',
+      description:
+        'A sleek, responsive Angular dashboard for tracking real-time metrics. Features sidebar navigation, colorful KPI cards, and a dark modern UI — built with TypeScript and a service-based architecture.',
+      image: 'project-2.png',
+      likes: 24,
+      comments: 5,
+      tech: ['Angular', 'TypeScript', 'Bootstrap'],
+      github: 'https://github.com/Kirtivanjode/livechart',
+      demo: 'https://livechartt.vercel.app/',
+    },
   ];
 
   toggleLike(id: number) {
