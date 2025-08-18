@@ -165,7 +165,6 @@ body {
   font-size: clamp(0.75rem, 1vw, 1.2rem);
 }
 
-/* Orientation-based fix for tablets */
 @media (orientation: landscape) and (max-height: 500px) {
   .desktop {
     grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
@@ -178,7 +177,6 @@ body {
   }
 }
 
-/* Tablet & Medium screens */
 @media (max-width: 1024px) {
   .app-icon {
     width: 64px;
@@ -195,7 +193,6 @@ body {
   }
 }
 
-/* Mobile screens */
 @media (max-width: 768px) {
   .desktop {
     display: grid;
@@ -280,7 +277,6 @@ body {
   }
 }
 
-/* Large desktops */
 @media (min-width: 1440px) {
   .app-icon {
     width: 90px;
