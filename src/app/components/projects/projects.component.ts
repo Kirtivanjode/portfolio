@@ -41,11 +41,30 @@ export class ProjectsComponent {
       description:
         'A sleek, responsive Angular dashboard for tracking real-time metrics. Features sidebar navigation, colorful KPI cards, and a dark modern UI — built with TypeScript and a service-based architecture.',
       image: 'project-2.png',
-      likes: 24,
+      likes: 20,
       comments: 5,
       tech: ['Angular', 'TypeScript', 'Bootstrap'],
       github: 'https://github.com/Kirtivanjode/livechart',
       demo: 'https://livechartt.vercel.app/',
+    },
+    {
+      id: 3,
+      title: '📊 Live Dashboard',
+      description:
+        'A travel blogging app with posts, images, likes, comments, wishlist bucket list, and map-based views. Built with Angular + TypeScript on a Node/Express API and PostgreSQL.',
+      image: 'wander-with-ki.png', // put this in src/assets/images/
+      likes: 73,
+      comments: 18,
+      tech: [
+        'Angular',
+        'TypeScript',
+        'Express.js',
+        'Node.js',
+        'PostgreSQL',
+        'Leaflet',
+      ],
+      github: 'https://github.com/Kirtivanjode/wanderwithkii',
+      demo: 'https://wanderwithki.vercel.app/',
     },
   ];
 

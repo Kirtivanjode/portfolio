@@ -125,7 +125,6 @@
   font-size: 12px;
 }
 
-/* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 768px) {
   .projects-container {
     padding: 60px 16px;
