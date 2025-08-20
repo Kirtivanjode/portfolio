@@ -52,7 +52,7 @@ export class ProjectsComponent {
       title: '🌍 Wander With KI',
       description:
         'A travel blogging app with posts, images, likes, comments, wishlist bucket list, and map-based views. Built with Angular + TypeScript on a Node/Express API and PostgreSQL.',
-      image: 'wander-with-ki.png', // put this in src/assets/images/
+      image: 'project-3.png',
       likes: 73,
       comments: 18,
       tech: [
