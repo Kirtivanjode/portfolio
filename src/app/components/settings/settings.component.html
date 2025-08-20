@@ -12,19 +12,6 @@
   </aside>
 
   <section class="content">
-    <div *ngIf="activeSection === 'display'">
-      <h3>Display & Appearance</h3>
-      <label>
-        <input type="checkbox" [(ngModel)]="darkMode" />
-        Dark Mode
-      </label>
-      <br />
-      <label>
-        <input type="checkbox" [(ngModel)]="isAnimated" />
-        Enable Animations
-      </label>
-    </div>
-
     <!-- Personalization -->
     <div *ngIf="activeSection === 'personalization'">
       <h3>Choose Background</h3>
@@ -47,15 +34,6 @@
       <h3>Sound Settings</h3>
       <label>Volume: {{ volume }}%</label>
       <input type="range" [(ngModel)]="volume" min="0" max="100" />
-    </div>
-
-    <!-- Notifications -->
-    <div *ngIf="activeSection === 'notifications'">
-      <h3>Notifications</h3>
-      <label>
-        <input type="checkbox" [(ngModel)]="notifications" />
-        Enable Notifications
-      </label>
     </div>
   </section>
 </div>

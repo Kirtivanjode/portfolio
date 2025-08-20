@@ -26,10 +26,8 @@ export class SettingsComponent implements OnInit {
   }
 
   settingSections = [
-    { id: 'display', name: 'Display & Appearance' },
     { id: 'personalization', name: 'Personalization' },
     { id: 'sound', name: 'Sound' },
-    { id: 'notifications', name: 'Notifications' },
   ];
 
   personalizationBackgrounds = [

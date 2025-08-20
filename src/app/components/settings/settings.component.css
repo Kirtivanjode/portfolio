@@ -5,6 +5,7 @@
   background-color: #f0f4f8;
 }
 
+/* Sidebar */
 .sidebar {
   width: 250px;
   background-color: #ffffff;
@@ -16,6 +17,7 @@
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .sidebar li {
@@ -33,6 +35,7 @@
   color: #0077cc;
 }
 
+/* Content */
 .content {
   flex: 1;
   padding: 30px;
@@ -94,4 +97,123 @@ input[type="range"] {
 input[type="checkbox"] {
   width: 16px;
   height: 16px;
+}
+
+/* -------------------------
+   RESPONSIVE STYLES
+------------------------- */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .settings-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .sidebar li {
+    flex: 1;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .content {
+    padding: 20px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .content h3 {
+    font-size: 18px;
+  }
+
+  .bg-option {
+    width: 100%;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .settings-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px;
+    box-shadow: none;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  .sidebar li {
+    flex: 1 0 auto;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .bg-option {
+    width: 100%; /* full width for backgrounds on mobile */
+  }
+
+  .bg-img {
+    height: 80px;
+  }
+
+  input[type="range"] {
+    width: 100%; /* range slider full width */
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar li {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .content h3 {
+    font-size: 18px;
+  }
+
+  label {
+    font-size: 14px;
+  }
 }
