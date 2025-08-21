@@ -165,6 +165,17 @@ body {
   font-size: clamp(0.75rem, 1vw, 1.2rem);
 }
 
+.calendar-popup {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  z-index: 9999;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: white;
+  overflow: hidden;
+}
+
 @media (orientation: landscape) and (max-height: 500px) {
   .desktop {
     grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));

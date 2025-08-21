@@ -9,6 +9,7 @@ interface CalendarEvent {
   time: string;
   type: 'meeting' | 'personal' | 'work' | 'reminder';
   description?: string;
+  repeatYearly?: boolean; // for birthdays
 }
 
 @Component({
@@ -51,13 +52,54 @@ export class CalendarComponent implements OnInit {
   days: (Date | null)[] = [];
 
   ngOnInit(): void {
-    const saved = localStorage.getItem('calendar-events');
-    if (saved) {
-      this.events = JSON.parse(saved).map((e: any) => ({
-        ...e,
-        date: new Date(e.date),
-      }));
-    }
+    // ✅ Preloaded career journey
+    this.events = [
+      {
+        id: '1',
+        title: '🎓 Diploma in IT Completed',
+        date: new Date(2024, 5, 1), // June 2024
+        time: 'All Day',
+        type: 'work',
+        description: 'Completed Diploma in IT from Vadodara',
+      },
+      {
+        id: '2',
+        title: '🛠️ Internship at Hi-Mak',
+        date: new Date(2024, 2, 1), // March 2024
+        time: 'All Day',
+        type: 'work',
+        description: 'Internship: IT support & documentation',
+      },
+      {
+        id: '3',
+        title: '💻 Portfolio Launched',
+        date: new Date(2025, 0, 15), // Jan 2025
+        time: 'All Day',
+        type: 'personal',
+        description: 'Launched kirtifolio.vercel.app',
+      },
+      {
+        id: '4',
+        title: '🚀 Career Goal',
+        date: new Date(2025, 7, 1), // Aug 2025
+        time: 'All Day',
+        type: 'reminder',
+        description: 'Seeking entry-level IT role in reputed company',
+      },
+      {
+        id: 'birthday-1',
+        title: '🎂 Birthday – Kirti',
+        date: new Date(new Date().getFullYear(), 7, 23), // 23rd Aug each year
+        time: 'All Day',
+        type: 'personal',
+        description: 'Happy Birthday!',
+        repeatYearly: true,
+      },
+    ];
+
+    // save to storage initially
+    this.saveToStorage();
+
     this.generateDays();
   }
 
@@ -88,9 +130,16 @@ export class CalendarComponent implements OnInit {
   }
 
   getEventsForDate(date: Date): CalendarEvent[] {
-    return this.events.filter(
-      (event) => event.date.toDateString() === date.toDateString()
-    );
+    return this.events.filter((event) => {
+      if (event.repeatYearly) {
+        // 🎂 Show birthday every year
+        return (
+          event.date.getDate() === date.getDate() &&
+          event.date.getMonth() === date.getMonth()
+        );
+      }
+      return event.date.toDateString() === date.toDateString();
+    });
   }
 
   getEventColor(type: string): string {
@@ -100,7 +149,7 @@ export class CalendarComponent implements OnInit {
       case 'work':
         return '#28a745';
       case 'personal':
-        return '#c084fc';
+        return '#ff66b2'; // pink for birthday/personal
       case 'reminder':
         return '#ff9800';
       default:
@@ -115,7 +164,7 @@ export class CalendarComponent implements OnInit {
       case 'work':
         return '💼';
       case 'personal':
-        return '🌸';
+        return '🎂';
       case 'reminder':
         return '⏰';
       default:
@@ -135,12 +184,7 @@ export class CalendarComponent implements OnInit {
   closeSidebar(): void {
     this.selectedDate = null;
     this.editingEventId = null;
-    this.newEvent = {
-      title: '',
-      time: '',
-      type: 'meeting',
-      description: '',
-    };
+    this.newEvent = { title: '', time: '', type: 'meeting', description: '' };
   }
 
   addEvent(): void {
@@ -157,31 +201,11 @@ export class CalendarComponent implements OnInit {
       description: this.newEvent.description,
     });
 
-    this.saveToStorage(); // 💾 Save new event
+    this.saveToStorage(); // 💾 save
 
-    // Reset form and close sidebar
     this.newEvent = { title: '', time: '', type: 'meeting', description: '' };
     this.closeSidebar();
   }
-
-  // editEvent(eventId: string): void {
-  //   const event = this.events.find((e) => e.id === eventId);
-  //   if (event) {
-  //     this.editingEventId = eventId;
-  //     this.newEvent = {
-  //       title: event.title,
-  //       time: event.time,
-  //       type: event.type,
-  //       description: event.description || '',
-  //     };
-  //     this.selectedDate = new Date(event.date);
-  //   }
-  // }
-
-  // deleteEvent(eventId: string): void {
-  //   this.events = this.events.filter((e) => e.id !== eventId);
-  //   this.saveToStorage(); // ✅ Save on delete
-  // }
 
   saveToStorage(): void {
     localStorage.setItem('calendar-events', JSON.stringify(this.events));

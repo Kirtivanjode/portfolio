@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AboutMeComponent } from '../about-me/about-me.component';
 import { ExperienceComponent } from '../experience/experience.component';
@@ -14,7 +14,6 @@ import { GameCenterComponent } from '../game-center/game-center.component';
 import { MemoryMatchComponent } from '../memory-match/memory-match.component';
 import { TicTacToeComponent } from '../tic-tac-toe/tic-tac-toe.component';
 import { CalendarComponent } from '../calendar/calendar.component';
-
 import { WindowManagerService } from '../../services/window-manager.service';
 
 interface DesktopApp {
@@ -43,10 +42,11 @@ interface WindowInstance {
   styleUrls: ['./window.component.css'],
   imports: [CommonModule, FormsModule, TaskbarComponent],
 })
-export class WindowComponent implements OnInit {
+export class WindowComponent implements OnInit, OnDestroy {
   openWindows: WindowInstance[] = [];
   highestZIndex = 1000;
   currentBackground = 'desk-coding.png';
+  currentTextColor = 'white'; // auto-adjusted color for icons
 
   apps: DesktopApp[] = [
     {
@@ -122,6 +122,16 @@ export class WindowComponent implements OnInit {
     this.windowService.background$.subscribe((bg) => {
       this.currentBackground = bg;
       document.body.style.backgroundImage = `url(${bg})`;
+
+      // Detect brightness & update text color
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.src = bg;
+      img.onload = () => {
+        this.getAverageColor(img, (color) => {
+          this.currentTextColor = color;
+        });
+      };
     });
 
     const saved = sessionStorage.getItem('desktopAppPositions');
@@ -143,6 +153,37 @@ export class WindowComponent implements OnInit {
     window.removeEventListener('resize', this.onWindowResize);
   }
 
+  /** --- Brightness detection --- */
+  getAverageColor(img: HTMLImageElement, callback: (color: string) => void) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+    let r = 0,
+      g = 0,
+      b = 0;
+
+    for (let i = 0; i < data.length; i += 4) {
+      r += data[i];
+      g += data[i + 1];
+      b += data[i + 2];
+    }
+
+    const pixelCount = data.length / 4;
+    r = Math.floor(r / pixelCount);
+    g = Math.floor(g / pixelCount);
+    b = Math.floor(b / pixelCount);
+
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    callback(brightness < 128 ? 'white' : 'black');
+  }
+
+  /** --- Positioning apps --- */
   assignGridPositions() {
     const leftColumnX = 20;
     const rightColumnX = 110;
@@ -214,12 +255,7 @@ export class WindowComponent implements OnInit {
   toggleWindowMinimize(id: string) {
     const win = this.openWindows.find((w) => w.id === id);
     if (!win) return;
-
-    if (win.isMinimized) {
-      this.focusWindow(id);
-    } else {
-      this.minimizeWindow(id);
-    }
+    win.isMinimized ? this.focusWindow(id) : this.minimizeWindow(id);
   }
 
   focusWindow(id: string) {
@@ -269,14 +305,10 @@ export class WindowComponent implements OnInit {
       sessionStorage.setItem(
         'desktopAppPositions',
         JSON.stringify(
-          this.apps.map((app) => ({
-            id: app.id,
-            position: app.position,
-          }))
+          this.apps.map((app) => ({ id: app.id, position: app.position }))
         )
       );
     }
-
     this.draggingApp = null;
     document.removeEventListener('mousemove', this.onAppDrag);
     document.removeEventListener('mouseup', this.stopAppDrag);
