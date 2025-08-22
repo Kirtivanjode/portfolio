@@ -12,7 +12,6 @@
   </aside>
 
   <section class="content">
-    <!-- Personalization -->
     <div *ngIf="activeSection === 'personalization'">
       <h3>Choose Background</h3>
       <div class="background-options">
@@ -22,14 +21,12 @@
           [class.selected]="selectedBackground === bg.url"
           (click)="setBackground(bg.url)"
         >
-          <!--        
-            <p>{{ bg.name }}</p> -->
+
           <img [src]="bg.url" [alt]="bg.name" class="bg-img" />
         </div>
       </div>
     </div>
 
-    <!-- Sound -->
     <div *ngIf="activeSection === 'sound'">
       <h3>Sound Settings</h3>
       <label>Volume: {{ volume }}%</label>

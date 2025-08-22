@@ -104,7 +104,6 @@
   margin-right: 1rem;
 }
 
-/* ✅ Responsive Adjustments */
 @media (max-width: 768px) {
   .top-row {
     flex-direction: column;

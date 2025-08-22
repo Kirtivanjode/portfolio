@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 export class WindowManagerService {
   private launcher: ((id: string) => void) | null = null;
 
-  // ✅ Background logic
   private bgSubject = new BehaviorSubject<string>(
     sessionStorage.getItem('selectedBackground') || 'desk-coding.png'
   );
@@ -22,7 +21,6 @@ export class WindowManagerService {
     return this.bgSubject.value;
   }
 
-  // ✅ App launcher logic
   registerLauncher(fn: (id: string) => void): void {
     this.launcher = fn;
   }

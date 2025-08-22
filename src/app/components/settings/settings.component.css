@@ -5,7 +5,6 @@
   background-color: #f0f4f8;
 }
 
-/* Sidebar */
 .sidebar {
   width: 250px;
   background-color: #ffffff;
@@ -35,7 +34,6 @@
   color: #0077cc;
 }
 
-/* Content */
 .content {
   flex: 1;
   padding: 30px;
@@ -57,7 +55,6 @@ label {
   margin-bottom: 15px;
 }
 
-/* Background Options */
 .background-options {
   display: flex;
   flex-wrap: wrap;
@@ -88,22 +85,15 @@ label {
   margin-top: 8px;
 }
 
-/* Range Input */
 input[type="range"] {
   width: 200px;
 }
 
-/* Custom Switch */
 input[type="checkbox"] {
   width: 16px;
   height: 16px;
 }
 
-/* -------------------------
-   RESPONSIVE STYLES
-------------------------- */
-
-/* Tablets */
 @media (max-width: 992px) {
   .settings-container {
     flex-direction: column;
@@ -134,7 +124,6 @@ input[type="checkbox"] {
   }
 }
 
-/* Mobile */
 @media (max-width: 600px) {
   .content h3 {
     font-size: 18px;
@@ -191,7 +180,7 @@ input[type="checkbox"] {
   }
 
   .bg-option {
-    width: 100%; /* full width for backgrounds on mobile */
+    width: 100%;
   }
 
   .bg-img {
@@ -199,7 +188,7 @@ input[type="checkbox"] {
   }
 
   input[type="range"] {
-    width: 100%; /* range slider full width */
+    width: 100%;
   }
 }
 

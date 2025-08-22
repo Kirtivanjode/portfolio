@@ -9,7 +9,7 @@ interface CalendarEvent {
   time: string;
   type: 'meeting' | 'personal' | 'work' | 'reminder';
   description?: string;
-  repeatYearly?: boolean; // for birthdays
+  repeatYearly?: boolean;
 }
 
 @Component({
@@ -52,12 +52,11 @@ export class CalendarComponent implements OnInit {
   days: (Date | null)[] = [];
 
   ngOnInit(): void {
-    // ✅ Preloaded career journey
     this.events = [
       {
         id: '1',
         title: '🎓 Diploma in IT Completed',
-        date: new Date(2024, 5, 1), // June 2024
+        date: new Date(2024, 5, 1),
         time: 'All Day',
         type: 'work',
         description: 'Completed Diploma in IT from Vadodara',
@@ -65,7 +64,7 @@ export class CalendarComponent implements OnInit {
       {
         id: '2',
         title: '🛠️ Internship at Hi-Mak',
-        date: new Date(2024, 2, 1), // March 2024
+        date: new Date(2024, 2, 1),
         time: 'All Day',
         type: 'work',
         description: 'Internship: IT support & documentation',
@@ -73,7 +72,7 @@ export class CalendarComponent implements OnInit {
       {
         id: '3',
         title: '💻 Portfolio Launched',
-        date: new Date(2025, 0, 15), // Jan 2025
+        date: new Date(2025, 0, 15),
         time: 'All Day',
         type: 'personal',
         description: 'Launched kirtifolio.vercel.app',
@@ -81,7 +80,7 @@ export class CalendarComponent implements OnInit {
       {
         id: '4',
         title: '🚀 Career Goal',
-        date: new Date(2025, 7, 1), // Aug 2025
+        date: new Date(2025, 7, 1),
         time: 'All Day',
         type: 'reminder',
         description: 'Seeking entry-level IT role in reputed company',
@@ -89,7 +88,7 @@ export class CalendarComponent implements OnInit {
       {
         id: 'birthday-1',
         title: '🎂 Birthday – Kirti',
-        date: new Date(new Date().getFullYear(), 7, 23), // 23rd Aug each year
+        date: new Date(new Date().getFullYear(), 7, 23),
         time: 'All Day',
         type: 'personal',
         description: 'Happy Birthday!',
@@ -97,9 +96,7 @@ export class CalendarComponent implements OnInit {
       },
     ];
 
-    // save to storage initially
     this.saveToStorage();
-
     this.generateDays();
   }
 
@@ -132,7 +129,6 @@ export class CalendarComponent implements OnInit {
   getEventsForDate(date: Date): CalendarEvent[] {
     return this.events.filter((event) => {
       if (event.repeatYearly) {
-        // 🎂 Show birthday every year
         return (
           event.date.getDate() === date.getDate() &&
           event.date.getMonth() === date.getMonth()
@@ -149,7 +145,7 @@ export class CalendarComponent implements OnInit {
       case 'work':
         return '#28a745';
       case 'personal':
-        return '#ff66b2'; // pink for birthday/personal
+        return '#ff66b2';
       case 'reminder':
         return '#ff9800';
       default:
@@ -201,7 +197,7 @@ export class CalendarComponent implements OnInit {
       description: this.newEvent.description,
     });
 
-    this.saveToStorage(); // 💾 save
+    this.saveToStorage();
 
     this.newEvent = { title: '', time: '', type: 'meeting', description: '' };
     this.closeSidebar();

@@ -9,8 +9,7 @@ import html2pdf from 'html2pdf.js';
 })
 export class ResumeComponent {
   downloadResume() {
-    const element = document.querySelector('.resume-doc') as HTMLElement; // ← assert HTMLElement
-
+    const element = document.querySelector('.resume-doc') as HTMLElement;
     if (!element) {
       console.error('Resume element not found!');
       return;

@@ -1,5 +1,4 @@
 <div class="calendar">
-  <!-- Header -->
   <div class="calendar-header">
     <button (click)="navigateMonth('prev')">⟨</button>
     <h2>
@@ -8,12 +7,9 @@
     <button (click)="navigateMonth('next')">⟩</button>
   </div>
 
-  <!-- Day Labels -->
   <div class="weekdays">
     <div *ngFor="let day of dayNames">{{ day }}</div>
   </div>
-
-  <!-- Calendar Grid -->
   <div class="calendar-grid">
     <div
       *ngFor="let day of days"
@@ -34,7 +30,6 @@
     </div>
   </div>
 
-  <!-- Sidebar -->
   <div *ngIf="selectedDate" class="sidebar">
     <h3>{{ selectedDate | date : "fullDate" }}</h3>
 
@@ -42,8 +37,6 @@
       <strong>{{ getEventEmoji(event.type) }} {{ event.title }}</strong> -
       {{ event.time }}
       <p *ngIf="event.description">{{ event.description }}</p>
-      <!-- <button (click)="editEvent(event.id)">Edit</button>
-      <button (click)="deleteEvent(event.id)">Delete</button> -->
     </div>
 
     <hr />
@@ -70,8 +63,6 @@
       ></textarea>
       <button type="submit" (click)="saveToStorage()">Add</button>
     </form>
-    <!-- 
-    <button>💾 Save All</button> -->
     <button (click)="closeSidebar()" title="Close" class="Close">❌</button>
   </div>
 </div>

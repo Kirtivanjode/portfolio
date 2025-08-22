@@ -25,7 +25,6 @@
           </div>
         </div>
 
-        <!-- Right Side: Map -->
         <div class="map-inline-card" *ngIf="location">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3715.222134823626!2d73.16138927467708!3d22.30715834378161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8fbc730f045%3A0x9edaf7e2e477213f!2sVadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1721800000000!5m2!1sen!2sin"
@@ -36,7 +35,6 @@
         </div>
       </div>
 
-      <!-- Contact Methods -->
       <div class="contact-methods">
         <div class="contact-method" *ngFor="let contact of filteredContacts">
           <div class="method-icon">{{ contact.icon }}</div>
@@ -84,7 +82,6 @@
       </div>
     </div>
 
-    <!-- Contact Form -->
     <div class="quick-contact">
       <h4>💬 Send a Quick Message</h4>
       <form class="contact-form" (ngSubmit)="handleSubmit()">

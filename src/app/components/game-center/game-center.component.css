@@ -1,7 +1,7 @@
 .game-center {
   padding: 1rem;
   width: 94%;
-  height: auto; /* change to auto for better mobile compatibility */
+  height: auto;
   min-height: 80vh;
   background: #222;
   color: white;
@@ -10,14 +10,12 @@
   box-sizing: border-box;
 }
 
-/* Responsive Grid */
 .game-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   gap: 1rem;
 }
 
-/* Card Styling */
 .game-card {
   background: #333;
   border-radius: 10px;
@@ -40,9 +38,6 @@
   font-size: 1rem;
 }
 
-/* Media Queries */
-
-/* Mobile (0 - 600px) */
 @media (max-width: 600px) {
   .game-grid {
     grid-template-columns: 1fr;
@@ -57,7 +52,6 @@
   }
 }
 
-/* Tablet (601px - 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
   .game-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
@@ -72,7 +66,6 @@
   }
 }
 
-/* Desktop (1025px and above) */
 @media (min-width: 1025px) {
   .game-grid {
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));

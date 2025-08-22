@@ -27,7 +27,6 @@ export class TaskbarComponent {
   intervalId: any;
 
   ngOnInit() {
-    // Live clock
     this.intervalId = setInterval(() => {
       const now = new Date();
       this.currentTime = now.toLocaleTimeString('en-US', {
@@ -37,16 +36,12 @@ export class TaskbarComponent {
     }, 1000);
 
     this.filteredApps = [...this.apps];
-
-    // Listen for outside click
     document.addEventListener('click', this.handleClickOutside.bind(this));
   }
 
   ngOnDestroy() {
-    // Clear clock interval
     clearInterval(this.intervalId);
 
-    // Remove listener
     document.removeEventListener('click', this.handleClickOutside.bind(this));
   }
 

@@ -88,7 +88,6 @@
   border-radius: 50%;
 }
 
-/* Map */
 .map-inline-card {
   width: 400px;
   height: 200px;
@@ -103,15 +102,14 @@
   border-radius: 10px;
 }
 
-/* Contact Methods */
 .contact-method {
   display: flex;
-  align-items: center; /* vertically center icon and text */
-  gap: 0.75rem; /* space between icon and text */
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .method-icon {
-  width: 32px; /* fixed width to align all icons */
+  width: 32px;
   text-align: center;
   font-size: 1.5rem;
 }
@@ -121,7 +119,7 @@
   flex-direction: row;
   align-items: center;
   gap: 0.25rem;
-  flex-wrap: wrap; /* wrap if text is too long */
+  flex-wrap: wrap;
 }
 
 .method-label {
@@ -139,7 +137,6 @@
   text-decoration: underline;
 }
 
-/* Contact Form */
 .quick-contact {
   margin-top: 2rem;
 }
@@ -178,7 +175,6 @@
   text-align: center;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .contact-flex-container {
     flex-direction: row;

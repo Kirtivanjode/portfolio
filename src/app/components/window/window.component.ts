@@ -123,7 +123,6 @@ export class WindowComponent implements OnInit, OnDestroy {
       this.currentBackground = bg;
       document.body.style.backgroundImage = `url(${bg})`;
 
-      // Detect brightness & update text color
       const img = new Image();
       img.crossOrigin = 'anonymous';
       img.src = bg;
@@ -153,7 +152,6 @@ export class WindowComponent implements OnInit, OnDestroy {
     window.removeEventListener('resize', this.onWindowResize);
   }
 
-  /** --- Brightness detection --- */
   getAverageColor(img: HTMLImageElement, callback: (color: string) => void) {
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
@@ -183,7 +181,6 @@ export class WindowComponent implements OnInit, OnDestroy {
     callback(brightness < 128 ? 'white' : 'black');
   }
 
-  /** --- Positioning apps --- */
   assignGridPositions() {
     const leftColumnX = 20;
     const rightColumnX = 110;
