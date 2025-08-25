@@ -1,38 +1,40 @@
-<div class="projects-container">
-  <div class="header">
-    <h1>My Projects</h1>
-    <p>Showcasing my latest work and creations</p>
-  </div>
+<div class="insta-container">
+  <div class="insta-card" *ngFor="let project of projects">
+    <div class="insta-header">
+      <span class="username">{{ project.title }}</span>
+    </div>
 
-  <div class="grid">
-    <div class="project-card" *ngFor="let project of projects">
-      <div class="image-wrapper">
-        <img [src]="project.image" [alt]="project.title" />
-        <div class="overlay">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description }}</p>
-          <div class="tech-tags">
-            <span *ngFor="let tech of project.tech">{{ tech }}</span>
-          </div>
-          <div class="links">
-            <a [href]="project.github" target="_blank">GitHub</a>
-            <a [href]="project.demo" target="_blank">Demo</a>
-          </div>
-        </div>
-      </div>
+    <div class="insta-post">
+      <img [src]="project.image" alt="{{ project.title }}" />
+    </div>
 
-      <div class="footer">
-        <div class="actions">
-          <button (click)="toggleLike(project.id)">
-            <span [class.liked]="isLiked(project.id)">❤️</span>
-          </button>
-          <span>💬</span>
-          <span>🔗</span>
-        </div>
-        <div class="likes">
-          {{ isLiked(project.id) ? project.likes + 1 : project.likes }} likes
-        </div>
+    <div class="insta-actions">
+      <span class="like">❤️</span>
+      <span class="comment">💬</span>
+      <span class="share">📤</span>
+    </div>
+
+    <div class="insta-caption">
+      <p class="desc">
+        {{ project.description }}
+      </p>
+
+      <div
+        *ngIf="project.loginId && project.password"
+        class="insta-credentials"
+      >
+        <p><strong>Login:</strong> {{ project.loginId }}</p>
+        <p><strong>Pass:</strong> {{ project.password }}</p>
       </div>
+    </div>
+
+    <div class="insta-tech">
+      <span *ngFor="let tech of project.tech">#{{ tech }}</span>
+    </div>
+
+    <div class="insta-links">
+      <a [href]="project.github" target="_blank">GitHub</a>
+      <a [href]="project.demo" target="_blank">Demo</a>
     </div>
   </div>
 </div>

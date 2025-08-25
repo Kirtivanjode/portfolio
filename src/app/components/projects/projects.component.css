@@ -1,178 +1,156 @@
-.projects-container {
-  padding: 80px 20px;
-  background-color: #000;
-  color: #fff;
-  height: 100%;
-}
-
-.header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
-}
-
-.project-card {
-  position: relative;
-  overflow: hidden;
-  background-color: #111;
-  border-radius: 8px;
-}
-
-.image-wrapper {
-  width: 100%;
-  height: 230px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #111;
-}
-
-.image-wrapper img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.image-wrapper:hover img {
-  transform: scale(1.05);
-}
-
-.overlay {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 16px;
-  opacity: 0;
-  transition: 0.3s;
-}
-
-.image-wrapper:hover .overlay {
-  background-color: rgba(0, 0, 0, 0.6);
-  opacity: 1;
-}
-
-.overlay .tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.overlay .tech-tags span {
-  background-color: #3b82f6;
-  padding: 4px 8px;
-  margin: 2px;
-  font-size: 12px;
-  border-radius: 4px;
-}
-
-.links {
-  display: flex;
-  gap: 8px;
-  margin-top: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.links a {
-  color: #fff;
-  background-color: #3b82f6;
-  padding: 4px 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 13px;
-}
-
-.footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 12px;
-  font-size: 14px;
-  background-color: #111;
-}
-
-.actions {
+.insta-container {
   display: flex;
   gap: 10px;
 }
 
-.actions button {
-  background: none;
-  border: none;
+.insta-row {
+  display: flex;
+  flex-wrap: wrap; /* allow wrapping */
+  justify-content: center; /* center items */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1300px;
+  margin: 0 auto; /* center the row itself */
+}
+
+/* === Card === */
+.insta-card {
+  background: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 calc(33.333% - 20px); /* 3 per row on large */
+  max-width: calc(33.333% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.insta-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* === Header === */
+.insta-header {
+  padding: 12px 15px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* === Image === */
+.insta-post img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.insta-post img:hover {
+  transform: scale(1.05);
+}
+
+/* === Actions (like, comment icons) === */
+.insta-actions {
+  display: flex;
+  gap: 15px;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+}
+
+.insta-actions span {
   cursor: pointer;
-  font-size: 18px;
-  color: white;
+  transition: transform 0.2s;
+}
+.insta-actions span:hover {
+  transform: scale(1.2);
 }
 
-.actions .liked {
-  color: red;
+/* === Stats === */
+.insta-stats {
+  padding: 0 15px;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #333;
 }
 
-.likes {
-  font-size: 12px;
+/* === Caption / Description === */
+.insta-caption {
+  padding: 10px 15px 15px;
+  flex-grow: 1;
 }
 
-@media (max-width: 768px) {
-  .projects-container {
-    padding: 60px 16px;
-  }
-
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-
-  .overlay {
-    padding: 12px;
-  }
-
-  .overlay .tech-tags span {
-    font-size: 11px;
-    padding: 3px 6px;
-  }
-
-  .links a {
-    font-size: 12px;
-    padding: 4px 8px;
-  }
-
-  .footer {
-    font-size: 13px;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-start;
-  }
+.insta-caption p {
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+.insta-caption strong {
+  color: #000;
+}
 
-  .overlay {
-    font-size: 14px;
-  }
+.insta-caption .desc {
+  font-size: 0.85rem;
+  color: #555;
+}
 
-  .footer {
-    font-size: 12px;
-  }
+.insta-credentials {
+  background: #f9f9f9;
+  border: 1px dashed #dbdbdb;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
 
-  .actions button {
-    font-size: 16px;
-  }
+/* === Tech Tags === */
+.insta-tech {
+  padding: 8px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
 
-  .likes {
-    font-size: 11px;
+.insta-tech span {
+  background: #efefef;
+  border-radius: 6px;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  color: #444;
+}
+
+/* === Links === */
+.insta-links {
+  padding: 10px 15px 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 15px;
+}
+
+.insta-links a {
+  color: #0095f6;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+.insta-links a:hover {
+  text-decoration: underline;
+}
+
+/* === Responsive === */
+@media (max-width: 992px) {
+  .insta-card {
+    flex: 1 1 calc(50% - 20px); /* 2 per row */
+    max-width: calc(50% - 20px);
+  }
+}
+@media (max-width: 600px) {
+  .insta-card {
+    flex: 1 1 100%; /* 1 per row */
+    max-width: 100%;
   }
 }
