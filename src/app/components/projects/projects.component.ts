@@ -35,7 +35,7 @@ export class ProjectsComponent {
       demo: 'https://employeehubki.vercel.app',
       loginId: 'john.doe@company.com',
       password: '12345',
-      username: 'employeehub_official',
+      username: 'employeehub',
     },
     {
       id: 2,

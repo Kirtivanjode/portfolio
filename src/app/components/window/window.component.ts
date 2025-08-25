@@ -27,6 +27,7 @@ interface DesktopApp {
 interface WindowInstance {
   id: string;
   title: string;
+  icon?: string;
   componentId: string;
   isMinimized: boolean;
   isMaximized: boolean;
@@ -215,6 +216,7 @@ export class WindowComponent implements OnInit, OnDestroy {
     this.openWindows.push({
       id: app.id,
       title: app.name,
+      icon: app.icon,
       componentId: app.id,
       isMinimized: false,
       isMaximized: true,

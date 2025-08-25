@@ -102,6 +102,11 @@ body {
   overflow: auto;
 }
 
+.title {
+  display: flex;
+  gap: 5px;
+}
+
 .title-bar {
   position: sticky;
   top: 0;

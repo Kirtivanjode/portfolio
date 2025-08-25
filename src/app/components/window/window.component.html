@@ -25,7 +25,9 @@
     [class.maximized]="win.isMaximized"
   >
     <div class="title-bar" (mousedown)="startDrag($event, win)">
-      <span>{{ win.title }}</span>
+      <div class="title">
+        <span>{{ win.icon }}</span> <span>{{ win.title }}</span>
+      </div>
       <div class="controls">
         <button (click)="minimizeWindow(win.id)">_</button>
         <button (click)="maximizeWindow(win.id)">☐</button>
