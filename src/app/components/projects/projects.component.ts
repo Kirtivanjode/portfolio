@@ -12,23 +12,33 @@ interface Project {
   loginId?: string;
   password?: string;
   username?: string;
+  featured?: boolean;
 }
 
 @Component({
   selector: 'app-projects',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.css',
+  styleUrls: ['./projects.component.css'],
 })
 export class ProjectsComponent {
   likedPosts = new Set<number>();
+
+  toggleLike(projectId: number) {
+    if (this.likedPosts.has(projectId)) {
+      this.likedPosts.delete(projectId);
+    } else {
+      this.likedPosts.add(projectId);
+    }
+  }
 
   projects: Project[] = [
     {
       id: 1,
       title: '👥 EmployeeHub',
       description:
-        'A responsive employee management dashboard with CRUD operations. Includes UI for viewing, adding, editing, and deleting employee records. Built with Angular + Bootstrap and a service-driven architecture for modularity.',
+        'A responsive employee management dashboard with CRUD operations. Built with Angular + Bootstrap, modular architecture.',
       image: 'project-1.png',
       tech: ['Angular', 'TypeScript', 'Bootstrap'],
       github: 'https://github.com/Kirtivanjode/Employeehub',
@@ -36,25 +46,23 @@ export class ProjectsComponent {
       loginId: 'john.doe@company.com',
       password: '12345',
       username: 'employeehub',
+      featured: true,
     },
     {
       id: 2,
       title: '📊 Live Dashboard',
       description:
-        'A real-time metrics dashboard with interactive charts, colorful KPI cards, and a sleek dark/light UI. Built in Angular with TypeScript, it consumes mock APIs and supports scalable service-based architecture.',
+        'Real-time metrics dashboard with interactive charts, KPI cards, dark/light mode. Built with Angular + TypeScript.',
       image: 'project-2.png',
       tech: ['Angular', 'TypeScript', 'Bootstrap'],
       github: 'https://github.com/Kirtivanjode/livechart',
       demo: 'https://livechartt.vercel.app/',
-      loginId: 'admin@company.com',
-      password: '12345',
-      username: 'livechart_admin',
     },
     {
       id: 3,
       title: '🌍 Wander With KI',
       description:
-        'A travel blogging app with photo posts, likes, comments, and a wishlist “bucket list.” It integrates map-based exploration using Leaflet and stores travel data in a Node/Express backend with PostgreSQL.',
+        'Travel blogging app with photo posts, likes, comments, and a wishlist bucket list. Integrated Leaflet map and Node.js/Express backend.',
       image: 'project-3.png',
       tech: [
         'Angular',
@@ -69,6 +77,7 @@ export class ProjectsComponent {
       loginId: 'admin@123',
       password: '12345',
       username: 'wander_with_ki',
+      featured: true,
     },
   ];
 }

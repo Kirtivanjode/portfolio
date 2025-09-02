@@ -2,22 +2,27 @@
   <div class="insta-card" *ngFor="let project of projects">
     <div class="insta-header">
       <span class="username">{{ project.title }}</span>
+      <span *ngIf="project.featured" class="badge">🌟 Featured</span>
     </div>
 
     <div class="insta-post">
-      <img [src]="project.image" alt="{{ project.title }}" />
+      <img [src]="project.image" alt="{{ project.title }}" loading="lazy" />
     </div>
 
     <div class="insta-actions">
-      <span class="like">❤️</span>
+      <span
+        class="like"
+        [class.liked]="likedPosts.has(project.id)"
+        (click)="toggleLike(project.id)"
+      >
+        ❤️
+      </span>
       <span class="comment">💬</span>
       <span class="share">📤</span>
     </div>
 
     <div class="insta-caption">
-      <p class="desc">
-        {{ project.description }}
-      </p>
+      <p class="desc">{{ project.description }}</p>
 
       <div
         *ngIf="project.loginId && project.password"
@@ -29,7 +34,9 @@
     </div>
 
     <div class="insta-tech">
-      <span *ngFor="let tech of project.tech">#{{ tech }}</span>
+      <span *ngFor="let tech of project.tech" class="tech-tag"
+        >#{{ tech }}</span
+      >
     </div>
 
     <div class="insta-links">
