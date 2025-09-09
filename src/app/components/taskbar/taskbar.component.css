@@ -35,6 +35,11 @@ body {
   filter: brightness(0.9);
 }
 
+.deflex {
+  display: flex;
+  gap: 5px;
+}
+
 .app-icon {
   position: absolute;
   width: 80px;
@@ -372,6 +377,9 @@ body {
     font-size: 0.8rem;
     padding: 3px 8px;
     height: 40px;
+  }
+  .right-section {
+    gap: 0px;
   }
 }
 

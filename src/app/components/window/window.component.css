@@ -200,9 +200,9 @@ body {
   .app-icon {
     width: 64px;
   }
-  .window {
+  /* .window {
     border-radius: 12px;
-  }
+  } */
   .title-bar {
     padding: 6px 10px;
   }
