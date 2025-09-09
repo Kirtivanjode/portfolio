@@ -140,6 +140,11 @@ body {
   background: #ddd;
 }
 
+.title-bar .controls .cansel:hover {
+  background: #c0392b;
+  color: #fff;
+}
+
 .resize-handle {
   position: absolute;
   width: 16px;

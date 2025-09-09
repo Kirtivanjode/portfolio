@@ -26,7 +26,7 @@ export class ExperienceComponent {
       id: 1,
       company: 'Hi-Mak',
       position: 'Intern',
-      duration: 'March 2024 – June 2024',
+      duration: 'March 2024 - June 2024',
       location: 'Vadodara, Gujarat',
       description:
         'Worked as a software development intern at Hi-Mak, contributing to frontend and backend modules while collaborating with senior developers on real-world projects.',
