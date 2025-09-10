@@ -215,6 +215,10 @@ body {
 
 @media (max-width: 768px) {
   .desktop {
+    background-image: url("/Warm-Pastel-Gradient.jpg");
+  }
+
+  .desktop {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     gap: 12px;
@@ -223,6 +227,7 @@ body {
     overflow-y: auto;
   }
   .app-icon {
+    color: black;
     width: 60px;
   }
   .app-icon .icon {
@@ -235,10 +240,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .desktop {
-    background-image: url("/Warm-Pastel-Gradient.jpg");
-  }
-
   .app-icon {
     width: 50px;
     color: black;
