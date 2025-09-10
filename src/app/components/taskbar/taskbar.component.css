@@ -265,6 +265,9 @@ body {
   .right-section {
     gap: 0px;
   }
+  .search-bar {
+    margin-right: 3px;
+  }
 }
 
 @media (min-width: 1440px) {
