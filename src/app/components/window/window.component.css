@@ -19,6 +19,7 @@ body {
   width: 100vw;
   overflow: hidden;
   font-family: "Segoe UI", sans-serif;
+  margin: 0;
 }
 
 .desktop-bg {
@@ -200,9 +201,9 @@ body {
   .app-icon {
     width: 64px;
   }
-  /* .window {
-    border-radius: 12px;
-  } */
+  .window {
+    margin: 0;
+  }
   .title-bar {
     padding: 6px 10px;
   }
