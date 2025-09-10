@@ -148,13 +148,67 @@ body {
 
 .resize-handle {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  right: 0;
-  cursor: nwse-resize;
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent; /* invisible */
   z-index: 10;
-  border-bottom-right-radius: 4px;
+}
+
+.resize-top,
+.resize-bottom {
+  left: 0;
+  right: 0;
+  height: 6px;
+  cursor: ns-resize;
+}
+
+.resize-top {
+  top: -3px;
+}
+.resize-bottom {
+  bottom: -3px;
+}
+
+.resize-left,
+.resize-right {
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  cursor: ew-resize;
+}
+
+.resize-left {
+  left: -3px;
+}
+.resize-right {
+  right: -3px;
+}
+
+.resize-top-left,
+.resize-top-right,
+.resize-bottom-left,
+.resize-bottom-right {
+  width: 10px;
+  height: 10px;
+}
+
+.resize-top-left {
+  top: -3px;
+  left: -3px;
+  cursor: nwse-resize;
+}
+.resize-top-right {
+  top: -3px;
+  right: -3px;
+  cursor: nesw-resize;
+}
+.resize-bottom-left {
+  bottom: -3px;
+  left: -3px;
+  cursor: nesw-resize;
+}
+.resize-bottom-right {
+  bottom: -3px;
+  right: -3px;
+  cursor: nwse-resize;
 }
 
 .taskbar {
@@ -326,19 +380,24 @@ body {
   .app-icon {
     width: 140px;
   }
+
   .app-icon .icon {
     font-size: 4rem;
   }
+
   .app-icon .label {
     font-size: 1.2rem;
   }
+
   .window-content {
     font-size: 1.4rem;
   }
+
   .taskbar {
     height: 48px;
     font-size: 1.2rem;
   }
+
   .title-bar {
     font-size: 1.2rem;
     padding: 12px 18px;

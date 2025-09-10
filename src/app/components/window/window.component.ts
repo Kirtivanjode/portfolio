@@ -47,7 +47,7 @@ export class WindowComponent implements OnInit, OnDestroy {
   openWindows: WindowInstance[] = [];
   highestZIndex = 1000;
   currentBackground = 'desk-coding.png';
-  currentTextColor = 'white'; // auto-adjusted color for icons
+  currentTextColor = 'white';
 
   apps: DesktopApp[] = [
     {
@@ -355,12 +355,50 @@ export class WindowComponent implements OnInit, OnDestroy {
   resizingWindow: WindowInstance | null = null;
   resizeOffset = { x: 0, y: 0 };
 
-  startResize(event: MouseEvent, win: WindowInstance) {
+  startResize(event: MouseEvent, win: any, direction: string) {
     event.stopPropagation();
-    this.resizingWindow = win;
-    this.resizeOffset = { x: event.clientX, y: event.clientY };
-    document.addEventListener('mousemove', this.onResize);
-    document.addEventListener('mouseup', this.stopResize);
+    event.preventDefault();
+
+    const startX = event.clientX;
+    const startY = event.clientY;
+    const startWidth = win.size.width;
+    const startHeight = win.size.height;
+    const startLeft = win.position.x;
+    const startTop = win.position.y;
+
+    const onMouseMove = (moveEvent: MouseEvent) => {
+      const dx = moveEvent.clientX - startX;
+      const dy = moveEvent.clientY - startY;
+
+      if (direction.includes('right')) {
+        win.size.width = Math.max(200, startWidth + dx);
+      }
+      if (direction.includes('bottom')) {
+        win.size.height = Math.max(150, startHeight + dy);
+      }
+      if (direction.includes('left')) {
+        const newWidth = Math.max(200, startWidth - dx);
+        if (newWidth !== win.size.width) {
+          win.size.width = newWidth;
+          win.position.x = startLeft + dx;
+        }
+      }
+      if (direction.includes('top')) {
+        const newHeight = Math.max(150, startHeight - dy);
+        if (newHeight !== win.size.height) {
+          win.size.height = newHeight;
+          win.position.y = startTop + dy;
+        }
+      }
+    };
+
+    const onMouseUp = () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+
+    document.addEventListener('mousemove', onMouseMove);
+    document.addEventListener('mouseup', onMouseUp);
   }
 
   onResize = (event: MouseEvent) => {

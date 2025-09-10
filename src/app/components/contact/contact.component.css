@@ -153,7 +153,7 @@
 
 .contact-form input,
 .contact-form textarea {
-  width: 88%;
+  width: 97%;
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -196,6 +196,14 @@
   .info-avatar-group,
   .map-inline-card {
     width: 100%;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 88%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
   }
 
   .map-inline-card {

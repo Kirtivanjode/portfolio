@@ -41,7 +41,39 @@
       ></ng-container>
     </div>
 
-    <div class="resize-handle" (mousedown)="startResize($event, win)"></div>
+    <div
+      class="resize-handle resize-top"
+      (mousedown)="startResize($event, win, 'top')"
+    ></div>
+    <div
+      class="resize-handle resize-right"
+      (mousedown)="startResize($event, win, 'right')"
+    ></div>
+    <div
+      class="resize-handle resize-bottom"
+      (mousedown)="startResize($event, win, 'bottom')"
+    ></div>
+    <div
+      class="resize-handle resize-left"
+      (mousedown)="startResize($event, win, 'left')"
+    ></div>
+
+    <div
+      class="resize-handle resize-top-left"
+      (mousedown)="startResize($event, win, 'top-left')"
+    ></div>
+    <div
+      class="resize-handle resize-top-right"
+      (mousedown)="startResize($event, win, 'top-right')"
+    ></div>
+    <div
+      class="resize-handle resize-bottom-left"
+      (mousedown)="startResize($event, win, 'bottom-left')"
+    ></div>
+    <div
+      class="resize-handle resize-bottom-right"
+      (mousedown)="startResize($event, win, 'bottom-right')"
+    ></div>
   </div>
 </div>
 
