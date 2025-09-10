@@ -35,117 +35,6 @@ body {
   filter: brightness(0.9);
 }
 
-.app-icon {
-  position: absolute;
-  width: 80px;
-  text-align: center;
-  user-select: none;
-  cursor: grab;
-  padding: 5px;
-  border-radius: 12px;
-  color: white;
-  transition: transform 0.1s;
-}
-
-.app-icon:hover {
-  transform: scale(1.05);
-}
-
-.app-icon .icon {
-  font-size: 2rem;
-  display: block;
-  margin-bottom: 0.3rem;
-}
-
-.app-icon .label {
-  font-size: clamp(0.5rem, 1.5vw, 0.75rem);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.window {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  border: 1px solid #ccc;
-  z-index: 1000;
-  max-width: 100%;
-  max-height: 100%;
-  overflow: scroll;
-}
-
-.window.about {
-  background: #fff5e1;
-  border: 1px solid #ff6f61;
-  color: #4b3832;
-}
-
-.window.about .title-bar {
-  background: #ff6f61;
-  color: white;
-}
-
-.window.projects {
-  background: #f5f5f5;
-  border: 1px solid #1abc9c;
-  color: #333;
-}
-.window.projects .title-bar {
-  background: #1abc9c;
-  color: white;
-}
-
-.window.skills {
-  background: #2c3e50;
-  color: #5dade2;
-}
-
-.window.skills .title-bar {
-  background: #5dade2;
-  color: #2c3e50;
-}
-
-.window.testimonials {
-  background: #e6e6fa;
-  color: #333333;
-}
-
-.window.testimonials .title-bar {
-  background: #9b59b6;
-  color: white;
-}
-
-.window.contact {
-  background: #1c1c1c;
-  color: #ffffff;
-}
-.window.contact .title-bar {
-  background: #2ecc71;
-  color: white;
-}
-
-.window.maximized {
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.window-content {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 1rem;
-  font-size: clamp(0.75rem, 1vw, 1.2rem);
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  background: inherit;
-  color: inherit;
-}
-
 .title-bar {
   position: sticky;
   top: 0;
@@ -293,7 +182,7 @@ body {
 }
 
 .tray-clock {
-  min-width: 80px;
+  min-width: 50px;
   text-align: right;
   padding-right: 10px;
 }
