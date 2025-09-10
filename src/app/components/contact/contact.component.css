@@ -186,8 +186,8 @@
   }
 
   .map-inline-card {
-    width: 200px;
-    height: 120px;
+    width: 360px;
+    height: 130px;
     display: block;
   }
 }
@@ -207,8 +207,8 @@
   }
 
   .map-inline-card {
-    height: 115px;
-    width: 230px;
+    height: 110px;
+    width: 260px;
   }
 
   .contact-title,
