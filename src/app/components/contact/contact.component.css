@@ -210,4 +210,9 @@
     height: 115px;
     width: 230px;
   }
+
+  .contact-title,
+  .contact-location {
+    font-size: 0.6rem;
+  }
 }
