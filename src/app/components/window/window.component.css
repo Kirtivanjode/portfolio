@@ -342,4 +342,7 @@ body {
     font-size: 1.2rem;
     padding: 12px 18px;
   }
+  .desktop {
+    margin: 0;
+  }
 }
