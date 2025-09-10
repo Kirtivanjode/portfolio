@@ -92,3 +92,75 @@
   color: #555;
   margin-top: 5px;
 }
+
+.skills-container {
+  display: flex;
+  height: 100vh;
+  font-family: sans-serif;
+  background: #f9f9f9;
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+    padding: 15px;
+  }
+  .content {
+    padding: 20px;
+  }
+}
+
+/* Mobile: stack sidebar + content vertically */
+@media (max-width: 768px) {
+  .skills-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    max-height: 250px;
+    overflow-y: auto;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .skill-header .icon {
+    font-size: 36px;
+  }
+
+  .progress {
+    max-width: 100%;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .sidebar h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .file-item {
+    font-size: 14px;
+    padding: 4px;
+  }
+
+  .skill-header h2 {
+    font-size: 18px;
+  }
+
+  .progress p {
+    font-size: 13px;
+  }
+
+  .empty {
+    padding-top: 60px;
+    font-size: 0.9rem;
+  }
+}
