@@ -3,6 +3,7 @@
   height: 100vh;
   font-family: sans-serif;
   background: #f9f9f9;
+  width: 100%;
 }
 
 .sidebar {
@@ -139,7 +140,6 @@
   }
 }
 
-/* Small phones */
 @media (max-width: 480px) {
   .sidebar h3 {
     font-size: 14px;
