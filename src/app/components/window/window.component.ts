@@ -184,7 +184,7 @@ export class WindowComponent implements OnInit, OnDestroy {
 
   assignGridPositions() {
     const leftColumnX = 20;
-    const rightColumnX = 120;
+    const rightColumnX = 110;
     const startY = 50;
     const rowHeight = 90;
 
