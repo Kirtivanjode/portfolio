@@ -186,7 +186,7 @@ export class WindowComponent implements OnInit, OnDestroy {
     const leftColumnX = 20;
     const rightColumnX = 110;
     const startY = 50;
-    const rowHeight = 90;
+    const rowHeight = 95;
 
     this.apps.forEach((app, index) => {
       const col = index % 2 === 0 ? leftColumnX : rightColumnX;
