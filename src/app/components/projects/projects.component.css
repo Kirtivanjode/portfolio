@@ -135,7 +135,7 @@
   text-decoration: underline;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .insta-post img {
     height: 180px;
   }
