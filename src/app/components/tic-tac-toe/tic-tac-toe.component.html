@@ -1,16 +1,33 @@
 <div class="msg-container" *ngIf="showMsg">
-  <p id="msg">
+  <p
+    id="msg"
+    [ngClass]="{
+      'winner-player': winner === 'You' || winner === 'O' || winner === 'X',
+      'winner-computer': winner === 'Computer',
+      'winner-draw': winner === 'Draw'
+    }"
+  >
     {{
       winner === "Draw"
         ? "Game was a Draw."
-        : "Congratulations, Winner is " + winner
+        : playWithComputer
+        ? winner === "You"
+          ? "You Win 🎉"
+          : "Computer Wins 🤖"
+        : "Winner is " + winner
     }}
   </p>
   <button id="new-btn" (click)="resetGame()">New Game</button>
 </div>
 
 <main>
-  <button id="reset-btn" (click)="resetGame()">Reset Game</button>
+  <h1>Tic Tac Toe</h1>
+  <div class="deflex">
+    <button id="reset-btn" (click)="resetGame()">Reset Game</button>
+    <button id="reset-btn" (click)="toggleComputer()">
+      {{ playWithComputer ? "Play with Friend" : "Play with Computer" }}
+    </button>
+  </div>
   <div class="container">
     <div class="game">
       <button

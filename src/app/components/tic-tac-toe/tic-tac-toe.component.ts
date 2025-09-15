@@ -14,6 +14,7 @@ export class TicTacToeComponent {
   winner: string = '';
   count: number = 0;
   showMsg: boolean = false;
+  playWithComputer: boolean = false;
 
   winPatterns: number[][] = [
     [0, 1, 2],
@@ -41,6 +42,32 @@ export class TicTacToeComponent {
     if (this.count === 9) {
       this.winner = 'Draw';
       this.showMsg = true;
+      return;
+    }
+
+    if (this.playWithComputer && !this.turnO && !this.winner) {
+      setTimeout(() => this.computerMove(), 500);
+    }
+  }
+
+  computerMove(): void {
+    const emptyIndexes = this.boxes
+      .map((val, idx) => (val === '' ? idx : -1))
+      .filter((idx) => idx !== -1);
+
+    if (emptyIndexes.length === 0) return;
+
+    const randomIndex =
+      emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)];
+
+    this.boxes[randomIndex] = 'X';
+    this.turnO = !this.turnO;
+    this.count++;
+
+    this.checkWinner();
+    if (this.count === 9 && !this.winner) {
+      this.winner = 'Draw';
+      this.showMsg = true;
     }
   }
 
@@ -52,7 +79,11 @@ export class TicTacToeComponent {
         this.boxes[a] === this.boxes[b] &&
         this.boxes[b] === this.boxes[c]
       ) {
-        this.winner = this.boxes[a];
+        if (this.playWithComputer) {
+          this.winner = this.boxes[a] === 'O' ? 'You' : 'Computer';
+        } else {
+          this.winner = this.boxes[a];
+        }
         this.showMsg = true;
         return true;
       }
@@ -66,5 +97,10 @@ export class TicTacToeComponent {
     this.count = 0;
     this.winner = '';
     this.showMsg = false;
+  }
+
+  toggleComputer(): void {
+    this.playWithComputer = !this.playWithComputer;
+    this.resetGame();
   }
 }
