@@ -66,7 +66,7 @@ export class ProjectsComponent {
       ],
       github: 'https://github.com/Kirtivanjode/wanderwithkii',
       demo: 'https://wanderwithki.vercel.app/',
-      loginId: 'admin@123',
+      loginId: 'kirti',
       password: '12345',
       username: 'wander_with_ki',
     },
