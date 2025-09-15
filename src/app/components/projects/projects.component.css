@@ -137,6 +137,22 @@
 
 @media (max-width: 768px) {
   .insta-post img {
+    height: 330px;
+  }
+
+  .insta-actions {
+    font-size: 1rem;
+    gap: 10px;
+  }
+
+  .insta-container {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .insta-post img {
     height: 180px;
   }
 
