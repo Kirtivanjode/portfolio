@@ -101,7 +101,6 @@
   background: #f9f9f9;
 }
 
-/* Tablet adjustments */
 @media (max-width: 1024px) {
   .sidebar {
     width: 220px;
@@ -112,7 +111,6 @@
   }
 }
 
-/* Mobile: stack sidebar + content vertically */
 @media (max-width: 768px) {
   .skills-container {
     flex-direction: column;

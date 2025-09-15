@@ -12,13 +12,22 @@ import { MemoryMatchComponent } from './components/memory-match/memory-match.com
 
 export const routes: Routes = [
   { path: 'about', component: AboutMeComponent },
+
   { path: 'projects', component: ProjectsComponent },
+
   { path: 'experience', component: ExperienceComponent },
+
   { path: 'resume', component: ResumeComponent },
+
   { path: 'hobbies', component: HobbiesComponent },
+
   { path: 'skills', component: SkillsComponent },
+
   { path: 'contact', component: ContactComponent },
+
   { path: 'games', component: GameCenterComponent },
+
   { path: 'tic-tac-toe', component: TicTacToeComponent },
+
   { path: 'memorymatch', component: MemoryMatchComponent },
 ];

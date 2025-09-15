@@ -65,10 +65,10 @@ export class ProjectsComponent {
         'Leaflet',
       ],
       github: 'https://github.com/Kirtivanjode/wanderwithkii',
-      demo: 'https://wanderwithki.vercel.app/',
       loginId: 'admin@123',
       password: '12345',
       username: 'wander_with_ki',
+      demo: '',
     },
   ];
 }

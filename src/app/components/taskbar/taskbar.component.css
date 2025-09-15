@@ -199,6 +199,7 @@ body {
     opacity: 0;
     transform: translateY(5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -209,6 +210,7 @@ body {
   .app-icon {
     width: 64px;
   }
+
   .resize-handle {
     width: 14px;
     height: 14px;
@@ -224,6 +226,7 @@ body {
     height: calc(100vh - 40px);
     overflow-y: auto;
   }
+
   .taskbar {
     flex-direction: column;
     align-items: stretch;
@@ -231,16 +234,19 @@ body {
     padding: 8px;
     gap: 6px;
   }
+
   .taskbar-icon,
   .tray-icon {
     font-size: 1.4rem;
     padding: 8px;
   }
+
   .tray-clock {
     text-align: center;
     padding-right: 0;
     width: 100%;
   }
+
   .suggestions {
     width: 35%;
   }
@@ -250,21 +256,26 @@ body {
   .app-icon {
     width: 50px;
   }
+
   .app-icon .icon {
     font-size: 1.3rem;
   }
+
   .resize-handle {
     width: 10px;
     height: 10px;
   }
+
   .taskbar {
     font-size: 0.8rem;
     padding: 3px 8px;
     height: 40px;
   }
+
   .right-section {
     gap: 0px;
   }
+
   .search-bar {
     margin-right: 3px;
   }
@@ -276,22 +287,28 @@ body {
     padding: 20px;
     margin-bottom: 20px;
   }
+
   .app-icon .icon {
     font-size: 2.5rem;
   }
+
   .app-icon .label {
     font-size: 1.1rem;
   }
+
   .title-bar {
     padding: 10px 16px;
   }
+
   .window-content {
     padding: 1.5rem;
   }
+
   .resize-handle {
     width: 20px;
     height: 20px;
   }
+
   .taskbar {
     height: 44px;
     font-size: 1.1rem;
@@ -303,19 +320,24 @@ body {
   .app-icon {
     width: 140px;
   }
+
   .app-icon .icon {
     font-size: 4rem;
   }
+
   .app-icon .label {
     font-size: 1.2rem;
   }
+
   .window-content {
     font-size: 1.4rem;
   }
+
   .taskbar {
     height: 48px;
     font-size: 1.2rem;
   }
+
   .title-bar {
     font-size: 1.2rem;
     padding: 12px 18px;
