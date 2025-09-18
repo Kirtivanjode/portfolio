@@ -245,7 +245,7 @@ body {
     padding: 0.5rem;
     gap: 8px;
   }
-  
+
   .taskbar {
     height: 36px;
     font-size: 0.8rem;
@@ -313,6 +313,12 @@ body {
   .resize-handle {
     width: 10px;
     height: 10px;
+  }
+
+  .window-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 
   .taskbar {
