@@ -1,5 +1,14 @@
+.deflex {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 .calendar {
-  max-width: 600px;
+  width: 80%;
   margin: 2rem auto;
   padding: 1rem;
   background: linear-gradient(to right, #fceabb, #f8b500);
