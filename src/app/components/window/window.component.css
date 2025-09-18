@@ -237,6 +237,7 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   background: white;
   overflow: hidden;
+  display: flex;
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
@@ -279,12 +280,6 @@ body {
     padding: 1rem;
     height: calc(100vh - 40px);
     overflow-y: auto;
-  }
-
-  .window-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
   }
 
   .app-icon {
