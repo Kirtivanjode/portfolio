@@ -97,6 +97,9 @@ body {
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   height: 93%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .window:not(.maximized) .window-content {
