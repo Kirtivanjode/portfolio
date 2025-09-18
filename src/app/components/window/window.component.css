@@ -121,7 +121,6 @@ body {
   cursor: move;
   user-select: none;
   font-size: clamp(0.8rem, 1vw, 1.2rem);
-  width: 101%;
 }
 
 .title-bar .controls {
