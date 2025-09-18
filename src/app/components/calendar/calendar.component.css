@@ -145,7 +145,7 @@
 
 @media (max-width: 768px) {
   .calendar {
-    width: 80%;
+    width: 90%;
     padding: 1rem 0.75rem;
     font-size: 13px;
     border-radius: 16px;
@@ -189,10 +189,6 @@
 }
 
 @media (max-width: 480px) {
-  .calendar {
-    width: 90%;
-  }
-
   .sidebar {
     width: 80%;
   }
