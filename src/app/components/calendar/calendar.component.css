@@ -1,5 +1,5 @@
 .calendar {
-  max-width: 600px;
+  width: 100%;
   margin: 2rem auto;
   padding: 1rem;
   background: linear-gradient(to right, #fceabb, #f8b500);
@@ -219,11 +219,13 @@
     padding: 1rem;
     font-size: 0.9rem;
   }
+
   .sidebar input,
   .sidebar select,
   .sidebar textarea {
     font-size: 0.8rem;
   }
+
   .sidebar button {
     font-size: 0.9rem;
   }
