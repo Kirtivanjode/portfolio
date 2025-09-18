@@ -281,6 +281,12 @@ body {
     overflow-y: auto;
   }
 
+  .window-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
   .app-icon {
     color: black;
     width: 60px;
@@ -313,12 +319,6 @@ body {
   .resize-handle {
     width: 10px;
     height: 10px;
-  }
-
-  .window-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
   }
 
   .taskbar {
