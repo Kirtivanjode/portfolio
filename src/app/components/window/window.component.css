@@ -237,7 +237,6 @@ body {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   background: white;
   overflow: hidden;
-  display: flex;
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
