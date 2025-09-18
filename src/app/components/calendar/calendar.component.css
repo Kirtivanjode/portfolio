@@ -189,6 +189,10 @@
 }
 
 @media (max-width: 480px) {
+  .calendar {
+    width: 90%;
+  }
+
   .sidebar {
     width: 80%;
   }
