@@ -1,6 +1,7 @@
 <div class="desktop">
   <img [src]="currentBackground" alt="Background" class="desktop-bg" />
 
+  <!-- App Icons -->
   <div
     class="app-icon"
     *ngFor="let app of apps"
@@ -13,9 +14,12 @@
     <span class="label">{{ app.name }}</span>
   </div>
 
+  <!-- Windows -->
   <div
     class="window"
     *ngFor="let win of openWindows"
+    [class.small-resize]="win.id === 'calendar' || win.id === 'settings'"
+    [class.resizing]="win.isResizing"
     [style.top.px]="win.position.y"
     [style.left.px]="win.position.x"
     [style.zIndex]="win.zIndex"
@@ -41,6 +45,7 @@
       ></ng-container>
     </div>
 
+    <!-- Resize Handles -->
     <div
       class="resize-handle resize-top"
       (mousedown)="startResize($event, win, 'top')"
@@ -57,7 +62,6 @@
       class="resize-handle resize-left"
       (mousedown)="startResize($event, win, 'left')"
     ></div>
-
     <div
       class="resize-handle resize-top-left"
       (mousedown)="startResize($event, win, 'top-left')"
@@ -77,6 +81,7 @@
   </div>
 </div>
 
+<!-- Taskbar -->
 <div class="taskbar">
   <app-taskbar
     [apps]="apps"

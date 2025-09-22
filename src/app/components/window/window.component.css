@@ -76,7 +76,6 @@ body {
   z-index: 1000;
   max-width: 100%;
   max-height: 100%;
-  overflow: scroll;
 }
 
 .window.maximized {
@@ -145,70 +144,70 @@ body {
   background: #c0392b;
   color: #fff;
 }
-
 .resize-handle {
   position: absolute;
   background: transparent;
-  z-index: 10;
+  z-index: 2;
 }
 
-.resize-top,
-.resize-bottom {
-  left: 0;
-  right: 0;
-  height: 6px;
-  cursor: ns-resize;
-}
-
+/* Edges */
 .resize-top {
-  top: -3px;
+  top: -4px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  cursor: n-resize;
 }
 .resize-bottom {
-  bottom: -3px;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  cursor: s-resize;
 }
-
-.resize-left,
-.resize-right {
-  top: 0;
-  bottom: 0;
-  width: 6px;
-  cursor: ew-resize;
-}
-
 .resize-left {
-  left: -3px;
+  left: -4px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  cursor: w-resize;
 }
 .resize-right {
-  right: -3px;
+  right: -4px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  cursor: e-resize;
 }
 
-.resize-top-left,
-.resize-top-right,
-.resize-bottom-left,
-.resize-bottom-right {
-  width: 10px;
-  height: 10px;
-}
-
+/* Corners */
 .resize-top-left {
-  top: -3px;
-  left: -3px;
-  cursor: nwse-resize;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: nw-resize;
 }
 .resize-top-right {
-  top: -3px;
-  right: -3px;
-  cursor: nesw-resize;
+  top: -4px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: ne-resize;
 }
 .resize-bottom-left {
-  bottom: -3px;
-  left: -3px;
-  cursor: nesw-resize;
+  bottom: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: sw-resize;
 }
 .resize-bottom-right {
-  bottom: -3px;
-  right: -3px;
-  cursor: nwse-resize;
+  bottom: -4px;
+  right: -4px;
+  width: 8px;
+  height: 8px;
+  cursor: se-resize;
 }
 
 .taskbar {

@@ -34,6 +34,7 @@ interface WindowInstance {
   position: { x: number; y: number };
   size: { width: number; height: number };
   zIndex: number;
+  isResizing?: boolean;
 }
 
 @Component({
@@ -351,13 +352,10 @@ export class WindowComponent implements OnInit, OnDestroy {
     document.removeEventListener('mousemove', this.onDrag);
     document.removeEventListener('mouseup', this.stopDrag);
   };
-
-  resizingWindow: WindowInstance | null = null;
-  resizeOffset = { x: 0, y: 0 };
-
-  startResize(event: MouseEvent, win: any, direction: string) {
+  startResize(event: MouseEvent, win: WindowInstance, direction: string) {
     event.stopPropagation();
     event.preventDefault();
+    win.isResizing = true;
 
     const startX = event.clientX;
     const startY = event.clientY;
@@ -370,29 +368,49 @@ export class WindowComponent implements OnInit, OnDestroy {
       const dx = moveEvent.clientX - startX;
       const dy = moveEvent.clientY - startY;
 
+      // Horizontal
       if (direction.includes('right')) {
-        win.size.width = Math.max(200, startWidth + dx);
-      }
-      if (direction.includes('bottom')) {
-        win.size.height = Math.max(150, startHeight + dy);
+        win.size.width = Math.max(
+          200,
+          Math.min(startWidth + dx, window.innerWidth - startLeft)
+        );
       }
       if (direction.includes('left')) {
-        const newWidth = Math.max(200, startWidth - dx);
-        if (newWidth !== win.size.width) {
-          win.size.width = newWidth;
-          win.position.x = startLeft + dx;
-        }
+        const newWidth = Math.max(
+          200,
+          Math.min(startWidth - dx, startWidth + startLeft)
+        );
+        win.size.width = newWidth;
+        win.position.x = startLeft + (startWidth - newWidth);
+      }
+
+      // Vertical
+      if (direction.includes('bottom')) {
+        win.size.height = Math.max(
+          150,
+          Math.min(startHeight + dy, window.innerHeight - startTop)
+        );
       }
       if (direction.includes('top')) {
-        const newHeight = Math.max(150, startHeight - dy);
-        if (newHeight !== win.size.height) {
-          win.size.height = newHeight;
-          win.position.y = startTop + dy;
-        }
+        const newHeight = Math.max(
+          150,
+          Math.min(startHeight - dy, startHeight + startTop)
+        );
+        win.size.height = newHeight;
+        win.position.y = startTop + (startHeight - newHeight);
       }
+
+      // Snap to edges
+      if (win.position.x <= 10) win.position.x = 0;
+      if (win.position.y <= 10) win.position.y = 0;
+      if (win.position.x + win.size.width >= window.innerWidth - 10)
+        win.position.x = window.innerWidth - win.size.width;
+      if (win.position.y + win.size.height >= window.innerHeight - 10)
+        win.position.y = window.innerHeight - win.size.height;
     };
 
     const onMouseUp = () => {
+      win.isResizing = false;
       document.removeEventListener('mousemove', onMouseMove);
       document.removeEventListener('mouseup', onMouseUp);
     };
@@ -400,6 +418,9 @@ export class WindowComponent implements OnInit, OnDestroy {
     document.addEventListener('mousemove', onMouseMove);
     document.addEventListener('mouseup', onMouseUp);
   }
+
+  resizingWindow: WindowInstance | null = null;
+  resizeOffset = { x: 0, y: 0 };
 
   onResize = (event: MouseEvent) => {
     if (!this.resizingWindow) return;
