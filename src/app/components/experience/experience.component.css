@@ -88,7 +88,7 @@
 .action-bar {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   border-top: 1px solid #ddd;
   margin-top: 1rem;
   padding-top: 0.5rem;
@@ -125,7 +125,6 @@
   }
 
   .action-bar {
-    flex-direction: column;
     gap: 0.5rem;
   }
 
