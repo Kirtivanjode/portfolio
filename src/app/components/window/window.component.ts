@@ -384,7 +384,6 @@ export class WindowComponent implements OnInit, OnDestroy {
         win.position.x = startLeft + (startWidth - newWidth);
       }
 
-      // Vertical
       if (direction.includes('bottom')) {
         win.size.height = Math.max(
           150,
@@ -400,7 +399,6 @@ export class WindowComponent implements OnInit, OnDestroy {
         win.position.y = startTop + (startHeight - newHeight);
       }
 
-      // Snap to edges
       if (win.position.x <= 10) win.position.x = 0;
       if (win.position.y <= 10) win.position.y = 0;
       if (win.position.x + win.size.width >= window.innerWidth - 10)
