@@ -143,7 +143,7 @@ ul li {
     padding: 60px 10px;
   }
   .download-btn-wrapper button {
-    width: 100%;
+    padding: 10px 15px;
     font-size: 13px;
   }
   .resume-content,
