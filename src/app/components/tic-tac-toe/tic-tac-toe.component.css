@@ -19,7 +19,8 @@ body {
 
 .deflex {
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
@@ -59,11 +60,6 @@ h1 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
-
-/* .box:hover:not(:disabled) {
-  background-color: #ffe96b;
-  transform: scale(1.05);
-} */
 
 .box:disabled {
   cursor: not-allowed;
