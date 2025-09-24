@@ -4,19 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background: linear-gradient(135deg, #548687, #354f52);
-  color: #fff;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-}
-
 .deflex {
   display: flex;
   flex-direction: column;
