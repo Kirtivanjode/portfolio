@@ -140,7 +140,7 @@ ul li {
 
 @media (max-width: 480px) {
   .resume-container {
-    padding: 60px 10px;
+    padding: 40px 10px;
   }
   .download-btn-wrapper button {
     padding: 10px 15px;

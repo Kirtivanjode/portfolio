@@ -45,31 +45,9 @@ export class TicTacToeComponent {
       return;
     }
 
-    if (this.playWithComputer && !this.turnO && !this.winner) {
-      setTimeout(() => this.computerMove(), 500);
-    }
+  
   }
 
-  computerMove(): void {
-    const emptyIndexes = this.boxes
-      .map((val, idx) => (val === '' ? idx : -1))
-      .filter((idx) => idx !== -1);
-
-    if (emptyIndexes.length === 0) return;
-
-    const randomIndex =
-      emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)];
-
-    this.boxes[randomIndex] = 'X';
-    this.turnO = !this.turnO;
-    this.count++;
-
-    this.checkWinner();
-    if (this.count === 9 && !this.winner) {
-      this.winner = 'Draw';
-      this.showMsg = true;
-    }
-  }
 
   checkWinner(): boolean {
     for (let pattern of this.winPatterns) {
@@ -99,8 +77,5 @@ export class TicTacToeComponent {
     this.showMsg = false;
   }
 
-  toggleComputer(): void {
-    this.playWithComputer = !this.playWithComputer;
-    this.resetGame();
-  }
+
 }

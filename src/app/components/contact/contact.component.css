@@ -198,6 +198,14 @@
     width: 100%;
   }
 
+  .main-contact-card {
+    padding: 1rem;
+  }
+
+  .contact-form {
+    padding: 1rem;
+  }
+
   .contact-form input,
   .contact-form textarea {
     width: 88%;
