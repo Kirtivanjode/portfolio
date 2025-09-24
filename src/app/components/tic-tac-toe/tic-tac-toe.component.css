@@ -60,10 +60,10 @@ h1 {
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
-.box:hover:not(:disabled) {
+/* .box:hover:not(:disabled) {
   background-color: #ffe96b;
   transform: scale(1.05);
-}
+} */
 
 .box:disabled {
   cursor: not-allowed;
@@ -89,7 +89,7 @@ h1 {
   background-color: #2c2c2c;
 }
 
-#msg {
+.msg {
   font-size: 5vmin;
   text-align: center;
   font-weight: bold;
@@ -130,7 +130,6 @@ h1 {
 .game-center {
   padding: 1rem;
   width: 94%;
-  height: auto;
   min-height: 80vh;
   background: #222;
   color: white;
