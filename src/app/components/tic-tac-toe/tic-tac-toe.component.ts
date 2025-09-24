@@ -44,10 +44,7 @@ export class TicTacToeComponent {
       this.showMsg = true;
       return;
     }
-
-  
   }
-
 
   checkWinner(): boolean {
     for (let pattern of this.winPatterns) {
@@ -76,6 +73,4 @@ export class TicTacToeComponent {
     this.winner = '';
     this.showMsg = false;
   }
-
-
 }
